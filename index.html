@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>AI היום | מהדורה 001</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@400;500;700&display=swap">
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#f7f6ed;color:#080808}body{font-family:Heebo,Arial,sans-serif}.front{position:relative;width:100%;aspect-ratio:1229/1536;container-type:inline-size;overflow:hidden}.masthead{position:absolute;top:3.1%;left:28.5%;width:43%;text-align:center}.logo{display:flex;direction:ltr;align-items:baseline;justify-content:center;gap:1cqw;white-space:nowrap;line-height:.92}.logo .english{font-family:Georgia,'Times New Roman',serif;font-size:15.1cqw;font-weight:700;letter-spacing:-1cqw}.logo .hebrew{font-family:'Frank Ruhl Libre',serif;font-size:15.1cqw;font-weight:900;letter-spacing:-.8cqw}.metadata{display:flex;direction:rtl;justify-content:center;gap:1.6cqw;align-items:center;margin-top:1.3cqw;font-size:1.78cqw;font-weight:500;white-space:nowrap}.metadata span+span{border-right:.16cqw solid;padding-right:1.6cqw}.side{position:absolute;top:5.35%;width:10%;border-top:.19cqw solid;padding-top:.8cqw;font-size:1.5cqw;line-height:1.23;font-weight:700}.side-left{left:2%;text-align:left}.side-right{right:2%;text-align:right}.headline{position:absolute;top:19.8%;left:2%;right:2%;display:flex;align-items:center;gap:1.8cqw}.headline:before,.headline:after{content:'';height:.17cqw;background:#282821;flex:1}.headline h1{margin:0;font-size:3.8cqw;font-family:'Frank Ruhl Libre',serif;letter-spacing:.12cqw;font-weight:700;white-space:nowrap}.cartoon{position:absolute;top:29.8%;left:0;width:100%;height:56.9%;margin:0}.cartoon img{display:block;width:100%;height:100%;object-fit:fill;mix-blend-mode:multiply}.bottom{position:absolute;left:2%;right:2%;bottom:2.3%;height:4.8%;border-top:.18cqw solid #282821;border-bottom:.18cqw solid #282821;display:flex;align-items:center;justify-content:space-between;font-size:2.35cqw;font-weight:700;white-space:nowrap}.topics{display:flex;direction:rtl;align-items:center;gap:1.3cqw}.topics span+span:before{content:'|';margin-left:1.3cqw}.dot{width:2.7cqw;height:2.7cqw;background:#e52620;border-radius:50%;margin-right:.2cqw}.description{font-size:2.25cqw}
+.front{aspect-ratio:auto;height:100vh;height:100svh}.masthead{top:4%;left:20%;width:60%}.logo .english,.logo .hebrew{font-size:min(15.1vw,13vh);letter-spacing:-.6vw}.metadata{font-size:min(1.78vw,2vh);margin-top:1vh}.side{font-size:min(1.5vw,1.8vh)}.headline{top:20%}.headline h1{font-size:min(3.8vw,4.3vh)}.cartoon{top:29%;height:58%}.cartoon img{object-fit:contain}.bottom{height:5%;font-size:min(2.35vw,2.5vh)}.description{font-size:min(2.25vw,2.5vh)}.dot{width:min(2.7vw,2.7vh);height:min(2.7vw,2.7vh)}
+.cartoon picture{display:block;width:100%;height:100%}.cartoon img{object-fit:cover;object-position:center}
+.inside{max-width:1160px;margin:0 auto;padding:36px 24px 64px;min-height:100vh;overflow-wrap:anywhere}.inside-header{border-top:2px solid;border-bottom:1px solid;padding:20px 0}.inside-header h2{font-family:'Frank Ruhl Libre',serif;font-size:clamp(30px,5vw,60px);margin:12px 0}.inside-header p{margin:8px 0}.draft-note{font-size:12px;color:#68645c}.story{display:grid;grid-template-columns:60px minmax(0,1.5fr) minmax(0,1fr);gap:28px;padding:32px 0;border-bottom:1px solid #aaa79e}.story-index{display:flex;flex-direction:column;gap:8px}.story-index b{font-family:Georgia,serif;font-size:36px}.story-index span,.eyebrow{font-size:12px;color:#68645c}.inside h2{line-height:1.15}.story h2,.sources h2{font-family:'Frank Ruhl Libre',serif;font-size:30px;margin:0 0 12px}.story p{line-height:1.8;margin:0 0 10px;font-size:17px}.why{border-right:3px solid #b6ff17;padding-right:20px}.why p{font-size:15px}.takeaway{padding:32px 0;border-bottom:1px solid}.takeaway h2{font-family:'Frank Ruhl Libre',serif;font-size:clamp(28px,4vw,44px)}.sources{padding-top:28px}.source-links{display:flex;flex-wrap:wrap;gap:20px}.source-links a{color:inherit} @media(max-width:650px){.inside{padding:24px 20px 48px}.story{grid-template-columns:38px minmax(0,1fr);gap:16px}.why{grid-column:2}.story-index b{font-size:28px}}
+/* Reading edition: monochrome, short lines, clear hierarchy. */
+.inside{max-width:none;background:#fff;color:#000;padding:40px max(22px,calc((100vw - 1080px)/2)) 64px}
+.inside-header{border-color:#000;padding:20px 0 28px}
+.inside .eyebrow,.inside .draft-note,.inside .story-index span{color:#000}
+.inside .draft-note{max-width:65ch;font-size:12px}
+.story{grid-template-columns:48px minmax(0,1.5fr) minmax(0,1fr);gap:24px;border-color:#000;padding:34px 0;align-items:start}
+.story h2{font-size:clamp(27px,3vw,38px);line-height:1.18;margin-bottom:14px}
+.story p{max-width:48ch;font-size:18px;line-height:1.7}
+.story .eyebrow{font-size:12px;font-weight:700;letter-spacing:.04em;line-height:1.3;margin-bottom:12px}
+.why{border-right:2px solid #000;padding:0 18px 0 0}
+.why p{font-size:16px;line-height:1.65;max-width:34ch}
+.why .eyebrow{display:inline-block;background:#000;color:#fff;padding:5px 9px;margin-bottom:12px}
+.quick-read{padding:22px 0;border-bottom:1px solid #000}
+.quick-read h3{font-size:14px;margin:0 0 14px}
+.quick-read ul{padding:0 22px 0 0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 36px;font-size:17px;line-height:1.5}
+.takeaway,.sources{border-color:#000}.takeaway h2{max-width:28ch}
+.source-links a{color:#000;text-underline-offset:4px}
+@media(max-width:650px){.story{grid-template-columns:32px minmax(0,1fr);gap:12px;padding:26px 0}.story p{font-size:17px}.why{grid-column:2;padding-right:14px}.why p{font-size:16px}.quick-read ul{grid-template-columns:1fr;gap:12px}.inside{padding-top:24px}}
+.logo{direction:rtl}
+html,body,.front,.bottom,.inside{background:#fff;color:#000}
+.headline:before,.headline:after{background:#000}
+.bottom,.side{border-color:#000}
+.cartoon img{mix-blend-mode:normal;filter:brightness(1.055) contrast(1.12)}
+/* Cover proportions: connected rows, with the illustration taking remaining height. */
+.front{display:flex;flex-direction:column;padding-top:clamp(16px,3svh,28px)}
+.masthead{position:relative;inset:auto;width:max-content;max-width:70%;align-self:center;flex:none}
+.logo .english,.logo .hebrew{font-size:min(19.6vw,17svh)}
+.metadata{width:100%;justify-content:space-between;gap:16px;margin-top:12px;font-size:clamp(10px,2.1vw,17px)}
+.metadata span+span{border:0;padding:0}
+.side{top:16px}
+.headline{position:relative;inset:auto;flex:none;margin:clamp(20px,4svh,40px) 2% 0;gap:2vw}
+.headline h1{font-size:min(5.1vw,5.8svh);line-height:1.15}
+.headline:before,.headline:after{height:1px;min-width:0}
+.cartoon{position:relative;inset:auto;flex:1;min-height:0;height:auto;margin:10px 0 0}
+.cartoon img{object-fit:cover;object-position:center}
+.bottom{position:relative;inset:auto;flex:none;height:clamp(34px,5svh,48px);margin:8px 2% 16px;font-size:min(2.5vw,18px)}
+.description{font-size:min(2.4vw,18px)}
+@media(max-height:480px){.front{padding-top:10px}.side{top:10px}.metadata{margin-top:6px}.headline{margin-top:12px}.bottom{margin-bottom:8px}}
+.story .story-label{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px}.story-label a{color:#000;font-weight:400;letter-spacing:normal;text-underline-offset:3px}.story-label a:focus-visible{outline:2px solid #000;outline-offset:4px}
+</style>
+</head>
+<body>
+<main class="front" aria-label="שער מהדורה 001">
+<aside class="side side-left">בינה מלאכותית<br>כלכלה<br>חברה<br>ישראל</aside>
+<header class="masthead"><div class="logo" aria-label="AI היום"><span class="english" dir="ltr">AI</span><span class="hebrew" dir="rtl">היום</span></div><div class="metadata"><span>מהדורה <bdi>001</bdi></span><span><time datetime="2026-09-13">13.09.2026</time></span></div></header>
+<aside class="side side-right">אנשים<br>רעיונות<br>השפעה<br>כל יום.</aside>
+<section class="headline"><h1>בטיחות לפני מהירות</h1></section>
+<figure class="cartoon"><picture><source media="(orientation: portrait)" srcset="cartoon-mobile.webp"><img src="cartoon-desktop.webp" width="2048" height="683" alt="ארבעה חוקרים מפעילים בלם אדום על גלגל מכונית מרוץ, מטפורה לבטיחות בבינה מלאכותית"></picture></figure>
+<footer class="bottom"><span class="description">4 התפתחויות. כל מה שחשוב היום.</span><div class="topics"><span>בטיחות</span><span>פיקוח</span><span>הנפקה</span><span>ישראל</span><i class="dot" aria-hidden="true"></i></div></footer>
+</main>
+<article class="inside" id="inside" aria-label="תוכן מהדורה 001">
+<header class="inside-header"><p>מהדורה 001 · 13.09.2026</p><h2>בטיחות לפני מהירות</h2><p>ארבע התפתחויות, ההקשר והשורה התחתונה.</p><p class="draft-note">תוכן הדגמה מהטיוטה הקודמת — טרם אומת לפרסום.</p></header>
+<nav class="quick-read" aria-label="נושאי המהדורה במבט אחד"><h3>במבט אחד · ארבעת הנושאים</h3><ul><li><strong>בטיחות:</strong> קצב הפיתוח מול בדיקות הבטיחות.</li><li><strong>פיקוח:</strong> תפקידם של מעריכים עצמאיים.</li><li><strong>הנפקה:</strong> התוכניות של OpenAI.</li><li><strong>ישראל:</strong> AI שפוגש את העולם הפיזי.</li></ul></nav>
+<div class="stories"><section class="story"><div class="story-index"><b>01</b><span>2 דקות</span></div><div><p class="eyebrow story-label"><span>בטיחות</span><a href="https://apnews.com/article/anthropic-ai-dario-amodei-d59552edcb27892d8ee4d98a48397706" target="_blank" rel="noopener noreferrer" aria-label="לכתבה המלאה בנושא בטיחות (נפתחת בלשונית חדשה)">לכתבה המלאה ↗</a></p><h2>הסיפור הגדול</h2><p>Dario Amodei, מנכ״ל Anthropic, קרא לחברות ה-AI המובילות להאט את שיפור יכולות המודלים, כדי לאפשר לבטיחות להדביק את הקצב. מדובר בשינוי בטון: לא ביקורת מבחוץ, אלא מסר מהחברות שבמרכז המרוץ.</p></div><div class="why"><p class="eyebrow">למה זה חשוב</p><p>המהירות עצמה הופכת לנושא החדשות. השאלה אינה רק מי יבנה את המודל החזק ביותר, אלא מי יסכים לעבוד תחת כללי בטיחות אמיתיים.</p></div></section><section class="story"><div class="story-index"><b>02</b><span>45 שניות</span></div><div><p class="eyebrow story-label"><span>פיקוח</span><a href="https://apnews.com/article/anthropic-ai-dario-amodei-d59552edcb27892d8ee4d98a48397706" target="_blank" rel="noopener noreferrer" aria-label="לכתבה המלאה בנושא פיקוח (נפתחת בלשונית חדשה)">לכתבה המלאה ↗</a></p><h2>פיקוח מבחוץ</h2><p>ההצעה המרכזית היא להכניס מעריכי בטיחות עצמאיים עם גישה רציפה, כמעט כמו עובדים, לתהליכי הפיתוח של המעבדות הגדולות.</p></div><div class="why"><p class="eyebrow">למה זה חשוב</p><p>פיקוח על מודלי-על עשוי לעבור מהצהרות עקרוניות למנגנון קבוע ומדיד.</p></div></section><section class="story"><div class="story-index"><b>03</b><span>35 שניות</span></div><div><p class="eyebrow story-label"><span>הנפקה</span><a href="https://www.reuters.com/legal/litigation/openai-ipo-will-not-happen-2026-amid-ai-safety-fears-altman-says-2026-09-12/" target="_blank" rel="noopener noreferrer" aria-label="לכתבה המלאה בנושא הנפקה (נפתחת בלשונית חדשה)">לכתבה המלאה ↗</a></p><h2>OpenAI דוחה את ההנפקה</h2><p>Sam Altman אמר ש-OpenAI לא תצא להנפקה ב-2026. לדבריו, החברה צריכה להקדיש את התקופה הקרובה לבטיחות, התאמה ושיתוף פעולה עם ממשלות.</p></div><div class="why"><p class="eyebrow">למה זה חשוב</p><p>ההחלטה מציבה את נושא הבטיחות מול אחד ממנועי הלחץ החזקים ביותר בשוק: צמיחה, שווי והון.</p></div></section><section class="story"><div class="story-index"><b>04</b><span>35 שניות</span></div><div><p class="eyebrow story-label"><span>ישראל</span><a href="https://www.jns.org/feature/at-first-physical-ai-conference-israel-bets-robotics-is-the-next-frontier" target="_blank" rel="noopener noreferrer" aria-label="לכתבה המלאה בנושא ישראל (נפתחת בלשונית חדשה)">לכתבה המלאה ↗</a></p><h2>ישראל מסתכלת על העולם הפיזי</h2><p>במקביל, ישראל מקדמת Physical AI: חיבור AI לרובוטיקה, חקלאות, תעשייה, רפואה ומערכות אוטונומיות. הדיון המקומי כבר זז מעבר לצ׳אטבוטים.</p></div><div class="why"><p class="eyebrow">למה זה חשוב</p><p>הזדמנות ישראלית אינה בהכרח לבנות את המודל הגדול בעולם, אלא ליישם AI במקומות שבהם הוא פוגש את העולם האמיתי.</p></div></section></div><section class="takeaway"><p class="eyebrow">04:30 · השורה התחתונה</p><h2>המרוץ לא נעצר. אבל המובילים בו מודים שהבלמים צריכים לעבוד.</h2></section>
+</article>
+<script>
+// Match ink bounds, not font boxes, after the Hebrew webfont loads.
+(() => {
+  const english = document.querySelector('.logo .english');
+  const hebrew = document.querySelector('.logo .hebrew');
+  const context = document.createElement('canvas').getContext('2d');
+  if (!context) return;
+  function measure(element, size) {
+    const style = getComputedStyle(element);
+    context.font = `${style.fontWeight} ${size}px ${style.fontFamily}`;
+    return context.measureText(element.textContent);
+  }
+  function matchHeight() {
+    const size = parseFloat(getComputedStyle(hebrew).fontSize);
+    const target = measure(hebrew, size);
+    const source = measure(english, size);
+    const targetHeight = target.actualBoundingBoxAscent + target.actualBoundingBoxDescent;
+    const sourceHeight = source.actualBoundingBoxAscent + source.actualBoundingBoxDescent;
+    if (!(sourceHeight > 0 && targetHeight > 0)) return;
+    const matchedSize = size * targetHeight / sourceHeight;
+    english.style.fontSize = `${matchedSize}px`;
+    const matched = measure(english, matchedSize);
+    english.style.transform = `translateY(${target.actualBoundingBoxDescent - matched.actualBoundingBoxDescent}px)`;
+  }
+  matchHeight();
+  document.fonts.ready.then(matchHeight);
+  window.addEventListener('resize', matchHeight, { passive: true });
+})();
+</script>
+</body>
+</html>
