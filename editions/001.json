@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "number": "001",
+  "publicationDate": "2026-09-13",
+  "status": "demo-unverified",
+  "headline": "בטיחות לפני מהירות",
+  "coverDescription": "4 התפתחויות. כל מה שחשוב היום.",
+  "introduction": "ארבע התפתחויות, ההקשר והשורה התחתונה.",
+  "editorialNote": "תוכן הדגמה מהטיוטה הקודמת — טרם אומת לפרסום.",
+  "aiDisclosure": "המהדורה הופקה בסיוע בינה מלאכותית. עובדות, פרשנות וטעויות אפשריות אינן ניטרליות מעצם השימוש ב-AI.",
+  "keywords": ["בטיחות", "פיקוח", "הנפקה", "ישראל"],
+  "cartoon": {
+    "desktop": "cartoon-desktop.webp",
+    "mobile": "cartoon-mobile.webp",
+    "alt": "ארבעה חוקרים מפעילים בלם אדום על גלגל מכונית מרוץ, מטפורה לבטיחות בבינה מלאכותית"
+  },
+  "stories": [
+    {
+      "section": "בטיחות",
+      "headline": "הסיפור הגדול",
+      "readingTime": "2 דקות",
+      "quickRead": "קצב הפיתוח מול בדיקות הבטיחות.",
+      "summary": "Dario Amodei, מנכ״ל Anthropic, קרא לחברות ה-AI המובילות להאט את שיפור יכולות המודלים, כדי לאפשר לבטיחות להדביק את הקצב. מדובר בשינוי בטון: לא ביקורת מבחוץ, אלא מסר מהחברות שבמרכז המרוץ.",
+      "whyItMatters": "המהירות עצמה הופכת לנושא החדשות. השאלה אינה רק מי יבנה את המודל החזק ביותר, אלא מי יסכים לעבוד תחת כללי בטיחות אמיתיים.",
+      "sources": [{"url": "https://apnews.com/article/anthropic-ai-dario-amodei-d59552edcb27892d8ee4d98a48397706"}]
+    },
+    {
+      "section": "פיקוח",
+      "headline": "פיקוח מבחוץ",
+      "readingTime": "45 שניות",
+      "quickRead": "תפקידם של מעריכים עצמאיים.",
+      "summary": "ההצעה המרכזית היא להכניס מעריכי בטיחות עצמאיים עם גישה רציפה, כמעט כמו עובדים, לתהליכי הפיתוח של המעבדות הגדולות.",
+      "whyItMatters": "פיקוח על מודלי-על עשוי לעבור מהצהרות עקרוניות למנגנון קבוע ומדיד.",
+      "sources": [{"url": "https://apnews.com/article/anthropic-ai-dario-amodei-d59552edcb27892d8ee4d98a48397706"}]
+    },
+    {
+      "section": "הנפקה",
+      "headline": "OpenAI דוחה את ההנפקה",
+      "readingTime": "35 שניות",
+      "quickRead": "התוכניות של OpenAI.",
+      "summary": "Sam Altman אמר ש-OpenAI לא תצא להנפקה ב-2026. לדבריו, החברה צריכה להקדיש את התקופה הקרובה לבטיחות, התאמה ושיתוף פעולה עם ממשלות.",
+      "whyItMatters": "ההחלטה מציבה את נושא הבטיחות מול אחד ממנועי הלחץ החזקים ביותר בשוק: צמיחה, שווי והון.",
+      "sources": [{"url": "https://www.reuters.com/legal/litigation/openai-ipo-will-not-happen-2026-amid-ai-safety-fears-altman-says-2026-09-12/"}]
+    },
+    {
+      "section": "ישראל",
+      "headline": "ישראל מסתכלת על העולם הפיזי",
+      "readingTime": "35 שניות",
+      "quickRead": "AI שפוגש את העולם הפיזי.",
+      "summary": "במקביל, ישראל מקדמת Physical AI: חיבור AI לרובוטיקה, חקלאות, תעשייה, רפואה ומערכות אוטונומיות. הדיון המקומי כבר זז מעבר לצ׳אטבוטים.",
+      "whyItMatters": "הזדמנות ישראלית אינה בהכרח לבנות את המודל הגדול בעולם, אלא ליישם AI במקומות שבהם הוא פוגש את העולם האמיתי.",
+      "sources": [{"url": "https://www.jns.org/feature/at-first-physical-ai-conference-israel-bets-robotics-is-the-next-frontier"}]
+    }
+  ],
+  "totalReadingTime": "04:30",
+  "takeaway": "המרוץ לא נעצר. אבל המובילים בו מודים שהבלמים צריכים לעבוד."
+}

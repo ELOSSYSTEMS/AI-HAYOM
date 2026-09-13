@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    {"source": "/:edition([0-9]{3})", "destination": "/index.html"}
+  ]
+}
