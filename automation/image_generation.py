@@ -129,8 +129,11 @@ def ocr_evidence(tsv11: str, tsv6: str, threshold: float = OCR_CONFIDENCE_THRESH
     """Classify only strong, corroborated, or spatially clustered OCR evidence."""
     first, second = _ocr_rows(tsv11, threshold), _ocr_rows(tsv6, threshold)
     # In line-art, short all-caps OCR fragments are frequently texture noise.
-    first = [row for row in first if not (row["token"].isascii() and row["token"].isupper() and len(row["token"]) <= 5)]
-    second = [row for row in second if not (row["token"].isascii() and row["token"].isupper() and len(row["token"]) <= 5)]
+    def is_line_art_noise(row):
+        token = row["token"]
+        return token.isdigit() or (token.isascii() and token.isupper() and len(token) <= 5)
+    first = [row for row in first if not is_line_art_noise(row)]
+    second = [row for row in second if not is_line_art_noise(row)]
     strong = [
         {"evidence": "strong-token", "token": row["token"], "confidence": row["confidence"]}
         for row in first + second
