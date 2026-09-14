@@ -311,6 +311,11 @@ def collect_feeds(config: Config, allow_network: bool = False, opener=urllib.req
                         break
             item.update({"sourceName": source_name,
                          "sourceTier": tier,
+                         "sourceType": feed.get("sourceType", {
+                             "primary": "PRIMARY_DISCLOSURE",
+                             "regulator": "REGULATORY_NOTICE",
+                             "secondary": "REPUTABLE_JOURNALISM",
+                         }.get(tier, "UNCLASSIFIED")) if isinstance(feed, dict) else "UNCLASSIFIED",
                          "publisher": publisher,
                          "discoveryFeed": bool(feed.get("discovery")) if isinstance(feed, dict) else False,
                          "indirectLink": bool(feed.get("indirectLinks")) if isinstance(feed, dict) else False})
@@ -526,6 +531,7 @@ def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> 
         "Write all edition copy in concise modern Hebrew; cartoon concepts must be English visual directions.",
         "Create 4-6 stories totaling approximately five minutes of reading time.",
         "Set totalReadingTime to exactly 05:00; do not add words or commentary to that field.",
+        "Treat sourceType as authoritative metadata: attribute PRIMARY_DISCLOSURE and CORPORATE_PR claims to the organization; label OPINION_PIECE as דעה; prefer REPUTABLE_JOURNALISM for independent confirmation; never present corporate PR as independently verified.",
         "For every story, cite one or more exact sourceId values from RESEARCH; never copy, shorten, or output source URLs.",
         f"Use at least {min_fresh} stories from the previous {fresh_hours} hours when that many are available in RESEARCH.",
         f"Use no more than {max_context} context-window story and label why an older item is still relevant.",
