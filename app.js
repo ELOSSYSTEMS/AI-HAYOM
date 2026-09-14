@@ -1,5 +1,5 @@
 (() => {
-  const catalogUrl = '/editions/catalog.json';
+  const catalogUrl = '/edition/catalog.json';
   const editionPattern = /^\/(\d{3})\/?$/;
 
   const escapeHtml = (value) => String(value)
@@ -42,8 +42,8 @@
     document.querySelector('.headline h1').textContent = edition.headline;
     const source = document.querySelector('.cartoon source');
     const image = document.querySelector('.cartoon img');
-    source.srcset = `/${edition.cartoon.mobile}`;
-    image.src = `/${edition.cartoon.desktop}`;
+    source.srcset = `/edition/${edition.number}/${edition.cartoon.mobile}`;
+    image.src = `/edition/${edition.number}/${edition.cartoon.desktop}`;
     image.alt = edition.cartoon.alt;
     document.querySelector('.description').textContent = edition.coverDescription;
     document.querySelector('.topics').innerHTML = `${edition.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join('')}<i class="dot" aria-hidden="true"></i>`;
@@ -52,7 +52,9 @@
     inside.setAttribute('aria-label', `תוכן מהדורה ${edition.number}`);
     const header = inside.querySelector('.inside-header');
     header.innerHTML = `<p>מהדורה ${edition.number} · ${formattedDate}</p><h2>${escapeHtml(edition.headline)}</h2><p>${escapeHtml(edition.introduction)}</p>${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
-    inside.querySelector('.quick-read').innerHTML = `<h3>במבט אחד · ${edition.stories.length === 4 ? 'ארבעת' : 'חמשת'} הנושאים</h3><ul>${edition.stories.map((story) => `<li><strong>${escapeHtml(story.section)}:</strong> ${escapeHtml(story.quickRead)}</li>`).join('')}</ul>`;
+    const storyCountLabels = { 4: 'ארבעת', 5: 'חמשת', 6: 'ששת' };
+    const storyCountLabel = storyCountLabels[edition.stories.length] || 'מספר';
+    inside.querySelector('.quick-read').innerHTML = `<h3>במבט אחד · ${storyCountLabel} הנושאים</h3><ul>${edition.stories.map((story) => `<li><strong>${escapeHtml(story.section)}:</strong> ${escapeHtml(story.quickRead)}</li>`).join('')}</ul>`;
     inside.querySelector('.stories').innerHTML = edition.stories.map(renderStory).join('');
     inside.querySelector('.takeaway').innerHTML = `<p class="eyebrow">${escapeHtml(edition.totalReadingTime)} · השורה התחתונה</p><h2>${escapeHtml(edition.takeaway)}</h2>`;
 
@@ -102,7 +104,7 @@
       showError('המהדורה המבוקשת אינה קיימת.');
       return;
     }
-    const editionResponse = await fetch(`/editions/${number}.json`);
+    const editionResponse = await fetch(`/edition/${number}/edition.json`);
     if (!editionResponse.ok) throw new Error('edition');
     renderEdition(await editionResponse.json(), catalog);
   }
