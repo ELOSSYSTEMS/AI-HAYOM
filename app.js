@@ -1,6 +1,6 @@
 (() => {
   const catalogUrl = '/edition/catalog.json';
-  const editionPattern = /^\/(\d{3})\/?$/;
+  const editionPattern = /^\/(-?\d{3})\/?$/;
 
   const escapeHtml = (value) => String(value)
     .replaceAll('&', '&amp;')

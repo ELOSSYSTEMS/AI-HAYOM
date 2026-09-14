@@ -78,6 +78,23 @@ def parse_inference_output(raw: str) -> dict:
     return value
 
 
+def parse_with_one_format_repair(raw: str, command: list, inference_runner=subprocess.run) -> tuple[dict, str | None]:
+    """Repair JSON syntax once without inviting editorial changes or retries."""
+    try:
+        return parse_inference_output(raw), None
+    except RuntimeError:
+        repair_prompt = (
+            "Repair only the JSON syntax in MALFORMED_RESPONSE. Preserve every fact, URL, Hebrew phrase, "
+            "field, array item, and value. Do not summarize, improve, add, remove, or fact-check content. "
+            "Return exactly one valid JSON object with no markdown or commentary.\nMALFORMED_RESPONSE:\n" + raw
+        )
+        completed = inference_runner([str(x) for x in command] + [repair_prompt], capture_output=True,
+                                     text=True, timeout=180, check=False)
+        if completed.returncode != 0 or not completed.stdout.strip():
+            raise RuntimeError("inference JSON repair failed")
+        return parse_inference_output(completed.stdout), completed.stdout
+
+
 def normalize_text(value: object) -> str:
     return re.sub(r"[^\w\u0590-\u05ff]+", " ", str(value).lower()).strip()
 
@@ -432,6 +449,9 @@ def auth_confirmed(config: Config) -> bool:
 
 
 def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> str:
+    prompt_bundle = json.loads(json.dumps(bundle, ensure_ascii=False))
+    for index, item in enumerate(prompt_bundle.get("items", []), 1):
+        item["sourceId"] = f"S{index:02d}"
     response_template = {
         "edition": {
             "schemaVersion": 1,
@@ -456,7 +476,7 @@ def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> 
                 "quickRead": "משפט תקציר אחד בעברית",
                 "summary": "סיכום עובדתי תמציתי בעברית",
                 "whyItMatters": "מדוע הסיפור חשוב, בעברית",
-                "sources": [{"url": "exact HTTPS URL from the research bundle"}],
+                "sources": [{"sourceId": "S01"}],
             }],
             "totalReadingTime": "05:00",
             "takeaway": "שורה תחתונה קצרה בעברית",
@@ -480,7 +500,7 @@ def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> 
         "Write all edition copy in concise modern Hebrew; cartoon concepts must be English visual directions.",
         "Create 4-6 stories totaling approximately five minutes of reading time.",
         "Set totalReadingTime to exactly 05:00; do not add words or commentary to that field.",
-        "Use only exact HTTPS URLs present in the research bundle and include at least one source for every story.",
+        "For every story, cite one or more exact sourceId values from RESEARCH; never copy, shorten, or output source URLs.",
         f"Use at least {min_fresh} stories from the previous {fresh_hours} hours when that many are available in RESEARCH.",
         f"Use no more than {max_context} context-window story and label why an older item is still relevant.",
         "Prefer consequential and recent stories; use no more than two stories from the same source or company.",
@@ -490,11 +510,31 @@ def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> 
     return ("Prepare one draft-only AI Hayom editorial proposal. Never publish, send messages, generate images, or modify Git.\n"
             "RESPONSE_TEMPLATE:\n" + json.dumps(response_template, ensure_ascii=False) +
             "\nRULES:\n" + json.dumps(rules, ensure_ascii=False) +
-            "\nRESEARCH:\n" + json.dumps(bundle, ensure_ascii=False))
+            "\nRESEARCH:\n" + json.dumps(prompt_bundle, ensure_ascii=False))
+
+
+def resolve_source_references(raw: dict, bundle: dict) -> dict:
+    """Replace model-selected source IDs with exact allowlisted URLs."""
+    resolved = json.loads(json.dumps(raw, ensure_ascii=False))
+    source_urls = {f"S{index:02d}": item.get("url")
+                   for index, item in enumerate(bundle.get("items", []), 1) if item.get("url")}
+    edition = resolved.get("edition", resolved)
+    for story in edition.get("stories", []) if isinstance(edition, dict) else []:
+        for source in story.get("sources", []) if isinstance(story, dict) else []:
+            if not isinstance(source, dict):
+                raise RuntimeError("inference source reference must be an object")
+            source_id = str(source.get("sourceId", ""))
+            if source_id:
+                if source_id not in source_urls:
+                    raise RuntimeError(f"inference used unknown source ID {source_id}")
+                source.clear()
+                source["url"] = source_urls[source_id]
+    return resolved
 
 
 def proposal_from_inference(raw: dict, bundle: dict, edition_number: str, publication_date: str,
                             repo: Path, prior_mode: str | None = None) -> dict:
+    raw = resolve_source_references(raw, bundle)
     edition = map_inference_to_edition(raw, edition_number, publication_date, repo, check_assets=False)
     allowed_urls = {item["url"] for item in bundle.get("items", []) if item.get("url")}
     used_urls = {source.get("url") for story in edition.get("stories", []) for source in story.get("sources", []) if isinstance(source, dict)}
@@ -597,6 +637,103 @@ def refresh_aggregate(config: Config, allow_network: bool = False,
     bundle["aggregate"] = str(aggregate_path)
     bundle["aggregateItemCount"] = len(aggregate_items)
     return bundle, aggregate_path
+
+
+def historical_edition_ids(count: int) -> list[str]:
+    """Oldest-to-newest IDs in an isolated pre-001 test namespace."""
+    if not 1 <= count <= 30:
+        raise ValueError("historical test count must be between 1 and 30")
+    return [f"-{index:03d}" for index in range(count, 0, -1)]
+
+
+def historical_research_bundle(aggregate: dict, publication_date: str, config: Config) -> dict:
+    """Build a same-calendar-day replay without leaking later stories into the draft."""
+    target = dt.date.fromisoformat(publication_date)
+    zone = ZoneInfo(config.timezone)
+    day_items = []
+    for item in aggregate.get("items", []):
+        published = _published_datetime(str(item.get("publishedAt", "")))
+        if published and published.astimezone(zone).date() == target:
+            day_items.append(item)
+    editorial = config.raw.get("editorial", {})
+    as_of = dt.datetime.combine(target, dt.time(23, 59, 59), zone).astimezone(UTC)
+    ranked = rank_items(day_items, day_items, editorial.get("priorityKeywords", []), now=as_of)
+    maximum = int(editorial.get("maxResearchItems", 40))
+    per_source = int(editorial.get("maxResearchItemsPerSource", 2))
+    selected = select_research_items(ranked, 24, per_source, maximum,
+                                     fresh_hours=24, fallback_hours=24)
+    minimum = int(editorial.get("minStories", 4))
+    if len(selected) < minimum:
+        raise RuntimeError(f"historical date {publication_date} has only {len(selected)} eligible stories; minimum is {minimum}")
+    return {
+        "contract": "AI Hayom historical replay; draft-only, never publish directly",
+        "publicationDate": publication_date,
+        "retrievedAt": aggregate.get("retrievedAt", ""),
+        "feeds": aggregate.get("feeds", []),
+        "healthyFeeds": aggregate.get("healthyFeeds", 0),
+        "failedFeeds": aggregate.get("failedFeeds", 0),
+        "items": selected,
+        "itemCount": len(selected),
+        "eligibleItemCount": len(ranked),
+        "selectionPolicy": {
+            "freshWindowHours": 24,
+            "fallbackWindowHours": 24,
+            "maxStoryAgeHours": 24,
+            "minFreshStories": min(int(editorial.get("minFreshStories", 3)), len(selected)),
+            "maxContextStories": 0,
+            "requiresAiRelevance": True,
+            "maxResearchItemsPerSource": per_source,
+            "historicalReplay": True,
+            "calendarDayBoundary": config.timezone,
+        },
+    }
+
+
+def historical_test(config: Config, aggregate_path: Path, end_date: str, count: int,
+                    inference_runner=subprocess.run) -> Path:
+    """Generate isolated text-only historical editions; never mutate approval state or Git."""
+    if not auth_confirmed(config):
+        raise RuntimeError("approved inference provider is unavailable")
+    command = config.inference.get("command")
+    if not isinstance(command, list) or not command or any(PLACEHOLDER in str(x) for x in command):
+        raise RuntimeError("inference command is unavailable")
+    aggregate = json.loads(aggregate_path.read_text(encoding="utf-8"))
+    end = dt.date.fromisoformat(end_date)
+    ids = historical_edition_ids(count)
+    dates = [end - dt.timedelta(days=count - 1 - index) for index in range(count)]
+    stamp = dt.datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    batch_root = config.paths["drafts"] / f"historical-{dates[0]:%Y%m%d}-{end:%Y%m%d}-{stamp}"
+    batch_root.mkdir(parents=True, exist_ok=False)
+    repo = Path(config.paths["websiteRepo"])
+    generated = []
+    prior_mode = None
+    for edition_id, target in zip(ids, dates):
+        publication_date = target.isoformat()
+        bundle = historical_research_bundle(aggregate, publication_date, config)
+        prompt = edition_prompt(bundle, edition_id, publication_date)
+        edition_root = batch_root / edition_id
+        edition_root.mkdir(parents=True, exist_ok=False)
+        atomic_write_json(edition_root / "research.json", bundle)
+        completed = inference_runner([str(x) for x in command] + [prompt], capture_output=True,
+                                     text=True, timeout=300, check=False)
+        if completed.returncode != 0 or not completed.stdout.strip():
+            raise RuntimeError(f"historical inference failed for {edition_id}")
+        (edition_root / "raw-response.txt").write_text(completed.stdout, encoding="utf-8")
+        raw, repaired_response = parse_with_one_format_repair(completed.stdout, command, inference_runner)
+        if repaired_response is not None:
+            (edition_root / "format-repair-response.txt").write_text(repaired_response, encoding="utf-8")
+        proposal = proposal_from_inference(raw, bundle, edition_id, publication_date, repo, prior_mode)
+        proposal["editionPayload"]["status"] = "historical-test"
+        atomic_write_json(edition_root / "proposal.json", proposal)
+        atomic_write_json(edition_root / "edition.json", proposal["editionPayload"])
+        generated.append({"number": edition_id, "publicationDate": publication_date,
+                          "proposalId": proposal["proposalId"], "path": str(edition_root),
+                          "formatRepaired": repaired_response is not None})
+        prior_mode = proposal["cartoonMode"]["id"]
+    manifest = {"contract": "isolated historical text test; no images, state, Telegram, Git, or publication",
+                "aggregate": str(aggregate_path), "count": count, "editions": generated}
+    atomic_write_json(batch_root / "manifest.json", manifest)
+    return batch_root / "manifest.json"
 
 
 def daily(config: Config, allow_network: bool = False, inference_runner=subprocess.run,
@@ -1004,7 +1141,7 @@ def validate_edition(edition: dict, assets_root: Path, check_assets: bool = True
     if errors:
         return errors
     if edition["schemaVersion"] != 1: errors.append("schemaVersion must be 1")
-    if not isinstance(edition["number"], str) or not re.fullmatch(r"\d{3}", edition["number"]): errors.append("number must be three digits")
+    if not isinstance(edition["number"], str) or not re.fullmatch(r"-?\d{3}", edition["number"]): errors.append("number must be three digits, optionally prefixed by - for historical tests")
     if not isinstance(edition["keywords"], list) or not 4 <= len(edition["keywords"]) <= 5: errors.append("keywords must contain 4-5 items")
     if not isinstance(edition["stories"], list) or not 4 <= len(edition["stories"]) <= 6: errors.append("stories must contain 4-6 items")
     if not isinstance(edition["aiDisclosure"], str) or not edition["aiDisclosure"].strip(): errors.append("aiDisclosure is required")
@@ -1033,6 +1170,10 @@ def main() -> int:
     daily_parser.add_argument("--allow-network", action="store_true")
     aggregate_parser = sub.add_parser("aggregate")
     aggregate_parser.add_argument("--allow-network", action="store_true")
+    historical_parser = sub.add_parser("historical-test")
+    historical_parser.add_argument("--aggregate", type=Path, required=True)
+    historical_parser.add_argument("--end-date", required=True)
+    historical_parser.add_argument("--count", type=int, default=5)
     sub.add_parser("breaking-check")
     sub.add_parser("dry-run")
     validate = sub.add_parser("validate")
@@ -1054,6 +1195,10 @@ def main() -> int:
                               "shortlistItems": bundle["itemCount"],
                               "healthyFeeds": bundle["healthyFeeds"],
                               "failedFeeds": bundle["failedFeeds"]}, indent=2))
+        elif args.command == "historical-test":
+            manifest = historical_test(config, args.aggregate, args.end_date, args.count)
+            print(json.dumps({"manifest": str(manifest), "count": args.count,
+                              "published": False, "imagesGenerated": False}, indent=2))
         elif args.command == "breaking-check": breaking_check(config)
         else:
             path, message = dry_run(config)
