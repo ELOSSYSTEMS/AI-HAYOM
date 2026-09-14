@@ -61,14 +61,19 @@
     const index = catalog.editions.indexOf(edition.number);
     const previous = catalog.editions[index - 1];
     const next = catalog.editions[index + 1];
-    const previousLink = document.querySelector('[data-previous]');
-    const nextLink = document.querySelector('[data-next]');
-    previousLink.hidden = !previous;
-    nextLink.hidden = !next;
-    if (previous) previousLink.href = `/${previous}`;
-    if (next) nextLink.href = `/${next}`;
+    const previousLinks = document.querySelectorAll('[data-previous]');
+    const nextLinks = document.querySelectorAll('[data-next]');
+    previousLinks.forEach((link) => {
+      link.hidden = !previous;
+      if (previous) link.href = `/${previous}`;
+    });
+    nextLinks.forEach((link) => {
+      link.hidden = !next;
+      if (next) link.href = `/${next}`;
+    });
     document.querySelector('.edition-status').textContent = `מהדורה ${edition.number}`;
     installSwipe(previous, next);
+    installKeyboard(previous, next);
   }
 
   function installSwipe(previous, next) {
@@ -85,6 +90,15 @@
       if (deltaX > 0 && previous) window.location.assign(`/${previous}`);
       if (deltaX < 0 && next) window.location.assign(`/${next}`);
     }, { passive: true });
+  }
+
+  function installKeyboard(previous, next) {
+    document.addEventListener('keydown', (event) => {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+      if (event.key === 'ArrowRight' && previous) window.location.assign(`/${previous}`);
+      if (event.key === 'ArrowLeft' && next) window.location.assign(`/${next}`);
+    });
   }
 
   function showError(message) {
