@@ -9,6 +9,7 @@ import email.utils
 import fcntl
 import hashlib
 import json
+import math
 import os
 import re
 import subprocess
@@ -105,6 +106,16 @@ def canonical_reading_time(value: object) -> str:
     if not match:
         raise RuntimeError("totalReadingTime must be MM:SS")
     return f"{int(match.group(1)):02d}:{match.group(2)}"
+
+
+def calculated_reading_time(edition: dict, words_per_minute: int = 200) -> str:
+    """Calculate the displayed duration from editorial text, at a Hebrew-news pace."""
+    fields = [edition.get("introduction", ""), edition.get("takeaway", "")]
+    for story in edition.get("stories", []):
+        fields.extend(story.get(key, "") for key in ("headline", "quickRead", "summary", "whyItMatters"))
+    words = sum(len(re.findall(r"[A-Za-z\u0590-\u05ff0-9]+", str(value))) for value in fields)
+    seconds = max(1, math.ceil(words * 60 / max(1, words_per_minute)))
+    return f"{seconds // 60:02d}:{seconds % 60:02d}"
 
 
 def breaking_fingerprint(item: dict) -> str:
@@ -530,7 +541,7 @@ def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> 
         "Do not wrap the object in a response key, markdown, commentary, or code fences.",
         "Write all edition copy in concise modern Hebrew; cartoon concepts must be English visual directions.",
         "Create 4-6 stories totaling approximately five minutes of reading time.",
-        "Set totalReadingTime to exactly 05:00; do not add words or commentary to that field.",
+        "Set totalReadingTime to a reasonable estimate only; the system recalculates it deterministically from the final Hebrew text.",
         "Treat sourceType as authoritative metadata: attribute PRIMARY_DISCLOSURE and CORPORATE_PR claims to the organization; label OPINION_PIECE as דעה; prefer REPUTABLE_JOURNALISM for independent confirmation; never present corporate PR as independently verified.",
         "For every story, cite one or more exact sourceId values from RESEARCH; never copy, shorten, or output source URLs.",
         f"Use at least {min_fresh} stories from the previous {fresh_hours} hours when that many are available in RESEARCH.",
@@ -995,7 +1006,7 @@ def map_inference_to_edition(raw: dict, edition_number: str, publication_date: s
     edition["number"] = edition_number
     edition["publicationDate"] = publication_date
     edition["status"] = "draft"
-    edition["totalReadingTime"] = canonical_reading_time(edition.get("totalReadingTime", ""))
+    edition["totalReadingTime"] = calculated_reading_time(edition)
     edition["cartoon"] = {**edition.get("cartoon", {}), "desktop": "cartoon-desktop.webp",
                           "mobile": "cartoon-mobile.webp"}
     errors = validate_edition(edition, repo, check_assets=check_assets)
