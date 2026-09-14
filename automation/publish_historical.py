@@ -41,7 +41,7 @@ def main():
   p=proposal.get("cartoonConcepts") or [e.get("headline", "editorial AI news metaphor")]
   concept=p[0] if isinstance(p,list) else str(p)
   mode=proposal.get("cartoonMode") or {"id":"sharp-contemporary","traits":"crisp modern editorial illustration"}
-  result=generate_images(ENV,out,concept,mode,fixture=False,reuse_existing=True)
+  result=generate_images(ENV,out,concept,mode,fixture=False,reuse_existing=False)
   if len(result["images"]) != 2: raise SystemExit("image batch did not produce exactly two assets")
   editions.append((n,e,result["images"]))
  for n,e,imgs in editions:
