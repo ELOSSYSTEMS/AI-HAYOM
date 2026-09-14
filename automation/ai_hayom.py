@@ -224,6 +224,29 @@ def deduplicate_items(items: list[dict]) -> list[dict]:
     return result
 
 
+def published_story_urls(config: Config, days: int = 7, now: dt.datetime | None = None) -> set[str]:
+    """Return source URLs used by recent real editions, excluding historical test editions."""
+    repo = Path(config.paths.get("websiteRepo", ""))
+    if not repo.is_dir():
+        return set()
+    cutoff = (now or dt.datetime.now(UTC)) - dt.timedelta(days=days)
+    urls: set[str] = set()
+    for path in (repo / "edition").glob("[0-9][0-9][0-9]/edition.json"):
+        try:
+            edition = json.loads(path.read_text(encoding="utf-8"))
+            published = dt.date.fromisoformat(str(edition.get("publicationDate", "")))
+            if dt.datetime.combine(published, dt.time.min, tzinfo=UTC) < cutoff:
+                continue
+            for story in edition.get("stories", []):
+                for source in story.get("sources", []):
+                    value = source.get("url", "") if isinstance(source, dict) else source
+                    if value:
+                        urls.add(clean_url(str(value)))
+        except (OSError, ValueError, TypeError, json.JSONDecodeError):
+            continue
+    return urls
+
+
 def _text(element: ET.Element | None) -> str:
     return " ".join("".join(element.itertext()).split()) if element is not None else ""
 
@@ -308,6 +331,9 @@ def collect_feeds(config: Config, allow_network: bool = False, opener=urllib.req
     relevant = [item for item in deduplicate_items(collected)
                 if is_ai_relevant(item, relevance_keywords)]
     ranked = rank_items(relevant, collected, editorial.get("priorityKeywords", []))
+    if editorial.get("excludeRecentlyPublished", True):
+        recent_urls = published_story_urls(config, int(editorial.get("recentStoryDays", 7)))
+        ranked = [item for item in ranked if clean_url(str(item.get("url", ""))) not in recent_urls]
     maximum = int(editorial.get("maxResearchItems", 40))
     fresh_hours = int(editorial.get("freshWindowHours", 24))
     fallback_hours = int(editorial.get("fallbackWindowHours", 72))
