@@ -90,6 +90,16 @@ def canonical_reading_time(value: object) -> str:
     return f"{int(match.group(1)):02d}:{match.group(2)}"
 
 
+def calculated_reading_time(edition: dict) -> str:
+    """Calculate Hebrew reading time at 190 words per minute; never trust model labels."""
+    fields = [edition.get("headline", ""), edition.get("introduction", ""), edition.get("takeaway", "")]
+    for story in edition.get("stories", []):
+        fields.extend([story.get("headline", ""), story.get("quickRead", ""), story.get("summary", ""), story.get("whyItMatters", "")])
+    words = sum(len(re.findall(r"[A-Za-z\u0590-\u05ff]+", str(value))) for value in fields)
+    seconds = max(30, round(words * 60 / 190))
+    return f"{seconds // 60:02d}:{seconds % 60:02d}"
+
+
 def breaking_fingerprint(item: dict) -> str:
     title = normalize_text(item.get("title", ""))
     # Headlines are the most stable cross-source identity; URLs and update copy are not.
@@ -479,7 +489,7 @@ def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> 
         "Do not wrap the object in a response key, markdown, commentary, or code fences.",
         "Write all edition copy in concise modern Hebrew; cartoon concepts must be English visual directions.",
         "Create 4-6 stories totaling approximately five minutes of reading time.",
-        "Set totalReadingTime to exactly 05:00; do not add words or commentary to that field.",
+        "Set totalReadingTime to an estimate only; the system will calculate it from the final Hebrew copy.",
         "Use only exact HTTPS URLs present in the research bundle and include at least one source for every story.",
         f"Use at least {min_fresh} stories from the previous {fresh_hours} hours when that many are available in RESEARCH.",
         f"Use no more than {max_context} context-window story and label why an older item is still relevant.",
@@ -826,7 +836,7 @@ def map_inference_to_edition(raw: dict, edition_number: str, publication_date: s
     edition["number"] = edition_number
     edition["publicationDate"] = publication_date
     edition["status"] = "draft"
-    edition["totalReadingTime"] = canonical_reading_time(edition.get("totalReadingTime", ""))
+    edition["totalReadingTime"] = calculated_reading_time(edition)
     edition["cartoon"] = {**edition.get("cartoon", {}), "desktop": "cartoon-desktop.webp",
                           "mobile": "cartoon-mobile.webp"}
     errors = validate_edition(edition, repo, check_assets=check_assets)
