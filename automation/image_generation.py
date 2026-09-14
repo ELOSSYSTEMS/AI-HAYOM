@@ -136,7 +136,7 @@ def ocr_evidence(tsv11: str, tsv6: str, threshold: float = OCR_CONFIDENCE_THRESH
     ]
     if strong:
         return strong[:8]
-    cross_pass = [{"evidence": "cross-pass", "token": row["token"], "confidence": row["confidence"]} for row in first if 1 <= len(row["token"]) <= 2 and any(row["token"].lower() == other["token"].lower() and _boxes_match(row, other) for other in second if 1 <= len(other["token"]) <= 2)]
+    cross_pass = [{"evidence": "cross-pass", "token": row["token"], "confidence": row["confidence"]} for row in first if 1 <= len(row["token"]) <= 2 and not row["token"].isdigit() and any(row["token"].lower() == other["token"].lower() and _boxes_match(row, other) for other in second if 1 <= len(other["token"]) <= 2 and not other["token"].isdigit())]
     if cross_pass:
         return cross_pass[:8]
     # A loose mixture of low-confidence fragments from two segmentation modes
