@@ -23,6 +23,7 @@
   }
 
   function editionAssetPath(number, asset) {
+    // Canonical form: /edition/${edition.number}/${edition.cartoon.desktop}
     return asset.startsWith('/') ? asset : `/edition/${number}/${asset}`;
   }
 
