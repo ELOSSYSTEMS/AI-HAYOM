@@ -50,7 +50,7 @@ def main():
    src=Path(next(x["path"] for x in imgs if x["role"]==role)); shutil.copy2(src,d/f"cartoon-{role}.webp")
   e["cartoon"]={"desktop":f"/edition/{n}/cartoon-desktop.webp","mobile":f"/edition/{n}/cartoon-mobile.webp","alt":"מטפורה חזותית מקורית לחדשות AI של היום"}
   (d/"edition.json").write_text(json.dumps(e,ensure_ascii=False,indent=2)+"\n")
- c=json.loads((REPO/"edition/catalog.json").read_text()); c["editions"]=[x for x in IDS if x not in c.get("editions",[])]+[x for x in c.get("editions",[]) if x not in IDS]; c["latest"]="002"; (REPO/"edition/catalog.json").write_text(json.dumps(c,ensure_ascii=False,indent=2)+"\n")
+ c=json.loads((REPO/"edition/catalog.json").read_text()); c["editions"]=IDS+[x for x in c.get("editions",[]) if x not in IDS]; c["latest"]="002"; (REPO/"edition/catalog.json").write_text(json.dumps(c,ensure_ascii=False,indent=2)+"\n")
  subprocess.run(["git","add","edition/catalog.json"]+[f"edition/{n}" for n in IDS],cwd=REPO,check=True)
  subprocess.run(["git","commit","-m","Publish historical AI Hayom test editions"],cwd=REPO,check=True)
  subprocess.run(["git","push","origin","main"],cwd=REPO,check=True)
