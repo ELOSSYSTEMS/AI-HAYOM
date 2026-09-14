@@ -19,6 +19,10 @@
     return `${day}.${month}.${year}`;
   }
 
+  function editionAssetPath(number, asset) {
+    return asset.startsWith('/') ? asset : `/edition/${number}/${asset}`;
+  }
+
   function renderStory(story, index) {
     const number = String(index + 1).padStart(2, '0');
     const sources = story.sources.map((source, sourceIndex) =>
@@ -42,8 +46,8 @@
     document.querySelector('.headline h1').textContent = edition.headline;
     const source = document.querySelector('.cartoon source');
     const image = document.querySelector('.cartoon img');
-    source.srcset = `/edition/${edition.number}/${edition.cartoon.mobile}`;
-    image.src = `/edition/${edition.number}/${edition.cartoon.desktop}`;
+    source.srcset = editionAssetPath(edition.number, edition.cartoon.mobile);
+    image.src = editionAssetPath(edition.number, edition.cartoon.desktop);
     image.alt = edition.cartoon.alt;
     document.querySelector('.description').textContent = edition.coverDescription;
     document.querySelector('.topics').innerHTML = `${edition.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join('')}<i class="dot" aria-hidden="true"></i>`;
