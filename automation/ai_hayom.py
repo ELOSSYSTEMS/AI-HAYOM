@@ -210,6 +210,11 @@ def clean_url(url: str) -> str:
     return urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, parsed.path, parsed.query, ""))
 
 
+def is_redirect_url(url: str) -> bool:
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    return host in {"news.google.com", "t.co", "bit.ly", "tinyurl.com"}
+
+
 def env_value(path: Path, name: str) -> str:
     """Read one exact value without loading or exposing the rest of the env file."""
     if not path.is_file() or path.stat().st_mode & 0o077:
@@ -223,14 +228,19 @@ def env_value(path: Path, name: str) -> str:
 
 def deduplicate_items(items: list[dict]) -> list[dict]:
     seen: set[str] = set()
+    title_sets: list[set[str]] = []
     result = []
     for item in items:
         url = clean_url(str(item.get("url", "")))
         fingerprint = breaking_fingerprint(item)
-        if not url or url in seen or fingerprint in seen:
+        tokens = _story_tokens(item)
+        duplicate_title = any(len(tokens & prior) / max(1, len(tokens | prior)) >= 0.82
+                              for prior in title_sets if tokens)
+        if not url or is_redirect_url(url) or url in seen or fingerprint in seen or duplicate_title:
             continue
         seen.add(url)
         seen.add(fingerprint)
+        title_sets.append(tokens)
         result.append({**item, "url": url})
     return result
 
@@ -543,6 +553,7 @@ def edition_prompt(bundle: dict, edition_number: str, publication_date: str) -> 
         "Create 4-6 stories totaling approximately five minutes of reading time.",
         "Set totalReadingTime to a reasonable estimate only; the system recalculates it deterministically from the final Hebrew text.",
         "Treat sourceType as authoritative metadata: attribute PRIMARY_DISCLOSURE and CORPORATE_PR claims to the organization; label OPINION_PIECE as דעה; prefer REPUTABLE_JOURNALISM for independent confirmation; never present corporate PR as independently verified.",
+        "Use consistent names throughout: OpenAI, Microsoft, NVIDIA, Mistral AI, Anthropic, GPT-6 Astra, and Devin. Do not transliterate the same company or model differently within one edition.",
         "For every story, cite one or more exact sourceId values from RESEARCH; never copy, shorten, or output source URLs.",
         f"Use at least {min_fresh} stories from the previous {fresh_hours} hours when that many are available in RESEARCH.",
         f"Use no more than {max_context} context-window story and label why an older item is still relevant.",
@@ -617,6 +628,7 @@ def proposal_from_inference(raw: dict, bundle: dict, edition_number: str, public
             "url": url,
             "sourceName": str(evidence.get("sourceName", "")),
             "sourceTier": str(evidence.get("sourceTier", "")),
+            "sourceType": str(evidence.get("sourceType", "UNCLASSIFIED")),
             "ageHours": evidence.get("ageHours"),
             "freshnessWindow": evidence.get("freshnessWindow", "unknown"),
             "indirectLink": bool(evidence.get("indirectLink")),
@@ -1202,6 +1214,7 @@ def validate_edition(edition: dict, assets_root: Path, check_assets: bool = True
         for source in story.get("sources", []) if isinstance(story, dict) else []:
             url = source.get("url", "") if isinstance(source, dict) else ""
             if urllib.parse.urlsplit(url).scheme != "https" or not urllib.parse.urlsplit(url).netloc: errors.append(f"story {index + 1} source must be HTTPS: {url}")
+            if is_redirect_url(url): errors.append(f"story {index + 1} source must be canonical, not a redirect: {url}")
     return errors
 
 
