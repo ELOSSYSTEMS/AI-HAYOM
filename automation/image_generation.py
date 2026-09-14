@@ -132,14 +132,15 @@ def ocr_evidence(tsv11: str, tsv6: str, threshold: float = OCR_CONFIDENCE_THRESH
     def is_line_art_noise(row):
         token = row["token"]
         return token.isdigit() or (token.isascii() and token.isupper() and len(token) <= 5)
-    first = [row for row in first if not is_line_art_noise(row)]
-    second = [row for row in second if not is_line_art_noise(row)]
     strong = [
         {"evidence": "strong-token", "token": row["token"], "confidence": row["confidence"]}
         for row in first + second
-        if len(row["token"]) >= 4
-        or (len(row["token"]) == 3 and row["confidence"] > OCR_SHORT_WORD_CONFIDENCE_THRESHOLD)
+        if not is_line_art_noise(row) and (len(row["token"]) >= 4
+        or (len(row["token"]) == 3 and row["confidence"] > OCR_SHORT_WORD_CONFIDENCE_THRESHOLD))
     ]
+    numeric_strong = [{"evidence": "strong-token", "token": row["token"], "confidence": row["confidence"]}
+                      for row in first + second if row["token"].isdigit() and len(row["token"]) >= 4]
+    strong.extend(numeric_strong)
     if strong:
         return strong[:8]
     cross_pass = [{"evidence": "cross-pass", "token": row["token"], "confidence": row["confidence"]} for row in first if 1 <= len(row["token"]) <= 2 and not row["token"].isdigit() and any(row["token"].lower() == other["token"].lower() and _boxes_match(row, other) for other in second if 1 <= len(other["token"]) <= 2 and not other["token"].isdigit())]
