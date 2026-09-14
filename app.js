@@ -1,6 +1,9 @@
 (() => {
   const catalogUrl = '/edition/catalog.json';
   const editionPattern = /^\/(-?\d{3})\/?$/;
+  let activeCatalog;
+  let previousEdition = null;
+  let nextEdition = null;
 
   const escapeHtml = (value) => String(value)
     .replaceAll('&', '&amp;')
@@ -75,12 +78,19 @@
       link.hidden = !next;
       if (next) link.href = `/${next}`;
     });
+    [...previousLinks, ...nextLinks].forEach((link) => {
+      link.onclick = (event) => { event.preventDefault(); navigateTo(link.hasAttribute('data-previous') ? previous : next); };
+    });
     document.querySelector('.edition-status').textContent = `מהדורה ${edition.number}`;
     installSwipe(previous, next);
     installKeyboard(previous, next);
   }
 
   function installSwipe(previous, next) {
+    previousEdition = previous;
+    nextEdition = next;
+    if (installSwipe.ready) return;
+    installSwipe.ready = true;
     let startX = 0;
     let startY = 0;
     document.addEventListener('touchstart', (event) => {
@@ -91,17 +101,21 @@
       const deltaX = event.changedTouches[0].clientX - startX;
       const deltaY = event.changedTouches[0].clientY - startY;
       if (Math.abs(deltaX) < 70 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
-      if (deltaX > 0 && previous) window.location.assign(`/${previous}`);
-      if (deltaX < 0 && next) window.location.assign(`/${next}`);
+      if (deltaX > 0 && previousEdition) navigateTo(previousEdition);
+      if (deltaX < 0 && nextEdition) navigateTo(nextEdition);
     }, { passive: true });
   }
 
   function installKeyboard(previous, next) {
+    previousEdition = previous;
+    nextEdition = next;
+    if (installKeyboard.ready) return;
+    installKeyboard.ready = true;
     document.addEventListener('keydown', (event) => {
       if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
       if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
-      if (event.key === 'ArrowRight' && previous) window.location.assign(`/${previous}`);
-      if (event.key === 'ArrowLeft' && next) window.location.assign(`/${next}`);
+      if (event.key === 'ArrowRight' && previousEdition) navigateTo(previousEdition);
+      if (event.key === 'ArrowLeft' && nextEdition) navigateTo(nextEdition);
     });
   }
 
@@ -117,6 +131,7 @@
     const catalogResponse = await fetch(catalogUrl, { cache: 'no-store' });
     if (!catalogResponse.ok) throw new Error('catalog');
     const catalog = await catalogResponse.json();
+    activeCatalog = catalog;
     const number = requestedEdition(catalog);
     if (!catalog.editions.includes(number)) {
       showError('המהדורה המבוקשת אינה קיימת.');
@@ -127,6 +142,20 @@
     renderEdition(await editionResponse.json(), catalog);
     document.body.classList.add('ready');
   }
+
+  async function navigateTo(number) {
+    if (!activeCatalog || !activeCatalog.editions.includes(number)) return;
+    const response = await fetch(`/edition/${number}/edition.json`, { cache: 'no-store' });
+    if (!response.ok) return;
+    renderEdition(await response.json(), activeCatalog);
+    window.history.pushState({}, '', `/${number}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.addEventListener('popstate', () => {
+    const number = requestedEdition(activeCatalog);
+    navigateTo(number);
+  });
 
   load().catch(() => { document.body.classList.add('ready'); showError('לא הצלחנו לטעון את המהדורה. המהדורה האחרונה שנשמרה עדיין מוצגת.'); });
 })();
