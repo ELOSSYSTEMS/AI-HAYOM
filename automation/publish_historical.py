@@ -6,7 +6,7 @@ from image_generation import generate_images
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT
-ENV = ROOT / "automation" / ".env"
+ENV = Path("/home/ubuntu/ai-hayom-automation/.env")
 IDS = ["-005", "-004", "-003", "-002", "-001"]
 URLS = {
  "navier":"https://openai.com/index/navier-stokes-solution/",
