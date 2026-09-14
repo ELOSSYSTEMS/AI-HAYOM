@@ -121,7 +121,8 @@
     const editionResponse = await fetch(`/edition/${number}/edition.json`);
     if (!editionResponse.ok) throw new Error('edition');
     renderEdition(await editionResponse.json(), catalog);
+    document.body.classList.add('ready');
   }
 
-  load().catch(() => showError('לא הצלחנו לטעון את המהדורה. המהדורה האחרונה שנשמרה עדיין מוצגת.'));
+  load().catch(() => { document.body.classList.add('ready'); showError('לא הצלחנו לטעון את המהדורה. המהדורה האחרונה שנשמרה עדיין מוצגת.'); });
 })();
