@@ -31,7 +31,7 @@ CHARTER = """Premium modern newspaper editorial cartoon. Elegant visual metaphor
 
 Avoid grotesque exaggeration, partisan propaganda, photorealism, generic glowing robots, stock AI imagery, excessive detail, text-heavy jokes, and visual clutter.
 
-Maintain a recognizable AI Hayom house style: black editorial ink; warm off-white newsprint background; restrained red accent; confident imperfect linework; one strong visual idea; culturally intelligent rather than cruel; suitable for a premium independent newspaper.
+Maintain the fixed AI Hayom house style: pure white background; near-black solid editorial ink; extremely clean confident contour lines; bold graphic silhouettes; sweeping aerodynamic motion lines; minimal crosshatching; saturated red accent; restrained small green highlight; one strong visual idea; contemporary premium newspaper cover art.
 
 No words, letters, numbers, captions, logos, signatures, or watermarks anywhere inside the artwork. Communicate entirely through visual metaphor."""
 NO_TEXT_INVARIANT = "No words, letters, numbers, captions, logos, signatures, or watermarks anywhere inside the artwork. Communicate entirely through visual metaphor."
