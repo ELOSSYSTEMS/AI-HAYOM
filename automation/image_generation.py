@@ -128,6 +128,9 @@ def _deduplicate_spatial(rows: list[dict]) -> list[dict]:
 def ocr_evidence(tsv11: str, tsv6: str, threshold: float = OCR_CONFIDENCE_THRESHOLD) -> list[dict]:
     """Classify only strong, corroborated, or spatially clustered OCR evidence."""
     first, second = _ocr_rows(tsv11, threshold), _ocr_rows(tsv6, threshold)
+    # In line-art, short all-caps OCR fragments are frequently texture noise.
+    first = [row for row in first if not (row["token"].isascii() and row["token"].isupper() and len(row["token"]) <= 5)]
+    second = [row for row in second if not (row["token"].isascii() and row["token"].isupper() and len(row["token"]) <= 5)]
     strong = [
         {"evidence": "strong-token", "token": row["token"], "confidence": row["confidence"]}
         for row in first + second
