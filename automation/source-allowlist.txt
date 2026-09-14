@@ -1,0 +1,59 @@
+AI Hayom approved RSS/Atom source list
+Validated from the production VPS on 2026-09-14.
+
+Primary and official feeds:
+- OpenAI announcements — https://openai.com/news/rss.xml
+- Google AI — https://blog.google/innovation-and-ai/technology/ai/rss/
+- Google DeepMind — https://deepmind.google/blog/rss.xml
+- Google Research — https://research.google/blog/rss/
+- Hugging Face blog — https://huggingface.co/blog/feed.xml
+- Microsoft News — https://news.microsoft.com/source/feed/
+- Mistral AI — https://mistral.ai/news/rss
+- NVIDIA Newsroom — https://nvidianews.nvidia.com/releases.xml
+
+Regulator feeds:
+- US Federal Trade Commission press releases — https://www.ftc.gov/feeds/press-release.xml
+- European Commission Digital Strategy — https://digital-strategy.ec.europa.eu/en/rss.xml
+- NIST News — https://www.nist.gov/news-events/news/rss.xml
+
+Secondary reporting feeds:
+- TechCrunch AI — https://techcrunch.com/category/artificial-intelligence/feed/
+- Ars Technica AI — https://arstechnica.com/ai/feed/
+- Le Monde AI — https://www.lemonde.fr/en/artificial-intelligence/rss_full.xml
+- The Guardian AI — https://www.theguardian.com/technology/artificialintelligenceai/rss
+- BBC Technology — https://feeds.bbci.co.uk/news/technology/rss.xml
+- The New York Times Technology — https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml
+- WIRED AI — https://www.wired.com/feed/tag/ai/latest/rss
+- Wall Street Journal Technology — https://feeds.a.dj.com/rss/RSSWSJD.xml
+- Wall Street Journal Markets — https://feeds.a.dj.com/rss/RSSMarketsMain.xml
+- Financial Times Technology — https://www.ft.com/technology?format=rss
+- CNBC Technology — https://www.cnbc.com/id/19854910/device/rss/rss.html
+- MarketWatch Top Stories — https://feeds.content.dowjones.io/public/rss/mw_topstories
+
+Source-filtered discovery feeds:
+- Reuters through Google News RSS
+- Associated Press through Google News RSS
+- Bloomberg through Google News RSS
+
+These are marked discoveryFeed=true and indirectLink=true in the aggregate.
+They are secondary discovery paths, not primary evidence and not claims of
+verification by Google News. Reuters' public RSS delivery and AP's Media API
+require licensed/authenticated access, so no private or unofficial credential
+was assumed.
+
+Policy:
+- Every feed must remain HTTPS and pass bounded XML parsing.
+- Primary and regulator sources carry more ranking weight than reporting feeds.
+- Distinct-publisher counts are importance signals, not proof that a claim is true.
+- Consequential claims require primary evidence where practical.
+- The daily shortlist prioritizes the previous 24 hours, then 72-hour fallback material.
+- At most one 72-168-hour context story may appear in an edition.
+- The complete eligible, deduplicated feed pool is written atomically to
+  output/research/aggregate-latest.json for research; it is never published directly.
+
+Rejected during validation:
+- https://ai.meta.com/blog/rss/ — HTTP 404
+- https://nvidianews.nvidia.com/rss — returned HTML, not a feed
+- NIST Cybersecurity topic feed — empty
+- NVIDIA Developer feed — item dates were unavailable to the current parser
+- GDELT DOC 2.0 Reuters/AP discovery — HTTP 429 on two bounded validation attempts

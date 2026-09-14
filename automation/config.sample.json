@@ -1,0 +1,91 @@
+{
+  "timezone": "Asia/Jerusalem",
+  "target_time": "08:00",
+  "feeds": [
+    {"name": "OpenAI announcements", "url": "https://openai.com/news/rss.xml", "publisher": "OpenAI", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "Google AI", "url": "https://blog.google/innovation-and-ai/technology/ai/rss/", "publisher": "Google", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "Google DeepMind", "url": "https://deepmind.google/blog/rss.xml", "publisher": "Google", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "Google Research", "url": "https://research.google/blog/rss/", "publisher": "Google", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "Hugging Face blog", "url": "https://huggingface.co/blog/feed.xml", "publisher": "Hugging Face", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "Microsoft News", "url": "https://news.microsoft.com/source/feed/", "publisher": "Microsoft", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "Mistral AI", "url": "https://mistral.ai/news/rss", "publisher": "Mistral AI", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "NVIDIA Newsroom", "url": "https://nvidianews.nvidia.com/releases.xml", "publisher": "NVIDIA", "tier": "primary", "validatedAt": "2026-09-14"},
+    {"name": "US FTC press releases", "url": "https://www.ftc.gov/feeds/press-release.xml", "publisher": "US FTC", "tier": "regulator", "validatedAt": "2026-09-14"},
+    {"name": "EU digital strategy", "url": "https://digital-strategy.ec.europa.eu/en/rss.xml", "publisher": "European Commission", "tier": "regulator", "validatedAt": "2026-09-14"},
+    {"name": "NIST News", "url": "https://www.nist.gov/news-events/news/rss.xml", "publisher": "NIST", "tier": "regulator", "validatedAt": "2026-09-14"},
+    {"name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "publisher": "TechCrunch", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "Ars Technica AI", "url": "https://arstechnica.com/ai/feed/", "publisher": "Ars Technica", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "Le Monde AI", "url": "https://www.lemonde.fr/en/artificial-intelligence/rss_full.xml", "publisher": "Le Monde", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "The Guardian AI", "url": "https://www.theguardian.com/technology/artificialintelligenceai/rss", "publisher": "The Guardian", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "BBC Technology", "url": "https://feeds.bbci.co.uk/news/technology/rss.xml", "publisher": "BBC", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "The New York Times Technology", "url": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml", "publisher": "The New York Times", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "WIRED AI", "url": "https://www.wired.com/feed/tag/ai/latest/rss", "publisher": "WIRED", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "WSJ Technology", "url": "https://feeds.a.dj.com/rss/RSSWSJD.xml", "publisher": "The Wall Street Journal", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "WSJ Markets", "url": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml", "publisher": "The Wall Street Journal", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "Financial Times Technology", "url": "https://www.ft.com/technology?format=rss", "publisher": "Financial Times", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "CNBC Technology", "url": "https://www.cnbc.com/id/19854910/device/rss/rss.html", "publisher": "CNBC", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "MarketWatch Top Stories", "url": "https://feeds.content.dowjones.io/public/rss/mw_topstories", "publisher": "MarketWatch", "tier": "secondary", "validatedAt": "2026-09-14"},
+    {"name": "Reuters discovery", "url": "https://news.google.com/rss/search?q=(%22artificial%20intelligence%22%20OR%20OpenAI%20OR%20Anthropic%20OR%20Nvidia)%20site%3Areuters.com%20when%3A3d&hl=en-US&gl=US&ceid=US%3Aen", "publisher": "Reuters", "tier": "secondary", "discovery": true, "indirectLinks": true, "validatedAt": "2026-09-14"},
+    {"name": "Associated Press discovery", "url": "https://news.google.com/rss/search?q=(%22artificial%20intelligence%22%20OR%20OpenAI%20OR%20Anthropic%20OR%20Nvidia)%20site%3Aapnews.com%20when%3A3d&hl=en-US&gl=US&ceid=US%3Aen", "publisher": "Associated Press", "tier": "secondary", "discovery": true, "indirectLinks": true, "validatedAt": "2026-09-14"},
+    {"name": "Bloomberg discovery", "url": "https://news.google.com/rss/search?q=(%22artificial%20intelligence%22%20OR%20OpenAI%20OR%20Anthropic%20OR%20Nvidia)%20site%3Abloomberg.com%20when%3A3d&hl=en-US&gl=US&ceid=US%3Aen", "publisher": "Bloomberg", "tier": "secondary", "discovery": true, "indirectLinks": true, "validatedAt": "2026-09-14"}
+  ],
+  "breaking": {
+    "threshold": 2,
+    "keywords": ["breaking", "urgent", "alert", "emergency"]
+  },
+  "paths": {
+    "state": "state/state.json",
+    "lock": "state/run.lock",
+    "research": "output/research",
+    "drafts": "output/drafts",
+    "alerts": "output/alerts",
+    "websiteRepo": "website",
+    "websiteEditions": "edition",
+    "websiteAssets": "edition"
+  },
+  "deployment": {
+    "githubRepository": "REPLACE_WITH_OWNER/REPOSITORY",
+    "githubDefaultBranch": "main",
+    "productionDomain": "REPLACE_WITH_DOMAIN"
+  },
+  "publication": {
+    "enabled": false,
+    "push": false,
+    "verifyProduction": false,
+    "verificationTimeoutSeconds": 300
+  },
+  "inference": {
+    "enabled": false,
+    "command": ["hermes", "-z"],
+    "provider": "REPLACE_WITH_APPROVED_PROVIDER",
+    "auth_status_command": ["hermes", "auth", "status", "REPLACE_WITH_APPROVED_PROVIDER"],
+    "fixtureOnlyUntilApproved": true
+  },
+  "telegram": {
+    "enabled": false,
+    "destination": "REPLACE_WITH_EXISTING_GATEWAY_DESTINATION",
+    "allowlistedChatIdEnv": "TELEGRAM_CHAT_ID"
+  },
+  "editorial": {
+    "cartoonCharter": "Embedded in ai_hayom.py as EDITORIAL_CARTOON_CHARTER",
+    "minStories": 4,
+    "maxStories": 6,
+    "minHealthyFeeds": 6,
+    "maxResearchItems": 40,
+    "freshWindowHours": 24,
+    "fallbackWindowHours": 72,
+    "maxStoryAgeHours": 168,
+    "minFreshStories": 3,
+    "maxContextStories": 1,
+    "maxResearchItemsPerSource": 2,
+    "aiRelevanceKeywords": ["ai", "artificial intelligence", "machine learning", "deep learning", "generative", "gpt", "llm", "language model", "foundation model", "model", "agent", "robotics", "neural", "inference"],
+    "priorityKeywords": ["model", "release", "launch", "safety", "regulation", "research"],
+    "approvalRequiredForPublish": true
+  },
+  "schedules": {
+    "dailyPreparation": "30 6 * * *",
+    "breakingMonitoring": "*/30 8-22 * * *",
+    "timezone": "Asia/Jerusalem",
+    "active": false
+  }
+}

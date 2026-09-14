@@ -1,0 +1,6 @@
+automation/.env
+automation/config.json
+automation/state/
+automation/output/
+__pycache__/
+*.pyc
