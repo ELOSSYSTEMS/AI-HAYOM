@@ -41,6 +41,13 @@
   function renderEdition(edition, catalog) {
     const formattedDate = formatDate(edition.publicationDate);
     document.title = `AI היום | מהדורה ${edition.number}`;
+    const canonical = `${window.location.origin}/${edition.number}`;
+    document.querySelector('link[rel="canonical"]').href = canonical;
+    document.querySelector('meta[property="og:title"]').content = document.title;
+    document.querySelector('meta[property="og:url"]').content = canonical;
+    document.querySelector('meta[name="twitter:title"]').content = document.title;
+    document.querySelector('meta[name="description"]').content = `${edition.headline} — ${edition.introduction}`;
+    document.querySelector('meta[property="og:description"]').content = `${edition.headline} — חמש דקות של חדשות AI בעברית.`;
     document.querySelector('.front').setAttribute('aria-label', `שער מהדורה ${edition.number}`);
     document.querySelector('.metadata bdi').textContent = edition.number;
     const time = document.querySelector('.metadata time');
