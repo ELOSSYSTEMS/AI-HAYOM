@@ -3,6 +3,7 @@
 import argparse, hashlib, json, shutil, subprocess, tempfile
 from pathlib import Path
 from image_generation import generate_images
+from ai_hayom import write_sitemap
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT
@@ -51,7 +52,8 @@ def main():
   e["cartoon"]={"desktop":f"/edition/{n}/cartoon-desktop.webp","mobile":f"/edition/{n}/cartoon-mobile.webp","alt":"מטפורה חזותית מקורית לחדשות AI של היום"}
   (d/"edition.json").write_text(json.dumps(e,ensure_ascii=False,indent=2)+"\n")
  c=json.loads((REPO/"edition/catalog.json").read_text()); c["editions"]=IDS+[x for x in c.get("editions",[]) if x not in IDS]; c["latest"]="002"; (REPO/"edition/catalog.json").write_text(json.dumps(c,ensure_ascii=False,indent=2)+"\n")
- subprocess.run(["git","add","edition/catalog.json"]+[f"edition/{n}" for n in IDS],cwd=REPO,check=True)
+ write_sitemap(REPO)
+ subprocess.run(["git","add","edition/catalog.json","sitemap.xml"]+[f"edition/{n}" for n in IDS],cwd=REPO,check=True)
  subprocess.run(["git","commit","-m","Publish historical AI Hayom test editions"],cwd=REPO,check=True)
  subprocess.run(["git","push","origin","main"],cwd=REPO,check=True)
  print("published", ",".join(IDS), "commit", subprocess.check_output(["git","rev-parse","--short","HEAD"],cwd=REPO,text=True).strip())
