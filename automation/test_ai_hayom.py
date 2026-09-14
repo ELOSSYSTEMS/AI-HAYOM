@@ -574,7 +574,7 @@ class AiHayomTests(unittest.TestCase):
     def test_ocr_spatially_matched_two_character_60_fails(self):
         h = "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n"
         row = "5\t1\t1\t1\t1\t1\t100\t100\t20\t10\t77.5\t60\n"
-        self.assertEqual(ocr_evidence(h + row, h + row)[0]["evidence"], "cross-pass")
+        self.assertEqual(ocr_evidence(h + row, h + row), [])
 
     def test_ocr_same_short_token_at_unrelated_positions_does_not_correlate(self):
         h = "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n"
