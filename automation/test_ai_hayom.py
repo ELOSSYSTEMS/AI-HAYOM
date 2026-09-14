@@ -30,12 +30,16 @@ from ai_hayom import (
     edition_prompt,
     breaking_fingerprint,
     handle_approval,
+    historical_edition_ids,
+    historical_research_bundle,
     is_ai_relevant,
     map_inference_to_edition,
     next_edition_number,
     parse_inference_output,
+    parse_with_one_format_repair,
     proposal_from_inference,
     rank_items,
+    resolve_source_references,
     select_research_items,
     build_plan_message,
     create_fixture_proposal,
@@ -426,11 +430,31 @@ class AiHayomTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             prepare_publication(edition, state, repo)
 
+    def test_historical_ids_are_ordered_before_001_without_changing_next_number(self):
+        self.assertEqual(historical_edition_ids(5), ["-005", "-004", "-003", "-002", "-001"])
+        self.assertEqual(next_edition_number(Path("/home/ubuntu/AI-HAYOM")), "003")
+
+    def test_historical_bundle_uses_only_the_target_local_calendar_day(self):
+        aggregate = {"retrievedAt":"2026-09-14T08:00:00Z", "items":[
+            {"title":"AI model launch alpha", "summary":"artificial intelligence model", "url":"https://a.example/1", "sourceName":"A", "publisher":"A", "sourceTier":"primary", "publishedAt":"Tue, 08 Sep 2026 05:00:00 GMT"},
+            {"title":"AI model launch beta", "summary":"artificial intelligence model", "url":"https://b.example/2", "sourceName":"B", "publisher":"B", "sourceTier":"secondary", "publishedAt":"Tue, 08 Sep 2026 12:00:00 GMT"},
+            {"title":"AI safety regulation gamma", "summary":"artificial intelligence safety", "url":"https://c.example/3", "sourceName":"C", "publisher":"C", "sourceTier":"regulator", "publishedAt":"Tue, 08 Sep 2026 16:00:00 GMT"},
+            {"title":"AI robotics research delta", "summary":"artificial intelligence robotics", "url":"https://d.example/4", "sourceName":"D", "publisher":"D", "sourceTier":"primary", "publishedAt":"Tue, 08 Sep 2026 18:00:00 GMT"},
+            {"title":"Future AI item", "summary":"artificial intelligence", "url":"https://e.example/5", "sourceName":"E", "publisher":"E", "sourceTier":"primary", "publishedAt":"Wed, 09 Sep 2026 06:00:00 GMT"},
+        ]}
+        config = Config({"timezone":"Asia/Jerusalem", "editorial":{"minStories":4,
+                        "maxResearchItemsPerSource":2, "priorityKeywords":["model","safety"]}}, Path("/tmp"))
+        bundle = historical_research_bundle(aggregate, "2026-09-08", config)
+        self.assertEqual(bundle["itemCount"], 4)
+        self.assertTrue(all(item["freshnessWindow"] == "fresh" for item in bundle["items"]))
+        self.assertNotIn("https://e.example/5", {item["url"] for item in bundle["items"]})
+
     def test_website_loader_uses_self_contained_edition_routes(self):
         app = Path("/home/ubuntu/AI-HAYOM/app.js").read_text(encoding="utf-8")
         page = Path("/home/ubuntu/AI-HAYOM/index.html").read_text(encoding="utf-8")
         self.assertIn("/edition/catalog.json", app)
         self.assertIn("/edition/${number}/edition.json", app)
+        self.assertIn("/^\\/(-?\\d{3})\\/?$/", app)
         self.assertIn("/edition/${edition.number}/${edition.cartoon.desktop}", app)
         self.assertNotIn("/editions/catalog.json", app)
         self.assertIn("4: 'ארבעת'", app)
@@ -472,8 +496,18 @@ class AiHayomTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             parse_inference_output('Here is the result:\n```json\n{"edition": {}}\n```')
 
+    def test_malformed_json_gets_exactly_one_bounded_format_repair(self):
+        calls = []
+        def runner(command, **_kwargs):
+            calls.append(command)
+            return subprocess.CompletedProcess(command, 0, '{"edition":{"number":"-001"}}', "")
+        parsed, repaired = parse_with_one_format_repair('{"edition":', ["fake"], runner)
+        self.assertEqual(parsed["edition"]["number"], "-001")
+        self.assertEqual(len(calls), 1)
+        self.assertIsNotNone(repaired)
+
     def test_edition_prompt_uses_exact_live_schema_without_response_wrapper(self):
-        prompt = edition_prompt({"items": []}, "002", "2026-09-14")
+        prompt = edition_prompt({"items": [{"url":"https://example.com/long-source"}]}, "002", "2026-09-14")
         self.assertIn('"quickRead"', prompt)
         self.assertIn('"whyItMatters"', prompt)
         self.assertIn('"sources"', prompt)
@@ -481,7 +515,18 @@ class AiHayomTests(unittest.TestCase):
         self.assertIn("exactly the four top-level keys", prompt)
         self.assertIn("no more than two stories from the same source or company", prompt)
         self.assertIn('"totalReadingTime": "05:00"', prompt)
+        self.assertIn('"sourceId": "S01"', prompt)
+        self.assertIn("never copy, shorten, or output source URLs", prompt)
         self.assertNotIn('"response":', prompt)
+
+    def test_source_ids_resolve_to_exact_allowlisted_urls(self):
+        bundle = {"items":[{"url":"https://example.com/a/very/long/path"}]}
+        raw = {"edition":{"stories":[{"sources":[{"sourceId":"S01"}]}]}}
+        resolved = resolve_source_references(raw, bundle)
+        self.assertEqual(resolved["edition"]["stories"][0]["sources"],
+                         [{"url":"https://example.com/a/very/long/path"}])
+        with self.assertRaisesRegex(RuntimeError, "unknown source ID"):
+            resolve_source_references({"edition":{"stories":[{"sources":[{"sourceId":"S99"}]}]}}, bundle)
 
     def test_reading_time_is_canonicalized_before_approval(self):
         self.assertEqual(canonical_reading_time("05:00, approximately 05:00 total"), "05:00")
@@ -529,7 +574,7 @@ class AiHayomTests(unittest.TestCase):
     def test_ocr_spatially_matched_two_character_60_fails(self):
         h = "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n"
         row = "5\t1\t1\t1\t1\t1\t100\t100\t20\t10\t77.5\t60\n"
-        self.assertEqual(ocr_evidence(h + row, h + row), [])
+        self.assertEqual(ocr_evidence(h + row, h + row)[0]["evidence"], "cross-pass")
 
     def test_ocr_same_short_token_at_unrelated_positions_does_not_correlate(self):
         h = "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n"
