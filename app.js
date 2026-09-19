@@ -62,7 +62,6 @@
     // cover now presents it inside a fixed square so the subject stays visible.
     image.src = editionAssetPath(edition.number, edition.cartoon.mobile);
     image.alt = edition.cartoon.alt;
-    document.querySelector('.description').textContent = edition.coverDescription;
     document.querySelector('.topics').innerHTML = `${edition.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join('')}<i class="dot" aria-hidden="true"></i>`;
 
     const inside = document.querySelector('[data-edition-root]');

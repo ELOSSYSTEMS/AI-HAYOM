@@ -61,8 +61,8 @@ html,body,.front,.bottom,.inside{background:#fff;color:#000}
 .cartoon{position:relative;inset:auto;flex:1;min-height:0;height:auto;margin:10px 0 0}
 .cartoon img{object-fit:cover;object-position:center}
 .bottom{position:relative;inset:auto;flex:none;height:clamp(34px,5svh,48px);margin:8px 2% 16px;font-size:min(2.5vw,18px)}
-.description{font-size:min(2.4vw,18px)}
-@media(max-width:650px){.bottom{height:auto;min-height:44px;padding:8px 0;margin-bottom:8px;align-items:flex-start}.bottom .description{white-space:normal;line-height:1.35}.bottom .topics{white-space:nowrap;line-height:1.35}}
+.description{display:none}.description-track{display:none}
+@media(max-width:650px){.bottom{height:auto;min-height:44px;padding:8px 0;margin-bottom:8px;align-items:center;justify-content:flex-end;overflow:hidden}.bottom .topics{white-space:nowrap;line-height:1.35}}
 @media(max-height:480px){.front{padding-top:10px}.side{top:10px}.metadata{margin-top:6px}.headline{margin-top:12px}.bottom{margin-bottom:8px}}
 .story .story-label{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px}.story-label a{color:#000;font-weight:400;letter-spacing:normal;text-underline-offset:3px}.story-label a:focus-visible{outline:2px solid #000;outline-offset:4px}
 .edition-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 0;border-bottom:1px solid #000}.edition-nav a{color:#000;font-weight:700;text-underline-offset:4px}.edition-nav a[hidden]{display:block;visibility:hidden;pointer-events:none}.edition-status{font-size:13px;text-align:center}.load-error{max-width:760px;margin:40px auto;padding:24px;border:2px solid #000;font-weight:700}.ai-disclosure{font-size:13px;line-height:1.6;max-width:70ch}.swipe-hint{font-size:12px;color:#444;text-align:center;margin:12px 0 0}@media(min-width:800px){.swipe-hint{display:none}}
@@ -78,7 +78,7 @@ html,body,.front,.bottom,.inside{background:#fff;color:#000}
 <aside class="side side-right">אנשים<br>רעיונות<br>השפעה<br>כל יום.</aside>
 <section class="headline"><h1>בטיחות לפני מהירות</h1></section>
 <figure class="cartoon"><picture><source media="(orientation: portrait)" srcset="/edition/001/cartoon-mobile.webp"><img src="/edition/001/cartoon-mobile.webp" width="1122" height="1402" alt="ארבעה חוקרים מפעילים בלם אדום על גלגל מכונית מרוץ, מטפורה לבטיחות בבינה מלאכותית"></picture></figure>
-<footer class="bottom"><span class="description">4 התפתחויות. כל מה שחשוב היום.</span><div class="topics"><span>בטיחות</span><span>פיקוח</span><span>הנפקה</span><span>ישראל</span><i class="dot" aria-hidden="true"></i></div></footer>
+<footer class="bottom"><span class="description"><span class="description-track">4 התפתחויות. כל מה שחשוב היום.</span></span><div class="topics"><span>בטיחות</span><span>פיקוח</span><span>הנפקה</span><span>ישראל</span><i class="dot" aria-hidden="true"></i></div></footer>
 </main>
 <article class="inside" id="inside" aria-label="תוכן מהדורה 001" data-edition-root>
 <header class="inside-header"><p>מהדורה 001 · 13.09.2026</p><h2>בטיחות לפני מהירות</h2><p>ארבע התפתחויות, ההקשר והשורה התחתונה.</p><p class="draft-note">תוכן הדגמה מהטיוטה הקודמת — טרם אומת לפרסום.</p></header>
