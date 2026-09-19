@@ -58,7 +58,9 @@
     const source = document.querySelector('.cartoon source');
     const image = document.querySelector('.cartoon img');
     source.srcset = editionAssetPath(edition.number, edition.cartoon.mobile);
-    image.src = editionAssetPath(edition.number, edition.cartoon.desktop);
+    // The portrait artwork is the canonical readable composition. The desktop
+    // cover now presents it inside a fixed square so the subject stays visible.
+    image.src = editionAssetPath(edition.number, edition.cartoon.mobile);
     image.alt = edition.cartoon.alt;
     document.querySelector('.description').textContent = edition.coverDescription;
     document.querySelector('.topics').innerHTML = `${edition.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join('')}<i class="dot" aria-hidden="true"></i>`;

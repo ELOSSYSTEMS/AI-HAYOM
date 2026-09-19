@@ -66,6 +66,8 @@ html,body,.front,.bottom,.inside{background:#fff;color:#000}
 .story .story-label{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px}.story-label a{color:#000;font-weight:400;letter-spacing:normal;text-underline-offset:3px}.story-label a:focus-visible{outline:2px solid #000;outline-offset:4px}
 .edition-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 0;border-bottom:1px solid #000}.edition-nav a{color:#000;font-weight:700;text-underline-offset:4px}.edition-nav a[hidden]{display:block;visibility:hidden;pointer-events:none}.edition-status{font-size:13px;text-align:center}.load-error{max-width:760px;margin:40px auto;padding:24px;border:2px solid #000;font-weight:700}.ai-disclosure{font-size:13px;line-height:1.6;max-width:70ch}.swipe-hint{font-size:12px;color:#444;text-align:center;margin:12px 0 0}@media(min-width:800px){.swipe-hint{display:none}}
 .edition-arrow{position:absolute;top:50%;display:grid;place-items:center;min-width:24px;min-height:24px;padding:0;border:0;color:inherit;background:transparent;text-decoration:none;transform:translateY(-50%);opacity:.72}.edition-arrow svg{display:block;width:clamp(18px,2cqw,25px);height:clamp(18px,2cqw,25px)}.edition-arrow[data-previous]{left:calc(100% + clamp(5px,1cqw,12px))}.edition-arrow[data-next]{right:calc(100% + clamp(5px,1cqw,12px))}.edition-arrow:hover{opacity:1}.edition-arrow:focus-visible{outline:2px solid #000;outline-offset:2px}.edition-arrow[hidden]{visibility:hidden;pointer-events:none}
+/* Desktop cover: a centered square leaves the margins available for the side notes. */
+@media(min-width:651px) and (min-aspect-ratio:1/1){.cartoon{flex:0 0 clamp(360px,56vh,620px);width:clamp(360px,56vh,620px);height:clamp(360px,56vh,620px);align-self:center;margin:10px auto 0}.cartoon img{object-fit:cover;object-position:center}.side{z-index:2;top:clamp(84px,15vh,150px);width:14%;max-width:180px}.side-left{left:2.2%}.side-right{right:2.2%}}
 </style>
 </head>
 <body>
@@ -74,7 +76,7 @@ html,body,.front,.bottom,.inside{background:#fff;color:#000}
 <header class="masthead"><div class="logo" aria-label="AI היום"><span class="english" dir="ltr">AI</span><span class="hebrew" dir="rtl">היום</span></div><div class="metadata"><a class="edition-arrow" data-previous href="#" hidden aria-label="מהדורה קודמת" title="מהדורה קודמת"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12M10 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span class="edition-label">מהדורה <bdi>001</bdi></span><span class="edition-date"><time datetime="2026-09-13">13.09.2026</time></span><a class="edition-arrow" data-next href="#" hidden aria-label="מהדורה הבאה" title="מהדורה הבאה"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M14 8H2m4-4L2 8l4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></header>
 <aside class="side side-right">אנשים<br>רעיונות<br>השפעה<br>כל יום.</aside>
 <section class="headline"><h1>בטיחות לפני מהירות</h1></section>
-<figure class="cartoon"><picture><source media="(orientation: portrait)" srcset="/edition/001/cartoon-mobile.webp"><img src="/edition/001/cartoon-desktop.webp" width="2172" height="724" alt="ארבעה חוקרים מפעילים בלם אדום על גלגל מכונית מרוץ, מטפורה לבטיחות בבינה מלאכותית"></picture></figure>
+<figure class="cartoon"><picture><source media="(orientation: portrait)" srcset="/edition/001/cartoon-mobile.webp"><img src="/edition/001/cartoon-mobile.webp" width="1122" height="1402" alt="ארבעה חוקרים מפעילים בלם אדום על גלגל מכונית מרוץ, מטפורה לבטיחות בבינה מלאכותית"></picture></figure>
 <footer class="bottom"><span class="description">4 התפתחויות. כל מה שחשוב היום.</span><div class="topics"><span>בטיחות</span><span>פיקוח</span><span>הנפקה</span><span>ישראל</span><i class="dot" aria-hidden="true"></i></div></footer>
 </main>
 <article class="inside" id="inside" aria-label="תוכן מהדורה 001" data-edition-root>
@@ -112,6 +114,6 @@ html,body,.front,.bottom,.inside{background:#fff;color:#000}
   window.addEventListener('resize', matchHeight, { passive: true });
 })();
 </script>
-<script src="/app.js" defer></script>
+<script src="/app.js?v=2" defer></script>
 </body>
 </html>
