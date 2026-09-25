@@ -22,6 +22,10 @@
     return `${day}.${month}.${year}`;
   }
 
+  function editionLabel(edition) {
+    return edition.editionType === 'weekly' ? 'מהדורה שבועית' : 'מהדורה';
+  }
+
   function editionAssetPath(number, asset) {
     // Canonical form: /edition/${edition.number}/${edition.cartoon.desktop}
     return asset.startsWith('/') ? asset : `/edition/${number}/${asset}`;
@@ -33,41 +37,40 @@
       `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="מקור ${sourceIndex + 1} לכתבה בנושא ${escapeHtml(story.section)} (נפתח בלשונית חדשה)">${story.sources.length === 1 ? 'לכתבה המלאה' : `מקור ${sourceIndex + 1}`} ↗</a>`
     ).join('');
     return `<section class="story">
+      <aside class="story-context"><p class="eyebrow">הקשר</p><p>${escapeHtml(story.whyItMatters)}</p><div class="source-links"><p class="eyebrow">מקורות</p>${sources}</div></aside>
+      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(story.section)}</span></p><h2>${escapeHtml(story.headline)}</h2><p>${escapeHtml(story.summary)}</p></div>
       <div class="story-index"><b>${number}</b><span>${escapeHtml(story.readingTime)}</span></div>
-      <div><p class="eyebrow story-label"><span>${escapeHtml(story.section)}</span>${sources}</p><h2>${escapeHtml(story.headline)}</h2><p>${escapeHtml(story.summary)}</p></div>
-      <div class="why"><p class="eyebrow">למה זה חשוב</p><p>${escapeHtml(story.whyItMatters)}</p></div>
     </section>`;
   }
 
   function renderEdition(edition, catalog) {
     const formattedDate = formatDate(edition.publicationDate);
-    document.title = `AI היום | מהדורה ${edition.number}`;
+    const label = editionLabel(edition);
+    document.title = `AI היום | ${label} ${edition.number}`;
     const canonical = `${window.location.origin}/${edition.number}`;
     document.querySelector('link[rel="canonical"]').href = canonical;
     document.querySelector('meta[property="og:title"]').content = document.title;
     document.querySelector('meta[property="og:url"]').content = canonical;
     document.querySelector('meta[name="twitter:title"]').content = document.title;
     document.querySelector('meta[name="description"]').content = `${edition.headline} — ${edition.introduction}`;
-    document.querySelector('meta[property="og:description"]').content = `${edition.headline} — חמש דקות של חדשות AI בעברית.`;
-    document.querySelector('.front').setAttribute('aria-label', `שער מהדורה ${edition.number}`);
-    document.querySelector('.metadata bdi').textContent = edition.number;
+    document.querySelector('meta[property="og:description"]').content = edition.editionType === 'weekly'
+      ? `${edition.headline} — תדריך שבועי של חמש דקות על AI בעברית.`
+      : `${edition.headline} — חמש דקות של חדשות AI בעברית.`;
+    document.querySelector('.metadata .edition-label').innerHTML = `${label} <bdi>${escapeHtml(edition.number)}</bdi>`;
     const time = document.querySelector('.metadata time');
     time.dateTime = edition.publicationDate;
     time.textContent = formattedDate;
-    document.querySelector('.headline h1').textContent = edition.headline;
-    const source = document.querySelector('.cartoon source');
-    const image = document.querySelector('.cartoon img');
-    source.srcset = editionAssetPath(edition.number, edition.cartoon.mobile);
-    // The portrait artwork is the canonical readable composition. The desktop
-    // cover now presents it inside a fixed square so the subject stays visible.
-    image.src = editionAssetPath(edition.number, edition.cartoon.mobile);
-    image.alt = edition.cartoon.alt;
-    document.querySelector('.topics').innerHTML = `${edition.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join('')}<i class="dot" aria-hidden="true"></i>`;
 
     const inside = document.querySelector('[data-edition-root]');
     inside.setAttribute('aria-label', `תוכן מהדורה ${edition.number}`);
     const header = inside.querySelector('.inside-header');
-    header.innerHTML = `<p>מהדורה ${edition.number} · ${formattedDate}</p><h2>${escapeHtml(edition.headline)}</h2><p>${escapeHtml(edition.introduction)}</p>${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
+    const coverage = edition.coverageStart && edition.coverageEnd
+      ? `<p class="coverage">חלון הסיקור: ${formatDate(edition.coverageStart)}–${formatDate(edition.coverageEnd)} · פורסם ${formattedDate}</p>`
+      : '';
+    const archiveNote = edition.editionType === 'weekly'
+      ? '<p class="archive-note">המהדורות היומיות הקודמות נשמרות בארכיון ללא שינוי.</p>'
+      : '';
+    header.innerHTML = `<p>${label} ${edition.number} · ${formattedDate}</p>${coverage}<h2>${escapeHtml(edition.headline)}</h2><p>${escapeHtml(edition.introduction)}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
     const storyCountLabels = { 4: 'ארבעת', 5: 'חמשת', 6: 'ששת' };
     const storyCountLabel = storyCountLabels[edition.stories.length] || 'מספר';
     inside.querySelector('.quick-read').innerHTML = `<h3>במבט אחד · ${storyCountLabel} הנושאים</h3><ul>${edition.stories.map((story) => `<li><strong>${escapeHtml(story.section)}:</strong> ${escapeHtml(story.quickRead)}</li>`).join('')}</ul>`;
@@ -90,7 +93,7 @@
     [...previousLinks, ...nextLinks].forEach((link) => {
       link.onclick = (event) => { event.preventDefault(); navigateTo(link.hasAttribute('data-previous') ? previous : next); };
     });
-    document.querySelector('.edition-status').textContent = `מהדורה ${edition.number}`;
+    document.querySelector('.edition-status').textContent = `${label} ${edition.number}`;
     installSwipe(previous, next);
     installKeyboard(previous, next);
   }
