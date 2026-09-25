@@ -70,7 +70,7 @@
     const archiveNote = edition.editionType === 'weekly'
       ? '<p class="archive-note">המהדורות היומיות הקודמות נשמרות בארכיון ללא שינוי.</p>'
       : '';
-    header.innerHTML = `<p>${label} ${edition.number} · ${formattedDate}</p>${coverage}<h2>${escapeHtml(edition.headline)}</h2><p>${escapeHtml(edition.introduction)}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
+    header.innerHTML = `${coverage}<h2>${escapeHtml(edition.headline)}</h2><p>${escapeHtml(edition.introduction)}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
     const storyCountLabels = { 4: 'ארבעת', 5: 'חמשת', 6: 'ששת' };
     const storyCountLabel = storyCountLabels[edition.stories.length] || 'מספר';
     inside.querySelector('.quick-read').innerHTML = `<h3>במבט אחד · ${storyCountLabel} הנושאים</h3><ul>${edition.stories.map((story) => `<li><strong>${escapeHtml(story.section)}:</strong> ${escapeHtml(story.quickRead)}</li>`).join('')}</ul>`;
