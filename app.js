@@ -11,6 +11,7 @@
     .replaceAll("'", '&#039;');
 
   const hebrewFirst = (value) => String(value)
+    .replaceAll('—', ' · ')
     .replaceAll('Meta Newsroom', 'חדר החדשות של מטא')
     .replaceAll('TechCrunch', 'טק־קראנץ׳')
     .replaceAll('GitHub Changelog', 'יומן העדכונים של GitHub')
@@ -19,6 +20,12 @@
     .replaceAll('Copilot', 'קופיילוט')
     .replaceAll('Muse', 'מיוז')
     .replaceAll('Meta', 'מטא');
+
+  const renderParagraphs = (value) => hebrewFirst(value)
+    .split(/\n\s*\n/)
+    .filter(Boolean)
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join('');
 
   function requestedEdition(catalog) {
     const match = window.location.pathname.match(editionPattern);
@@ -59,8 +66,8 @@
   }
 
   function renderSource(source, index, story) {
-    const label = sourcePublisher(source);
-    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} — מקור ${index + 1} לסיפור ${escapeHtml(story.headline || '')} (נפתח בלשונית חדשה)">${escapeHtml(label)} ↗</a>`;
+    const label = hebrewFirst(sourcePublisher(source));
+    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)">${escapeHtml(label)} ↗</a>`;
     return `<li class="source-item"><span class="source-number">${index + 1}.</span>${link}</li>`;
   }
 
@@ -76,8 +83,8 @@
       `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="מקור ${sourceIndex + 1} לכתבה בנושא ${escapeHtml(story.section)} (נפתח בלשונית חדשה)">${story.sources.length === 1 ? 'לכתבה המלאה' : `מקור ${sourceIndex + 1}`} ↗</a>`
     ).join('');
     return `<section class="story">
-      <aside class="story-context"><p class="eyebrow">הקשר</p><p>${escapeHtml(story.whyItMatters)}</p><div class="source-links"><p class="eyebrow">מקורות</p>${sources}</div></aside>
-      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(story.section)}</span></p><h2>${escapeHtml(story.headline)}</h2><p>${escapeHtml(story.summary)}</p></div>
+      <aside class="story-context"><p class="eyebrow">הקשר</p><p>${escapeHtml(hebrewFirst(story.whyItMatters))}</p><div class="source-links"><p class="eyebrow">מקורות</p>${sources}</div></aside>
+      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(hebrewFirst(story.section))}</span></p><h2>${escapeHtml(hebrewFirst(story.headline))}</h2><p>${escapeHtml(hebrewFirst(story.summary))}</p></div>
       <div class="story-index"><b>${number}</b><span>${escapeHtml(story.readingTime)}</span></div>
     </section>`;
   }
@@ -86,13 +93,13 @@
     const number = String(index + 1).padStart(2, '0');
     const section = story.section || sectionHeading;
     const established = Array.isArray(story.established) && story.established.length
-      ? `<section class="story-depth"><h3>מה ידוע</h3><ul>${story.established.map((item) => `<li>${escapeHtml(hebrewFirst(item))}</li>`).join('')}</ul></section>` : '';
+      ? `<section class="story-depth"><h3>${story.editorialTrack ? 'הרקע' : 'מה ידוע'}</h3><ul>${story.established.map((item) => `<li>${escapeHtml(hebrewFirst(item))}</li>`).join('')}</ul></section>` : '';
     const uncertainties = Array.isArray(story.uncertainties) && story.uncertainties.length
-      ? `<section class="story-depth"><h3>מה עדיין לא ידוע</h3><ul>${story.uncertainties.map((item) => `<li>${escapeHtml(hebrewFirst(item))}</li>`).join('')}</ul></section>` : '';
+      ? `<section class="story-depth"><h3>${story.editorialTrack ? 'מה נבדוק בהמשך' : 'מה עדיין לא ידוע'}</h3><ul>${story.uncertainties.map((item) => `<li>${escapeHtml(hebrewFirst(item))}</li>`).join('')}</ul></section>` : '';
     const context = [story.whyItMatters, story.editorialAssessment].filter(Boolean).map((item) => `<p>${escapeHtml(hebrewFirst(item))}</p>`).join('');
     return `<section class="story${story.editorialTrack ? ' editorial-track' : ''}">
       <aside class="story-context"><p class="eyebrow">הקשר</p>${context}${renderSourceList(story)}</aside>
-      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(section)}</span></p><h2>${escapeHtml(hebrewFirst(story.headline))}</h2><p>${escapeHtml(hebrewFirst(story.summary))}</p>${established}${uncertainties}</div>
+      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(hebrewFirst(section))}</span></p><h2>${escapeHtml(hebrewFirst(story.headline))}</h2>${renderParagraphs(story.summary)}${established}${uncertainties}</div>
       <div class="story-index"><b>${number}</b><span>${escapeHtml(story.readingTime)}</span></div>
     </section>`;
   }
@@ -104,9 +111,9 @@
     return sections.map((section) => {
       const sectionStories = Array.isArray(section.stories) ? section.stories : [];
       const rendered = sectionStories.map((story) => renderWeeklyStory(story, index++, section.heading || '')).join('');
-      const description = section.description ? `<p>${escapeHtml(section.description)}</p>` : '';
+      const description = section.description ? `<p>${escapeHtml(hebrewFirst(section.description))}</p>` : '';
       const empty = sectionStories.length ? '' : '<p class="empty-section">אין השבוע עדכוני המשך מהותיים.</p>';
-      return `<section class="story-section${sectionStories.length ? '' : ' is-empty'}" data-section-id="${escapeHtml(section.id || '')}"><header class="story-section-header"><h3>${escapeHtml(section.heading || '')}</h3>${description}</header>${rendered}${empty}</section>`;
+      return `<section class="story-section${sectionStories.length ? '' : ' is-empty'}" data-section-id="${escapeHtml(section.id || '')}"><header class="story-section-header"><h3>${escapeHtml(hebrewFirst(section.heading || ''))}</h3>${description}</header>${rendered}${empty}</section>`;
     }).join('');
   }
 
@@ -121,10 +128,10 @@
     document.querySelector('meta[property="og:title"]').content = document.title;
     document.querySelector('meta[property="og:url"]').content = canonical;
     document.querySelector('meta[name="twitter:title"]').content = document.title;
-    document.querySelector('meta[name="description"]').content = `${edition.headline} — ${edition.introduction}`;
+    document.querySelector('meta[name="description"]').content = hebrewFirst(`${edition.headline} · ${edition.introduction}`);
     document.querySelector('meta[property="og:description"]').content = edition.editionType === 'weekly'
-      ? `${edition.headline} — תדריך שבועי של חמש דקות על AI בעברית.`
-      : `${edition.headline} — חמש דקות של חדשות AI בעברית.`;
+      ? hebrewFirst(`${edition.headline} · תדריך שבועי של חמש דקות על AI בעברית.`)
+      : hebrewFirst(`${edition.headline} · חמש דקות של חדשות AI בעברית.`);
     document.querySelector('.metadata .edition-label').innerHTML = `${label} <bdi>${escapeHtml(edition.number)}</bdi>`;
     const time = document.querySelector('.metadata time');
     time.dateTime = edition.publicationDate;
@@ -139,18 +146,18 @@
     const archiveNote = edition.editionType === 'weekly'
       ? '<p class="archive-note">המהדורות היומיות הקודמות נשמרות בארכיון ללא שינוי.</p>'
       : '';
-    header.innerHTML = `${coverage}<h2>${escapeHtml(hebrewFirst(edition.headline))}</h2><p>${escapeHtml(hebrewFirst(edition.introduction))}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
+    header.innerHTML = `${coverage}<h2>${escapeHtml(hebrewFirst(edition.headline))}</h2><p>${escapeHtml(hebrewFirst(edition.introduction))}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(hebrewFirst(edition.editorialNote))}</p>` : ''}<p class="ai-disclosure">${escapeHtml(hebrewFirst(edition.aiDisclosure))}</p>`;
     const quickRead = inside.querySelector('.quick-read');
     if (Array.isArray(edition.overview) && edition.overview.length) {
       quickRead.hidden = false;
-      quickRead.innerHTML = `<h3>במבט אחד · חמשת הנושאים</h3><ul>${edition.overview.map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.summary)}</li>`).join('')}</ul>`;
+      quickRead.innerHTML = `<h3>במבט אחד · חמשת הנושאים</h3><ul>${edition.overview.map((item) => `<li><strong>${escapeHtml(hebrewFirst(item.title))}:</strong> ${escapeHtml(hebrewFirst(item.summary))}</li>`).join('')}</ul>`;
     } else {
       quickRead.hidden = edition.editionType === 'weekly';
     }
     if (!quickRead.hidden && !(Array.isArray(edition.overview) && edition.overview.length)) {
       const storyCountLabels = { 4: 'ארבעת', 5: 'חמשת', 6: 'ששת' };
       const storyCountLabel = storyCountLabels[stories.length] || 'מספר';
-      quickRead.innerHTML = `<h3>במבט אחד · ${storyCountLabel} הנושאים</h3><ul>${stories.map((story) => `<li><strong>${escapeHtml(story.section || '')}:</strong> ${escapeHtml(story.quickRead)}</li>`).join('')}</ul>`;
+      quickRead.innerHTML = `<h3>במבט אחד · ${storyCountLabel} הנושאים</h3><ul>${stories.map((story) => `<li><strong>${escapeHtml(hebrewFirst(story.section || ''))}:</strong> ${escapeHtml(hebrewFirst(story.quickRead))}</li>`).join('')}</ul>`;
     }
     inside.querySelector('.stories').innerHTML = renderStories(edition, stories);
     inside.querySelector('.takeaway').innerHTML = `<p class="eyebrow">${escapeHtml(edition.totalReadingTime)} · השורה התחתונה</p><h2>${escapeHtml(hebrewFirst(edition.takeaway))}</h2>`;
@@ -166,7 +173,7 @@
         const response = await fetch(`/edition/${number}/edition.json`, { cache: 'no-store' });
         if (!response.ok) return null;
         const item = await response.json();
-        return `<li><a href="/${escapeHtml(number)}"><span><b>מהדורה ${escapeHtml(number)}</b><time datetime="${escapeHtml(item.publicationDate)}">${formatDate(item.publicationDate)}</time></span><strong>${escapeHtml(item.headline)}</strong>${item.totalReadingTime ? `<small>${escapeHtml(item.totalReadingTime)} דקות קריאה</small>` : ''}</a></li>`;
+        return `<li><a href="/${escapeHtml(number)}"><span><b>מהדורה ${escapeHtml(number)}</b><time datetime="${escapeHtml(item.publicationDate)}">${formatDate(item.publicationDate)}</time></span><strong>${escapeHtml(hebrewFirst(item.headline))}</strong>${item.totalReadingTime ? `<small>${escapeHtml(item.totalReadingTime)} דקות קריאה</small>` : ''}</a></li>`;
       } catch { return null; }
     }));
     archive.innerHTML = `<h2>ארכיון המהדורות</h2>${entries.some(Boolean) ? `<ul>${entries.filter(Boolean).join('')}</ul>` : '<p>זוהי המהדורה הראשונה.</p>'}`;
