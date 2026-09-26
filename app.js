@@ -45,7 +45,9 @@
   }
 
   function sourceLabel(source) {
-    if (source.label || source.displayName || source.name || source.publisher) return source.label || source.displayName || source.name || source.publisher;
+    if (source.label || source.displayName || source.name || source.publisher) {
+      return String(source.label || source.displayName || source.name || source.publisher).replaceAll('—', ' · ');
+    }
     try { return new URL(source.url).hostname.replace(/^www\./, ''); } catch { return 'מקור'; }
   }
 
