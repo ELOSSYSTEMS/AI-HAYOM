@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 1,
+  "number": "001",
+  "publicationDate": "2026-09-11",
+  "dateModified": "2026-09-26T20:14:11+03:00",
+  "editionType": "weekly",
+  "cadence": "weekly",
+  "coverageStart": "2026-09-04",
+  "coverageEnd": "2026-09-10",
+  "coverageEndTime": "23:59:59",
+  "coverageTimezone": "Asia/Jerusalem",
+  "status": "published",
+  "language": "Hebrew",
+  "headline": "מי קובע את כללי הכניסה של AI למוסדות",
+  "coverDescription": "מהדורה שבועית של AI היום על רכש ממשלתי, פרטיות תלמידים ודיווחי שימוש לרעה במודלים.",
+  "introduction": "השבוע נמתח קו מחבר בין שלושה מוסדות שמטמיעים AI בדרכים שונות: ממשלה שרוכשת שירות, איגודי מורים שמבקשים להציב גבולות, ומעבדת מודלים שמדווחת על שימוש לרעה. בכל שלושת המקרים יש הכרזה או דוח מתועד, אבל המרחק בין מסמך לתוצאה נותר משמעותי. לכן ההבחנה כאן עקבית: מה שארגון אמר או חתם עליו, מה שדיווח משני מוסיף, ומה שעדיין צריך להוכיח.",
+  "aiDisclosure": "המהדורה נעזרה בבינה מלאכותית בעיבוד ובניסוח; המקורות ותאריכי הפרסום מוצגים לצד כל סיפור. אין טענה לבדיקה או לאישור אנושיים.",
+  "keywords": [
+    "GSA",
+    "OpenAI",
+    "מיקרוסופט",
+    "פרטיות תלמידים",
+    "Anthropic"
+  ],
+  "overview": [
+    {
+      "label": "רכש ציבורי",
+      "text": "GSA הודיעה על מסלול OneGov חדש ל-ChatGPT בתמחור לפי צריכה. ההסכם מתועד, אך שימוש בפועל עדיין לא."
+    },
+    {
+      "label": "בתי ספר",
+      "text": "AFT, UFT ומיקרוסופט הציגו תקן פרטיות ובטיחות. היקף האכיפה והכיסוי דורשים קריאה נוספת."
+    },
+    {
+      "label": "שימוש לרעה",
+      "text": "Anthropic פרסמה דוח מודיעין איומים. המקרים מתועדים כטענות החברה, לא כאימות חיצוני מלא."
+    },
+    {
+      "label": "סוכנים",
+      "text": "המדד החשוב אינו רק יכולת פעולה, אלא הרשאות, יומנים ואפשרות לעצור."
+    },
+    {
+      "label": "מהמעבדה",
+      "text": "בין תוצאה טכנית למוצר ציבורי עומדים אימות, רגולציה וראיות לפריסה."
+    }
+  ],
+  "sections": [
+    {
+      "id": "this-week",
+      "heading": "מה קרה השבוע",
+      "description": "שלושה אירועים נפרדים מתוך חלון הסיקור, מאוחדים לפי אירוע ולא לפי מספר הפרסומים.",
+      "stories": [
+        {
+          "id": "gsa-openai-onegov",
+          "section": "מה קרה השבוע",
+          "headline": "GSA פותחת מסלול צריכה חדש ל-ChatGPT בממשל האמריקאי",
+          "readingTime": "01:25",
+          "quickRead": "ההסכם מתועד, אך אימוץ, הוצאה ותוצאות אבטחה עוד אינם ידועים.",
+          "summary": "מינהל השירותים הכלליים של ארצות הברית, GSA, הודיע ב-10 בספטמבר על הסכם OneGov חדש עם OpenAI ל-27 חודשים, שאמור להיכנס לתוקף ב-1 באוקטובר. לפי הודעת GSA, המסלול מחליף את מודל המחיר הקודם במודל לפי צריכה: הנחה של 50 אחוז על שימוש מבוסס טוקנים, ללא דמי פלטפורמה וללא התחייבות מינימום. FedScoop דיווחה באופן עצמאי על המעבר מהסדר של דולר אחד לסוכנות למסלול צריכה.\n\nזהו קודם כול סיפור על רכש ציבורי. ההסכם משנה את הדרך שבה גופים פדרליים מתאימים שירות מודל מתקדם לתקציב ולשימוש, ולא רק את השאלה איזה מוצר מופיע ברשימת ספקים. ההודעה של GSA מוכיחה שהסוכנות הודיעה על התנאים שהיא מייחסת להסכם, והדיווח של FedScoop מוסיף הקשר על מבנה התמחור. היא אינה מוכיחה שחיסכון יתממש, שסוכנויות יאמצו את השירות או שהשימוש יהיה בטוח ויעיל.\n\nבמבט מערכתי, שיטת תמחור היא גם מדיניות שימוש: היא יכולה להרחיב ניסויים קטנים, אבל גם להקשות על נראות של עלות מצטברת. הערכת המערכת היא שהחידוש החשוב כאן אינו הבטחה לשירות ציבורי טוב יותר, אלא יצירת נתיב רכש שידרוש שקיפות על שימוש, הוצאות ובקרות לאחר שייכנס לתוקף.",
+          "whyItMatters": "שינוי ברכש ובתמחור עשוי להשפיע על היקף הגישה של גופים ציבוריים למודלי שפה, בלי להוכיח עדיין תועלת או חיסכון בפועל.",
+          "established": [
+            "GSA's release is dated September 10, 2026 and announces a 27-month OneGov agreement with OpenAI, expected to take effect Oct. 1, 2026.",
+            "GSA says it provides a 50% discount on token-based use, no platform fee, no minimum order or spend commitment, and broad eligibility described in the release.",
+            "FedScoop independently reports the deal's switch from the expiring $1-per-agency arrangement to consumption pricing."
+          ],
+          "sourceSpecificOrDisputedClaims": [
+            "GSA's reported savings and access figures are agency claims in its release, not independently audited in this bundle.",
+            "OpenAI's statements about potential public-service improvements and cyber-defender support are company claims."
+          ],
+          "uncertainties": [
+            "The sources do not establish actual agency adoption, spending, security outcomes, or service quality after the agreement starts."
+          ],
+          "editorialAssessment": "יש ראיה טובה לקיום ההסכם ולתנאים ש-GSA פרסמה. אין בחבילה ראיה לתוצאותיו המעשיות, ולכן נכון לעקוב אחר יישום ולא להקדים לו מסקנה.",
+          "sources": [
+            {
+              "name": "U.S. General Services Administration | GSA Expands OneGov AI Offerings with Discounted, Consumption-Based Access to OpenAI’s ChatGPT",
+              "label": "GSA Expands OneGov AI Offerings with Discounted, Consumption-Based Access to OpenAI’s ChatGPT",
+              "url": "https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-expands-onegov-ai-offerings-with-discounted-openais-chatgpt-09102026",
+              "publisher": "U.S. General Services Administration",
+              "sourceType": "government news release",
+              "primarySecondary": "primary",
+              "originalOrSyndicated": "original",
+              "trustStatus": "unrated",
+              "contribution": "Government counterparty's agreement, pricing, term, and eligibility statement",
+              "claimsUsed": [
+                "GSA's release is dated September 10, 2026 and announces a 27-month OneGov agreement with OpenAI, expected to take effect Oct. 1, 2026."
+              ],
+              "disagreementsOrFraming": "ראו את ההבחנות וההסתייגויות בגוף הסיפור.",
+              "syndicationRelation": "Parallel statement by OpenAI is not independent corroboration",
+              "independentEvidence": false,
+              "publisherDisplayedPublicationInformation": "September 10, 2026; Last updated: Sep 10, 2026",
+              "normalizedAsiaJerusalemPublication": "2026-09-10 (date-only; publisher supplied no publication time/timezone)",
+              "modificationInformation": "Last updated: Sep 10, 2026 (no time/timezone supplied)",
+              "urlVerification": "HTTP 200 usable content on 2026-09-26",
+              "published_at_source": null,
+              "published_timezone": "unknown",
+              "published_date_displayed": "September 10, 2026; Last updated: Sep 10, 2026",
+              "published_at_jerusalem": null,
+              "published_date_jerusalem": "2026-09-10",
+              "normalization_status": "date_only",
+              "date_modified_source": null,
+              "date_modified_timezone": "unknown",
+              "date_modified_displayed": "Last updated: Sep 10, 2026 (no time/timezone supplied)",
+              "date_modified_at_jerusalem": null,
+              "date_modified_date_jerusalem": null,
+              "date_modified_normalization_status": "date_only"
+            },
+            {
+              "name": "FedScoop | OpenAI, GSA strike OneGov deal for ChatGPT through 2028",
+              "label": "OpenAI, GSA strike OneGov deal for ChatGPT through 2028",
+              "url": "https://fedscoop.com/openai-gsa-reach-onegov-deal-chatgpt-2028/",
+              "publisher": "FedScoop",
+              "sourceType": "government technology news report",
+              "primarySecondary": "secondary",
+              "originalOrSyndicated": "original",
+              "trustStatus": "unrated",
+              "contribution": "Independent procurement and pricing context",
+              "claimsUsed": [
+                "GSA says it provides a 50% discount on token-based use, no platform fee, no minimum order or spend commitment, and broad eligibility described in the release."
+              ],
+              "disagreementsOrFraming": "ראו את ההבחנות וההסתייגויות בגוף הסיפור.",
+              "syndicationRelation": "לא זוהה קשר סינדיקציה.",
+              "independentEvidence": true,
+              "publisherDisplayedPublicationInformation": {
+                "displayedText": "September 10, 2026",
+                "structuredMetadata": {
+                  "property": "article:published_time",
+                  "value": "2026-09-10T15:07:47+00:00"
+                }
+              },
+              "normalizedAsiaJerusalemPublication": "2026-09-10T18:07:47+03:00",
+              "modificationInformation": {
+                "normalizedAsiaJerusalemModification": "2026-09-10T18:07:50+03:00",
+                "structuredMetadata": {
+                  "property": "article:modified_time",
+                  "value": "2026-09-10T15:07:50+00:00"
+                }
+              },
+              "urlVerification": "HTTP 200 usable content on 2026-09-26",
+              "published_at_source": "2026-09-10T15:07:47+00:00",
+              "published_timezone": "+00:00",
+              "published_date_displayed": "September 10, 2026",
+              "published_at_jerusalem": "2026-09-10T18:07:47+03:00",
+              "published_date_jerusalem": "2026-09-10",
+              "normalization_status": "verified_timestamp_addendum",
+              "date_modified_source": {
+                "property": "article:modified_time",
+                "value": "2026-09-10T15:07:50+00:00"
+              },
+              "date_modified_timezone": "+00:00",
+              "date_modified_displayed": null,
+              "date_modified_at_jerusalem": "2026-09-10T18:07:50+03:00",
+              "date_modified_date_jerusalem": "2026-09-10",
+              "date_modified_normalization_status": "verified_timestamp_addendum",
+              "sourceTimestampAddendum": {
+                "contribution": "Independent procurement and pricing context",
+                "liveInspection": {
+                  "httpStatus": 200,
+                  "retrievedAtUtc": "2026-09-26T16:55:07Z"
+                },
+                "matchingSealedRecord": {
+                  "eventId": "ev-openai-gsa-onegov",
+                  "sourceIndex": 1
+                },
+                "modificationInformation": {
+                  "normalizedAsiaJerusalemModification": "2026-09-10T18:07:50+03:00",
+                  "structuredMetadata": {
+                    "property": "article:modified_time",
+                    "value": "2026-09-10T15:07:50+00:00"
+                  }
+                },
+                "normalizedAsiaJerusalemPublication": "2026-09-10T18:07:47+03:00",
+                "originalOrSyndicated": "original",
+                "primaryOrSecondary": "secondary",
+                "publisher": "FedScoop",
+                "publisherDisplayedPublicationInformation": {
+                  "displayedText": "September 10, 2026",
+                  "structuredMetadata": {
+                    "property": "article:published_time",
+                    "value": "2026-09-10T15:07:47+00:00"
+                  }
+                },
+                "publisherFacingLabel": "OpenAI, GSA strike OneGov deal for ChatGPT through 2028",
+                "sourceType": "government technology news report",
+                "syndicationRelation": null,
+                "trustStatus": "unrated",
+                "url": "https://fedscoop.com/openai-gsa-reach-onegov-deal-chatgpt-2028/",
+                "verificationNote": "Live page supplied separate Open Graph publication and modification timestamps. No displayed time or timezone was added beyond publisher-supplied metadata."
+              }
+            }
+          ],
+          "primarySourceUrls": [
+            "https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-expands-onegov-ai-offerings-with-discounted-openais-chatgpt-09102026"
+          ],
+          "secondarySourceUrls": [
+            "https://fedscoop.com/openai-gsa-reach-onegov-deal-chatgpt-2028/"
+          ],
+          "knownSyndication": [
+            "Parallel statement by OpenAI is not independent corroboration",
+            "לא זוהה קשר סינדיקציה."
+          ]
+        },
+        {
+          "id": "aft-uft-microsoft-school-standard",
+          "section": "מה קרה השבוע",
+          "headline": "איגודי מורים ומיקרוסופט מציגים תקן פרטיות ובטיחות ל-AI בבתי ספר",
+          "readingTime": "01:25",
+          "quickRead": "יש הסכם מתועד בין הצדדים, אך היקף האכיפה והכיסוי שלו אינם מבוררים בחבילה.",
+          "summary": "ה-AFT, ה-UFT ומיקרוסופט הודיעו ב-9 בספטמבר על National AI Safety & Privacy Standard לבתי ספר. לפי הודעת ה-AFT, הצדדים מתארים את ההסדר כהגנות מחייבות משפטית לתלמידים, למשפחות ולאנשי חינוך. זהו צירוף חריג של ספק טכנולוגיה ושל ארגוני עובדים סביב שאלת הנתונים בכיתה, תחום שבו לעיתים קרובות כללים מגיעים אחרי שהכלי כבר נכנס לשימוש.\n\nהעובדה המתועדת היא שהצדדים הודיעו על תקן ועל אופיו המוצהר. מכאן לא נובע עדיין שההסכם מכסה כל ספק, כל מחוז או כל תצורת מוצר, וגם לא שהתחייבות משפטית תיאכף כפי שהיא מוצגת בהודעה. הודעת מיקרוסופט המקבילה לא נכללה כראיה סופית משום שהאחזור הישיר שלה נכשל, ובכל מקרה היתה הודעה של צד לאותו הסכם ולא אימות עצמאי.\n\nהחשיבות היא מעשית: פרטיות של תלמידים אינה רק סעיף מדיניות, אלא שאלה על מי רשאי להזין מידע, איך נשמרים לוגים, ומה קורה כאשר מוצר משתנה. הערכת המערכת היא שההסכם ראוי לתשומת לב כמודל משא ומתן, אך המבחן יהיה בנוסח המלא, במנגנון תלונה וביכולת של בתי ספר ומשפחות להבין מה מוגן בפועל.",
+          "whyItMatters": "התקן מציב פרטיות תלמידים והתחייבויות ספק במרכז הדיון על AI חינוכי, אך החבילה אינה קובעת את היקף האכיפה או את תוצאות היישום.",
+          "established": [
+            "AFT and Microsoft displayed Sep. 9, 2026 announcements of the standard with the UFT.",
+            "The announcing parties describe it as legally enforceable protections for students, families and educators."
+          ],
+          "sourceSpecificOrDisputedClaims": [
+            "תיאור התקן כלאומי וכמחייב משפטית הוא אפיון של הצדדים שהודיעו עליו."
+          ],
+          "uncertainties": [
+            "The bundle does not independently review the full contract, test enforceability, or establish coverage across vendors and school districts."
+          ],
+          "editorialAssessment": "זהו צעד ממשלתי חשוב ברמת ההסכם, לא הוכחה לכך שהגנת פרטיות כבר הוטמעה בכל כיתה או מוצר.",
+          "sources": [
+            {
+              "name": "American Federation of Teachers | AFT, UFT and Microsoft Announce ‘National AI Safety & Privacy Standard’ for Schools to Protect Students, Families and Educators",
+              "label": "AFT, UFT and Microsoft Announce ‘National AI Safety & Privacy Standard’ for Schools to Protect Students, Families and Educators",
+              "url": "https://www.aft.org/press-release/aft-uft-and-microsoft-announce-national-ai-safety-privacy-standard-schools-protect",
+              "publisher": "American Federation of Teachers",
+              "sourceType": "union press release",
+              "primarySecondary": "primary",
+              "originalOrSyndicated": "original",
+              "trustStatus": "unrated",
+              "contribution": "Agreement-party statement and stated protections",
+              "claimsUsed": [
+                "AFT and Microsoft displayed Sep. 9, 2026 announcements of the standard with the UFT."
+              ],
+              "disagreementsOrFraming": "ראו את ההבחנות וההסתייגויות בגוף הסיפור.",
+              "syndicationRelation": "Parallel announcement by a party to the agreement, not independent corroboration of Microsoft’s release",
+              "independentEvidence": false,
+              "publisherDisplayedPublicationInformation": {
+                "displayedText": "For Release: Wednesday, September 9, 2026",
+                "structuredMetadata": {
+                  "property": "article:published_time",
+                  "value": "2026-09-08T18:50:37-04:00"
+                }
+              },
+              "normalizedAsiaJerusalemPublication": "2026-09-09T01:50:37+03:00",
+              "modificationInformation": {
+                "normalizedAsiaJerusalemModification": "2026-09-10T15:42:46+03:00",
+                "structuredMetadata": [
+                  {
+                    "property": "og:updated_time",
+                    "value": "2026-09-10T08:42:46-04:00"
+                  },
+                  {
+                    "property": "article:modified_time",
+                    "value": "2026-09-10T08:42:46-04:00"
+                  }
+                ]
+              },
+              "urlVerification": "Search result exposed usable article content; no direct HTTP status retained",
+              "published_at_source": "2026-09-08T18:50:37-04:00",
+              "published_timezone": "-04:00",
+              "published_date_displayed": "For Release: Wednesday, September 9, 2026",
+              "published_at_jerusalem": "2026-09-09T01:50:37+03:00",
+              "published_date_jerusalem": "2026-09-09",
+              "normalization_status": "verified_timestamp_addendum",
+              "date_modified_source": [
+                {
+                  "property": "og:updated_time",
+                  "value": "2026-09-10T08:42:46-04:00"
+                },
+                {
+                  "property": "article:modified_time",
+                  "value": "2026-09-10T08:42:46-04:00"
+                }
+              ],
+              "date_modified_timezone": "-04:00",
+              "date_modified_displayed": null,
+              "date_modified_at_jerusalem": "2026-09-10T15:42:46+03:00",
+              "date_modified_date_jerusalem": "2026-09-10",
+              "date_modified_normalization_status": "verified_timestamp_addendum",
+              "sourceTimestampAddendum": {
+                "contribution": "Agreement-party statement and stated protections",
+                "liveInspection": {
+                  "httpStatus": 200,
+                  "retrievedAtUtc": "2026-09-26T16:58:20Z"
+                },
+                "matchingSealedRecord": {
+                  "eventId": "ev-microsoft-school-ai-standard",
+                  "sourceIndex": 0
+                },
+                "modificationInformation": {
+                  "normalizedAsiaJerusalemModification": "2026-09-10T15:42:46+03:00",
+                  "structuredMetadata": [
+                    {
+                      "property": "og:updated_time",
+                      "value": "2026-09-10T08:42:46-04:00"
+                    },
+                    {
+                      "property": "article:modified_time",
+                      "value": "2026-09-10T08:42:46-04:00"
+                    }
+                  ]
+                },
+                "normalizedAsiaJerusalemPublication": "2026-09-09T01:50:37+03:00",
+                "originalOrSyndicated": "original",
+                "primaryOrSecondary": "primary",
+                "publisher": "American Federation of Teachers",
+                "publisherDisplayedPublicationInformation": {
+                  "displayedText": "For Release: Wednesday, September 9, 2026",
+                  "structuredMetadata": {
+                    "property": "article:published_time",
+                    "value": "2026-09-08T18:50:37-04:00"
+                  }
+                },
+                "publisherFacingLabel": "AFT, UFT and Microsoft Announce ‘National AI Safety & Privacy Standard’ for Schools to Protect Students, Families and Educators",
+                "sourceType": "union press release",
+                "syndicationRelation": "Parallel announcement by a party to the agreement, not independent corroboration of Microsoft’s release",
+                "trustStatus": "unrated",
+                "url": "https://www.aft.org/press-release/aft-uft-and-microsoft-announce-national-ai-safety-privacy-standard-schools-protect",
+                "verificationNote": "Live page supplied a displayed release date and separate Open Graph publication and update/modification timestamps. The displayed release date and structured publication timestamp are preserved separately because they differ by local calendar date."
+              }
+            }
+          ],
+          "primarySourceUrls": [
+            "https://www.aft.org/press-release/aft-uft-and-microsoft-announce-national-ai-safety-privacy-standard-schools-protect"
+          ],
+          "secondarySourceUrls": [],
+          "knownSyndication": [
+            "Parallel announcement by a party to the agreement, not independent corroboration of Microsoft’s release"
+          ]
+        },
+        {
+          "id": "anthropic-september-threat-report",
+          "section": "מה קרה השבוע",
+          "headline": "דוח Anthropic מציג דפוסי שימוש לרעה, עם גבולות ברורים למה שהוא מוכיח",
+          "readingTime": "01:25",
+          "quickRead": "הדוח מתעד את ממצאי Anthropic על שבעה תחומי פגיעה, לא שכיחות מאומתת או ייחוס עצמאי של כל מקרה.",
+          "summary": "Anthropic פרסמה ב-10 בספטמבר דוח מודיעין איומים לחודש ספטמבר 2026. לפי העמוד של החברה, הדוח מסכם מקרי בוחן של גורמי איום שהופרעו בין דצמבר 2025 לאוגוסט 2026, וממפה שבעה תחומי פגיעה, מפעילות סייבר ועד שימוש לרעה ביולוגי. עצם הפרסום חשוב מפני שמעבדת מודלים מציגה לציבור חלק מן המידע שהיא מפיקה מהתמודדות עם ניצול לרעה.\n\nעם זאת, הדוח הוא גם מסמך של בעלת המערכת. הטענות על שחקנים מסוימים, על שיטות ועל תוצאות השיבוש הן טענות מודיעין של Anthropic. החבילה אינה כוללת אימות חיצוני לכל תיק, אינה מראה מה שיעור המקרים שלא התגלו, ואינה מאפשרת למדוד את שכיחות הפעילות המתוארת. גם מסביר משני, אילו היה נכלל, לא היה הופך חקירה פנימית לאימות עצמאי של הייחוס.\n\nזה לא מבטל את הערך של הדוח. להפך, הוא ממקד את השאלה הנכונה: האם חברות מפרסמות די מידע על קריטריוני זיהוי, על התערבות ועל מגבלות? הערכת המערכת היא שיש להתייחס למסמך כחלון שימושי למדיניות ולדפוסי דיווח של Anthropic, לא כמפת איום מלאה ולא כראיה סופית לכל מקרה שמופיע בו.",
+          "whyItMatters": "דוחות שקיפות על שימוש לרעה יכולים להרחיב דיון ציבורי על בטיחות מודלים, אך מחייבים הפרדה בין תיאור החברה לבין אימות חיצוני של היקף וייחוס.",
+          "established": [
+            "Anthropic's page is dated Sep 10, 2026 and says it covers case studies of threat actors disrupted between December 2025 and August 2026.",
+            "The report describes seven harm areas, from cyber operations to biological misuse."
+          ],
+          "sourceSpecificOrDisputedClaims": [
+            "Claims about individual actors, techniques, and disruption outcomes are Anthropic threat-intelligence claims; the retained evidence contains no independent verification of each case."
+          ],
+          "uncertainties": [
+            "The public report cannot establish the prevalence of the reported activity, completeness of detection, or attribution accuracy for each case."
+          ],
+          "editorialAssessment": "הדוח מצדיק מעקב, אך אין להמיר תיעוד של מעבדה אחת במדד מלא לשכיחות, לייחוס או להצלחת סיכול.",
+          "sources": [
+            {
+              "name": "Anthropic | Countering misuse of AI: September 2026",
+              "label": "Countering misuse of AI: September 2026",
+              "url": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+              "publisher": "Anthropic",
+              "sourceType": "company threat-intelligence report",
+              "primarySecondary": "primary",
+              "originalOrSyndicated": "original",
+              "trustStatus": "unrated",
+              "contribution": "The report, scope, and Anthropic's own case descriptions",
+              "claimsUsed": [
+                "Anthropic's page is dated Sep 10, 2026 and says it covers case studies of threat actors disrupted between December 2025 and August 2026."
+              ],
+              "disagreementsOrFraming": "ראו את ההבחנות וההסתייגויות בגוף הסיפור.",
+              "syndicationRelation": "לא זוהה קשר סינדיקציה.",
+              "independentEvidence": false,
+              "publisherDisplayedPublicationInformation": "Sep 10, 2026",
+              "normalizedAsiaJerusalemPublication": "2026-09-10 (date-only; publisher supplied no time/timezone)",
+              "modificationInformation": null,
+              "urlVerification": "HTTP 200 usable content on 2026-09-26",
+              "published_at_source": null,
+              "published_timezone": "unknown",
+              "published_date_displayed": "Sep 10, 2026",
+              "published_at_jerusalem": null,
+              "published_date_jerusalem": "2026-09-10",
+              "normalization_status": "date_only",
+              "date_modified_source": null,
+              "date_modified_timezone": "unknown",
+              "date_modified_displayed": null,
+              "date_modified_at_jerusalem": null,
+              "date_modified_date_jerusalem": null,
+              "date_modified_normalization_status": "unknown"
+            }
+          ],
+          "primarySourceUrls": [
+            "https://www.anthropic.com/threat-intelligence-report-september-2026"
+          ],
+          "secondarySourceUrls": [],
+          "knownSyndication": [
+            "לא זוהה קשר סינדיקציה."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "radar",
+      "heading": "על הרדאר",
+      "description": "תיקי מעקב מתמשכים. אלה הקשרים מערכתיים, לא טענות על אירוע שבועי חדש.",
+      "stories": [
+        {
+          "id": "radar-agent-safety-control",
+          "section": "על הרדאר",
+          "headline": "בטיחות ושליטה בסוכנים",
+          "readingTime": "00:55",
+          "quickRead": "תיק המשך מערכתי, לא אירוע שבועי חדש.",
+          "summary": "מערכות סוכן אינן נמדדות רק בכמה משימות הן מסיימות. הן נמדדות גם ביכולת להגביל הרשאות, לתעד פעולה, לעצור רצף ולברר מי אחראי כאשר משהו משתבש.\n\nמסגרת ניהול סיכוני AI של NIST היא נקודת רקע שימושית לשפה של זיהוי, מדידה, ניהול וממשל. היא אינה תקן שבועי חדש ואינה אישור לכך שמוצר מסוים מאובטח.\n\nהמעקב הבא צריך להתמקד בראיות לבקרות שנבדקו מחוץ לדפי שיווק, בשינויי הרשאות, ביומני ביקורת ובדיווח מסודר על תקריות.\n\nככל שסוכנים מקבלים גישה לכלים ולנתונים, כשל שליטה עשוי להיות משמעותי יותר מתשובה שגויה בצ'אט.\n\nעמדת המערכת: לא לקבל שיעור הצלחה כתחליף לגבולות פעולה, לאפשרות ביטול ולתיעוד שניתן לביקורת.",
+          "whyItMatters": "ככל שסוכנים מקבלים גישה לכלים ולנתונים, כשל שליטה עשוי להיות משמעותי יותר מתשובה שגויה בצ'אט.",
+          "established": [
+            "תיק המשך מערכתי. מקור הרקע אינו משמש ראיה לאירוע חדש בחלון הסיקור."
+          ],
+          "sourceSpecificOrDisputedClaims": [
+            "מקור הרקע מתעד מסגרת או מאגר של הגוף המפרסם. הוא אינו מאשר לבדו תוצאות פריסה, ביצועים או השפעה."
+          ],
+          "uncertainties": [
+            "החבילה אינה כוללת מדידה שבועית חדשה או הערכת אמון למקור הרקע."
+          ],
+          "editorialAssessment": "לא לקבל שיעור הצלחה כתחליף לגבולות פעולה, לאפשרות ביטול ולתיעוד שניתן לביקורת.",
+          "sources": [
+            {
+              "name": "National Institute of Standards and Technology | AI Risk Management Framework",
+              "label": "AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "publisher": "National Institute of Standards and Technology",
+              "sourceType": "government framework",
+              "primarySecondary": "primary",
+              "originalOrSyndicated": "original",
+              "trustStatus": "unrated",
+              "contribution": "Durable risk-management background",
+              "claimsUsed": [
+                "NIST's AI Risk Management Framework provides a durable governance reference for managing AI risks. It is background, not a weekly event."
+              ],
+              "disagreementsOrFraming": "ראו את ההבחנות וההסתייגויות בגוף הסיפור.",
+              "syndicationRelation": "לא זוהה קשר סינדיקציה.",
+              "independentEvidence": false,
+              "publisherDisplayedPublicationInformation": "No publication information captured in this bundle",
+              "normalizedAsiaJerusalemPublication": null,
+              "modificationInformation": null,
+              "urlVerification": "Not used for weekly-window eligibility",
+              "published_at_source": null,
+              "published_timezone": "unknown",
+              "published_date_displayed": "No publication information captured in this bundle",
+              "published_at_jerusalem": null,
+              "published_date_jerusalem": null,
+              "normalization_status": "unknown",
+              "date_modified_source": null,
+              "date_modified_timezone": "unknown",
+              "date_modified_displayed": null,
+              "date_modified_at_jerusalem": null,
+              "date_modified_date_jerusalem": null,
+              "date_modified_normalization_status": "unknown"
+            }
+          ],
+          "primarySourceUrls": [
+            "https://www.nist.gov/itl/ai-risk-management-framework"
+          ],
+          "secondarySourceUrls": [],
+          "knownSyndication": [
+            "לא זוהה קשר סינדיקציה."
+          ]
+        },
+        {
+          "id": "radar-next-model-generation",
+          "section": "על הרדאר",
+          "headline": "דור המודלים הבא",
+          "readingTime": "00:55",
+          "quickRead": "תיק המשך מערכתי, לא אירוע שבועי חדש.",
+          "summary": "המרוץ לדור הבא של מודלים נוטה להדגיש יכולות, אך לקורא חשובות לא פחות תנאי הגישה, המחיר, השפה והבטיחות. שם הדגם הוא תחילת הסיפור, לא סופו.\n\nAI Index של Stanford מספק הקשר רחב להתפתחות ולפריסה של מודלים. זהו מקור השוואתי מתמשך, לא ראיה לאירוע שהתרחש בשבוע הסיקור.\n\nנחפש הערכות עצמאיות שמסבירות שיטה ומגבלות, לצד תיעוד של זמינות, תמחור והגנות לפני הכרזות על קפיצה דורית.\n\nמודלים הופכים לתשתית עבודה עוד לפני שהציבור מבין מי מקבל אותם ובאילו מגבלות.\n\nעמדת המערכת: לתת משקל גבוה למדידה חיצונית ולתנאי שימוש, ולא לכותרת של השקה בלבד.",
+          "whyItMatters": "מודלים הופכים לתשתית עבודה עוד לפני שהציבור מבין מי מקבל אותם ובאילו מגבלות.",
+          "established": [
+            "תיק המשך מערכתי. מקור הרקע אינו משמש ראיה לאירוע חדש בחלון הסיקור."
+          ],
+          "sourceSpecificOrDisputedClaims": [
+            "מקור הרקע מתעד מסגרת או מאגר של הגוף המפרסם. הוא אינו מאשר לבדו תוצאות פריסה, ביצועים או השפעה."
+          ],
+          "uncertainties": [
+            "החבילה אינה כוללת מדידה שבועית חדשה או הערכת אמון למקור הרקע."
+          ],
+          "editorialAssessment": "לתת משקל גבוה למדידה חיצונית ולתנאי שימוש, ולא לכותרת של השקה בלבד.",
+          "sources": [
+            {
+              "name": "Stanford Institute for Human-Centered Artificial Intelligence | AI Index Report",
+              "label": "AI Index Report",
+              "url": "https://aiindex.stanford.edu/report/",
+              "publisher": "Stanford Institute for Human-Centered Artificial Intelligence",
+              "sourceType": "research institute report",
+              "primarySecondary": "primary",
+              "originalOrSyndicated": "original",
+              "trustStatus": "unrated",
+              "contribution": "Durable comparative background",
+              "claimsUsed": [
+                "Stanford's AI Index is useful broad background on model development and deployment trends, but it is not evidence of a September weekly event."
+              ],
+              "disagreementsOrFraming": "ראו את ההבחנות וההסתייגויות בגוף הסיפור.",
+              "syndicationRelation": "לא זוהה קשר סינדיקציה.",
+              "independentEvidence": false,
+              "publisherDisplayedPublicationInformation": "No publication information captured in this bundle",
+              "normalizedAsiaJerusalemPublication": null,
+              "modificationInformation": null,
+              "urlVerification": "Not used for weekly-window eligibility",
+              "published_at_source": null,
+              "published_timezone": "unknown",
+              "published_date_displayed": "No publication information captured in this bundle",
+              "published_at_jerusalem": null,
+              "published_date_jerusalem": null,
+              "normalization_status": "unknown",
+              "date_modified_source": null,
+              "date_modified_timezone": "unknown",
+              "date_modified_displayed": null,
+              "date_modified_at_jerusalem": null,
+              "date_modified_date_jerusalem": null,
+              "date_modified_normalization_status": "unknown"
+            }
+          ],
+          "primarySourceUrls": [
+            "https://aiindex.stanford.edu/report/"
+          ],
+          "secondarySourceUrls": [],
+          "knownSyndication": [
+            "לא זוהה קשר סינדיקציה."
+          ]
+        },
+        {
+          "id": "radar-lab-to-world",
+          "section": "על הרדאר",
+          "headline": "פריצות דרך מהמעבדה לעולם",
+          "readingTime": "00:55",
+          "quickRead": "תיק המשך מערכתי, לא אירוע שבועי חדש.",
+          "summary": "המסלול מתוצאה מחקרית או אבטיפוס למוצר ציבורי כולל יותר מהדגמה מוצלחת. הוא עובר דרך אימות, רגולציה, תפעול, אחריות והוכחה שהמערכת אכן עובדת בתנאים רגילים.\n\nתיק המעקב הזה אינו נשען במהדורה זו על מאגר רגולטורי מקושר. לכן הוא אינו קובע שמוצר מסוים קיבל מעמד רגולטורי, ואינו מציג אירוע חדש בחלון הסיקור.\n\nנקודות המעקב הן שיטות שעברו ביקורת עמיתים ושחזור, לצד סטטוס רגולטורי מתועד וראיות לפריסה בפועל.\n\nהפער בין מעבדה לעולם קובע מי נחשף לטכנולוגיה, מי נושא בסיכון, ואילו הבטחות הופכות לאחריות.\n\nעמדת המערכת: לא להחליף ניסוי או דמו בראיה לתועלת ציבורית. דרושות עדויות על בטיחות, שימוש ותנאי פריסה.",
+          "whyItMatters": "הפער בין מעבדה לעולם קובע מי נחשף לטכנולוגיה, מי נושא בסיכון, ואילו הבטחות הופכות לאחריות.",
+          "established": [
+            "תיק המשך מערכתי. אין בו טענה לאירוע חדש בחלון הסיקור או למעמד רגולטורי של מוצר מסוים."
+          ],
+          "sourceSpecificOrDisputedClaims": [
+            "המהדורה אינה כוללת מקור מקושר לתיק זה לאחר שהכתובת הקודמת נמצאה בלתי זמינה."
+          ],
+          "uncertainties": [
+            "החבילה אינה כוללת מדידה שבועית חדשה, הערכת אמון או מקור מקושר לתיק הרקע הזה."
+          ],
+          "editorialAssessment": "לא להחליף ניסוי או דמו בראיה לתועלת ציבורית. דרושות עדויות על בטיחות, שימוש ותנאי פריסה.",
+          "sources": [],
+          "primarySourceUrls": [],
+          "secondarySourceUrls": [],
+          "knownSyndication": []
+        }
+      ]
+    }
+  ],
+  "totalReadingTime": "07:10",
+  "takeaway": "הסיפור של השבוע אינו רק מי השיק כלי חדש, אלא מי קובע את התנאים שבהם AI נכנס למוסדות. הסכם רכש, תקן פרטיות ודוח איומים יכולים לשנות את נקודת המוצא. הם אינם פוטרים את הציבור מלדרוש יישום מדיד, שקיפות וביקורת.",
+  "archive": {
+    "compatible": true,
+    "editionNumber": "001",
+    "preservedEditions": [
+      "002",
+      "003"
+    ],
+    "navigation": "archive-footer-only",
+    "footerLabel": "ארכיון המהדורות",
+    "previousNextControls": false,
+    "swipeNavigation": false,
+    "archiveOnly": true
+  },
+  "researchBundle": {
+    "path": "../research-bundle.json",
+    "sha256": "de0451cdac35ad5c992f347c89dd1d59284fb5c7a7accf09430c04987a02340a",
+    "status": "verified-before-drafting"
+  },
+  "sourceTimestampAddendum": {
+    "path": "edition-001-source-timestamp-addendum.json",
+    "sha256": "d300d15c212fdd472a31cb528209390a01fea3b3997fb6da4a3febda37961b3e",
+    "scope": "Only the FedScoop and American Federation of Teachers source records were updated from this immutable timestamp addendum."
+  }
+}

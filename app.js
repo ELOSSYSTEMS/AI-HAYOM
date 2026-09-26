@@ -44,8 +44,8 @@
     return match ? `${match[3]}.${match[2]}.${match[1]} · ${match[4]}:${match[5]}` : value;
   }
 
-  function sourcePublisher(source) {
-    if (source.displayName || source.name || source.publisher) return source.displayName || source.name || source.publisher;
+  function sourceLabel(source) {
+    if (source.label || source.displayName || source.name || source.publisher) return source.label || source.displayName || source.name || source.publisher;
     try { return new URL(source.url).hostname.replace(/^www\./, ''); } catch { return 'מקור'; }
   }
 
@@ -66,8 +66,8 @@
   }
 
   function renderSource(source, index, story) {
-    const label = hebrewFirst(sourcePublisher(source));
-    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)">${escapeHtml(label)} ↗</a>`;
+    const label = String(sourceLabel(source));
+    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" dir="auto" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)"><bdi dir="auto">${escapeHtml(label)}</bdi></a>`;
     return `<li class="source-item"><span class="source-number">${index + 1}.</span>${link}</li>`;
   }
 

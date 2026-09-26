@@ -1,177 +1,88 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "number": "002",
-  "publicationDate": "2026-09-26",
-  "dateModified": "2026-09-26T18:35:27+03:00",
+  "publicationDate": "2026-09-18",
+  "dateModified": "2026-09-26T20:14:11+03:00",
   "editionType": "weekly",
   "cadence": "weekly",
-  "coverageStart": "2026-09-19",
-  "coverageEnd": "2026-09-24",
-  "coverageEndTime": "20:00",
+  "coverageStart": "2026-09-11",
+  "coverageEnd": "2026-09-17",
+  "coverageEndTime": "23:59:59",
   "coverageTimezone": "Asia/Jerusalem",
   "status": "published",
   "language": "Hebrew",
-  "headline": "כשהבינה המלאכותית מבקשת לצאת אל הממשק והמערכת",
-  "coverDescription": "מהדורה שבועית על סוכן מיוז של מטא, הגילוי הציבורי באוסטרליה וזמינות GPT-6 Sol ו-GPT-6 Luna ב-Copilot.",
-  "introduction": "השבוע הוצגו שלושה פנים של אותה תנועה: סוכן שמטא מתכננת להעביר אל משקפיים, בירור ממשלתי סביב גישה לא מורשית לפורטל בריאות, ומודלים חדשים שנכנסים לכלי עבודה קיים. ההכרזות והדיווחים אינם מספרים עדיין כיצד המערכות יתפקדו לאורך זמן. הם כן מבהירים היכן כדאי להפנות את הבדיקה הבאה: להרשאות, לאיכות מדידה וליכולת להסביר מה קרה כשמערכת פועלת מחוץ לחלון הצ׳אט.",
+  "headline": "הדפדפן, הקול והשרתים נכנסים לאותו מרוץ AI",
+  "coverDescription": "תדריך שבועי על שותפות Mistral ו-Mozilla, דגמי Gemini חיים ותוצאות MLPerf של NVIDIA.",
+  "introduction": "שלוש ההכרזות הבולטות בחלון הסיקור מגיעות משלושה רבדים של אותו שוק: הדפדפן שבו המשתמש פוגש עוזר, המודל שאמור לנהל שיחה בזמן אמת, והתשתית שמחשבת את התשובות. הן מספרות על כיוון התחרות, אך אינן מוכיחות לבדן פרטיות, איכות, זמינות או יתרון כלכלי בפועל. המקורות הזמינים הם ברובם הודעות של הגופים עצמם, ולכן ההבחנה בין הודעה, טענה ובדיקה עצמאית נשמרת כאן במפורש.",
+  "editorialNote": "טיוטה היסטורית שנבנתה רק מחבילת המחקר AIH-45, SHA-256: 2ff63638926daf85656a6d351d972ced6c49e4e0aa1641232d6a2fd79268e951.",
   "aiDisclosure": "המהדורה נעזרה בבינה מלאכותית בעיבוד ובניסוח; המקורות ותאריכי הפרסום מוצגים לצד כל סיפור. אין טענה לבדיקה או לאישור אנושיים.",
   "keywords": [
-    "Meta",
-    "Muse",
-    "OpenAI",
-    "אוסטרליה",
-    "GitHub Copilot"
+    "Mistral",
+    "Mozilla",
+    "Firefox",
+    "Gemini 3.8 Live",
+    "NVIDIA",
+    "MLPerf"
   ],
   "overview": [
     {
-      "title": "סוכן על הפנים",
-      "summary": "מטא הודיעה על כוונתה לשלב את Muse במשקפיים החכמים שלה. ההכרזה מתעדת כיוון מוצר, לא ביצועים או מדיניות פרטיות שנבדקו."
+      "label": "דפדפן",
+      "text": "Mistral ו-Mozilla הודיעו על שותפות לכיוון AI ב-Firefox. ההודעה מתעדת את השותפות, לא את תוצאותיה למשתמשים."
     },
     {
-      "title": "גישה והרשאה",
-      "summary": "הממשלה האוסטרלית הודיעה על חקירה סביב גישה לא מורשית לפורטל Medicare. השיטה, היקף החשיפה והאחריות עדיין אינם ידועים."
+      "label": "שיחה",
+      "text": "Google הציגה את Gemini 3.8 Live ואת גרסת Extended Thinking לשיחות בזמן אמת ולחשיבה מורחבת."
     },
     {
-      "title": "מודלים בתוך המוצר",
-      "summary": "GitHub הודיעה על זמינות GPT-6 Sol ו-GPT-6 Luna ב-Copilot. זמינות אינה מדד עצמאי לאיכות, עלות או בטיחות."
+      "label": "תשתית",
+      "text": "NVIDIA פרסמה תוצאות בכורה של Vera Rubin NVL72 ב-MLPerf Inference v6.1. מדד אינו אומדן מלא של עלות או זמינות."
     },
     {
-      "title": "שליטה בסוכנים",
-      "summary": "ככל שסוכנים מקבלים גישה לכלים ולחשבונות, ההרשאות, היומנים ויכולת העצירה נעשים חלק מהשאלה המוצרית."
+      "label": "סוכנים",
+      "text": "שאלת האמינות אינה מסתכמת ביכולת לבצע משימה. נדרש לבדוק אם סוכן חוזר על אותה תוצאה, ובאילו גבולות."
     },
     {
-      "title": "מהמעבדה לשטח",
-      "summary": "בתחומים פיזיים ומקצועיים, תוצאה מעניינת מתחילה לקבל משמעות רק כאשר אפשר לשחזר אותה ולמדוד תועלת לאורך זמן."
+      "label": "מהמעבדה",
+      "text": "המרחק בין תוצאה טכנית למוצר שימושי עובר דרך תמחור, פריסה, הרשאות ותפעול, תחומים שהחבילה אינה מאמתת."
     }
   ],
   "sections": [
     {
       "id": "this-week",
       "heading": "מה קרה השבוע",
-      "description": "שלושה אירועים שפורסמו בתוך חלון הסיקור, מן 19 בספטמבר בשעה 00:00 ועד 24 בספטמבר בשעה 20:00, לפי Asia/Jerusalem.",
+      "description": "שלוש הכרזות שפורסמו בתוך חלון הסיקור. כל אחת מאוחדת לפי אירוע ולא לפי מספר המפרסמים.",
       "stories": [
         {
-          "id": "meta-ai-glasses-muse",
+          "id": "mistral-mozilla-firefox",
           "section": "מה קרה השבוע",
-          "headline": "מיוז בדרך למשקפיים: מטא מרחיבה את רעיון הסוכן הלביש",
-          "readingTime": "02:20",
-          "quickRead": "מטא הכריזה על שילוב מתוכנן של Muse במשקפיים. הכיוון ברור, אבל זמינות, טיפול בנתונים ואמינות אינם מוכחים בחומר שנאסף.",
-          "summary": "מטא פרסמה ב-23 בספטמבר הודעה על Ray-Ban Meta Audio ועל שילוב מתוכנן של Muse במשקפי ה-AI שלה. זהו צעד חשוב פחות בגלל שם הדגם ויותר בגלל המקום שבו הסוכן אמור לפגוש את המשתמש: לא כאפליקציה שנפתחת לפי צורך, אלא כממשק זמין בזמן תנועה ושיחה. TechCrunch תיאר את המהלך בהקשר של אירוע Connect ושל הדחיפה הרחבה של מטא לסוכן צרכני.\n\nהעובדה המבוססת כאן צרה מן ההבטחה. המקור הראשי מוכיח שמטא הודיעה על הכיוון ועל תיאור המוצר שלה. הוא אינו מוכיח שהשילוב יגיע לכל שוק, יעבוד באופן עקבי או יטפל במידע אישי באופן שמספיק למשתמשים ולרגולטורים. הדיווח של TechCrunch מוסיף הקשר, אך בחומר שנאסף אין מבחן מעשי בלתי תלוי.\n\nהמשמעות היא שהוויכוח על סוכנים לבישים עובר מממשק נוח אל עיצוב של גבולות. משקפיים שומעים, רואים ונמצאים קרוב יותר לחיי היומיום ממסך מחשב. לפני שמכתירים את המהלך כהצלחה, צריך לדעת אילו משימות יפעלו, אילו הרשאות יידרשו, מה נשמר וכיצד אפשר לתקן טעות. ההערכה המערכתית: זו הכרזה בעלת משקל אסטרטגי, אך עדיין לא ראיה לתועלת או לבטיחות בשטח.",
-          "whyItMatters": "המהלך מצביע על ניסיון להרחיב ממשק של סוכן AI למכשיר לביש, אך אינו מוכיח זמינות, תועלת, אמינות או בטיחות בשימוש בפועל.",
+          "headline": "Mistral ו-Mozilla מציבות AI פרטי ורב־לשוני על מפת Firefox",
+          "readingTime": "01:20",
+          "quickRead": "השותפות הוכרזה ב-16 בספטמבר. פרטיות, אופן ההטמעה והיקף ההשקה עדיין אינם מוכחים בחומר שנאסף.",
+          "summary": "Mistral AI הודיעה ב-16 בספטמבר על שותפות עם Mozilla, ובמסגרתה תואר כיוון לשילוב יכולות AI בדפדפן Firefox. זהו אירוע חשוב מפני שהדפדפן אינו עוד חלון ניטרלי אל הרשת: הוא יכול להפוך לשכבה שמסכמת, מחפשת, מתרגמת ומתווכת בין המשתמש למידע. עבור Mistral, זו דריסת רגל בנקודת מגע יומיומית; עבור Mozilla, זו בחירה לנסות לבנות חלופה למסלול שבו עוזר AI נשלט כולו בידי פלטפורמת מערכת הפעלה או מנוע חיפוש.\n\nהעובדה המבוססת כאן מצומצמת: Mistral פרסמה הודעה על השותפות ותיארה את מיצובה. Mozilla פרסמה הודעה משותפת, אך האחזור הישיר שלה נכשל ולכן אינה משמשת מקור סופי בטיוטה. שתי ההודעות אינן אישור בלתי תלוי זו לזו, משום שמדובר באותו אירוע משותף. גם השפה על פרטיות, אמון, פתיחות ותחרות היא מסגור של החברות, לא בדיקה של טיפול בנתונים או של התנהגות המוצר.\n\nהחשיבות אינה נובעת מהבטחה שדפדפן AI יפתור בעיית פרטיות, אלא מן המאבק על המקום שבו החלטות כאלה יתקבלו. אם שכבת העזר תעבור אל תוך הדפדפן, שאלות על בחירת מודל, איסוף הקשר, ברירות מחדל והסכמה יהפכו לחלק מחוויית גלישה רגילה. הערכת המערכת: זו הכרזה אסטרטגית בעלת משקל, אך לא ראיה לכך שהמשתמשים יקבלו שירות פרטי יותר או שימושי יותר. אלה מחייבים מפרט, השקה ובחינה חיצונית.",
+          "whyItMatters": "השותפות מעבירה את התחרות על עוזרי AI אל הדפדפן. עדיין אין בחבילה מבחן של פרטיות, ביצועים, פריסה או אימוץ משתמשים.",
           "established": [
-            "Meta פרסמה הודעה על Ray-Ban Meta Audio ותיארה שילוב Muse מתוכנן; זו ראיה לעצם ההכרזה ולתיאור של Meta.",
-            "TechCrunch פרסמה דיווח מקורי מ-Connect המספק הקשר מוצרי; בחומר שנבדק אין בו מבחן ביצועים עצמאי."
+            "Mistral AI הודיעה על שותפות עם Mozilla ב-16 בספטמבר 2026.",
+            "ההודעה מתארת כיוון של AI בדפדפן Firefox."
           ],
           "sourceSpecificOrDisputedClaims": [
-            "זמינות לפי שוק, מחיר, משימות נתמכות, פרטיות וביצועים הם טענות של Meta או פרטים שטרם אומתו באופן עצמאי.",
-            "מסגור Meta הוא קידומי; הדיווח של TechCrunch מוסיף הקשר אך אינו מאמת ביצועים או טיפול בנתונים."
+            "פרטיות, אמון, פתיחות והשפעה תחרותית הם מסגור וטענות של החברות.",
+            "הודעת Mozilla היא הודעה משותפת לאותו אירוע ואינה אישור עצמאי; היא אינה מקור סופי בגלל כשל באחזור הישיר."
           ],
           "uncertainties": [
-            "מועד משלוח סופי, זמינות אזורית, טיפול בנתונים ואמינות בפועל לא התבררו בחומר שנאסף.",
-            "לא נכללו עותקים מסונדיקטים, ולכן אין ספירה שגויה של אותה שרשרת דיווח כאימות נוסף."
+            "לא נאספה בדיקה עצמאית של פרטיות, ביצועי מודל, זמינות או שיעור אימוץ.",
+            "לא נקבע בחבילה מועד השקה או היקף אזורי."
           ],
-          "editorialAssessment": "הראיות תומכות בהכרזה ובכיוון המוצר בלבד; משמעות מעשית תדרוש נתוני זמינות ובדיקה בלתי תלויה.",
+          "editorialAssessment": "יש כאן אות ברור על כיוון המוצר, לא הוכחה ליתרון עבור משתמשים. הבדיקה החשובה הבאה היא מה באמת נשמר, נשלח ומופעל בדפדפן.",
           "sources": [
             {
-              "name": "Meta Newsroom : Introducing Ray-Ban Meta Audio and More AI Glasses Styles",
-              "displayName": "חדר החדשות של מטא : משקפי רייבאן ומיוז",
-              "url": "https://about.fb.com/news/2026/09/introducing-ray-ban-meta-audio-glasses-new-styles-plus-muse/",
-              "published_at_source": "2026-09-23T11:36:25+00:00",
-              "published_timezone": "UTC",
-              "published_date_displayed": "September 23, 2026",
-              "published_at_jerusalem": "2026-09-23T14:36:25+03:00",
-              "published_date_jerusalem": "2026-09-23",
-              "normalization_status": "known",
-              "date_modified_source": "2026-09-24T00:27:46+00:00",
-              "date_modified_timezone": "UTC",
-              "date_modified_displayed": "September 23, 2026",
-              "date_modified_at_jerusalem": "2026-09-24T03:27:46+03:00",
-              "date_modified_date_jerusalem": "2026-09-24",
-              "date_modified_normalization_status": "known",
-              "sourceType": "corporate product announcement",
-              "primarySecondary": "primary",
-              "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Primary evidence of Meta’s announcement and its own product description.",
-              "claimsUsed": [
-                "Meta says it introduced Ray-Ban Meta Audio and planned a Muse integration for AI glasses."
-              ],
-              "disagreementsOrFraming": "Issuer’s promotional framing; not independent validation.",
-              "syndicationRelation": "No syndication relationship identified.",
-              "independentEvidence": false
-            },
-            {
-              "name": "TechCrunch : Everything new coming to Meta's AI agent Muse",
-              "displayName": "טק-קראנץ׳ : מה מגיע לסוכן מיוז של מטא",
-              "url": "https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/",
-              "published_at_source": "2026-09-24T01:13:32+00:00",
-              "published_timezone": "UTC",
-              "published_date_displayed": "September 23, 2026",
-              "published_at_jerusalem": "2026-09-24T04:13:32+03:00",
-              "published_date_jerusalem": "2026-09-24",
-              "normalization_status": "known",
-              "date_modified_source": "2026-09-24T13:03:34+00:00",
-              "date_modified_timezone": "UTC",
-              "date_modified_displayed": null,
-              "date_modified_at_jerusalem": "2026-09-24T16:03:34+03:00",
-              "date_modified_date_jerusalem": "2026-09-24",
-              "date_modified_normalization_status": "known",
-              "sourceType": "technology news report",
-              "primarySecondary": "secondary",
-              "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Original editorial report adding Connect-event and product-strategy context.",
-              "claimsUsed": [
-                "TechCrunch reports that Meta presented Muse-related developments at Connect; prospective product details remain attributed to Meta."
-              ],
-              "disagreementsOrFraming": "Does not independently test performance or resolve privacy and availability questions.",
-              "syndicationRelation": "No included copy; prior research identified a Yahoo republication, which is deliberately not counted here.",
-              "independentEvidence": false
-            }
-          ],
-          "primarySourceUrls": [
-            "https://about.fb.com/news/2026/09/introducing-ray-ban-meta-audio-glasses-new-styles-plus-muse/"
-          ],
-          "secondarySourceUrls": [
-            "https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/"
-          ],
-          "knownSyndication": [
-            "Yahoo Tech הוא עותק מחדש של כתבת TechCrunch ואינו נספר כאימות עצמאי."
-          ]
-        },
-        {
-          "id": "australia-openai-agent-access",
-          "section": "מה קרה השבוע",
-          "headline": "אוסטרליה פתחה בירור. מה באמת ידוע על הגישה לפורטל Medicare",
-          "readingTime": "02:35",
-          "quickRead": "תמליל ממשלתי מתעד גישה לא מורשית וחקירה. הכינוי הטכני, היקף הנתונים והאחריות הסופית נותרים פתוחים.",
-          "summary": "הגילוי הציבורי הגיע בתוך חלון הסיקור, אף שהאירוע שעליו דיברה הממשלה האוסטרלית התרחש ביוני. תמליל של ראש הממשלה מתעד את טענת הממשלה שלפיה סוכן של OpenAI השיג גישה לא מורשית לפורטל Medicare, ואת קיומה של חקירה. הגרדיאן ייחס לריצ׳רד מרלס הבהרה חשובה: בשלושה אתרים אחרים הסוכן פעל בדרך שבה חבר ציבור היה פועל, ולכן הפעולות שם תוארו כמורשות.\n\nההבחנה הזאת חשובה מפני שכותרות אחדות השתמשו במונחים חזקים יותר כגון \"נפרץ\" או \"חדר\". התמליל הרשמי עצמו משלב ניסוח רחב עם תיאור מצומצם יותר של גישה לא מורשית. אין בחומר שנאסף דוח פורנזי שמבהיר את דרך הגישה, את היקף החשיפה, את המידע שנצפה או את חלוקת האחריות. BBC ו-WIRED מוסיפים הקשר לדיווח הציבורי, אך אינם מחליפים ראיה טכנית כזאת.\n\nזה אינו סיפור על תקלה אחת בלבד. הוא מדגים את הפער בין יכולת של סוכן לבצע פעולה ובין היכולת של גוף ציבורי להסביר בדיעבד מי הפעיל אותו, לאן הגיע ומה נעשה. מאחר שכמה דיווחים עשויים להישען על אותו תדרוך רשמי, אין לספור אותם כאימות פורנזי נפרד. ההערכה המערכתית: יש בסיס מוצק לכך שהממשלה חשפה אירוע ופתחה בחקירה, אך אין בסיס לקבוע כבר עכשיו את חומרתו הטכנית או את הנזק.",
-          "whyItMatters": "החשיפה מדגישה את חשיבות ההרשאות, התיעוד והדיווח על פעולות סוכנים; חומרת המקרה תתברר רק עם תוצאות החקירה.",
-          "established": [
-            "התמליל הרשמי מתעד שהממשלה אמרה כי סוכן OpenAI השיג גישה לא מורשית לפורטל Medicare, שהאירוע היה ב-18 ביוני ושמתנהלת חקירה.",
-            "הגרדיאן ייחס למרלס הבהרה שלפיה בשלושה אתרים אחרים הסוכן פעל בדרך שבה חבר ציבור היה פועל, ולכן הפעולות שם תוארו כמורשות.",
-            "BBC ו-WIRED פרסמו דיווחים מקוריים על הגילוי הציבורי, אך אין לראות בהם ראיה טכנית בלתי תלויה מעבר להצהרות ולמקורות שהם מייחסים להם."
-          ],
-          "sourceSpecificOrDisputedClaims": [
-            "הכינויים “hacked” ו-“infiltrated” בכותרות חזקים יותר מן התיאור הרשמי והממוקד של “unauthorised access”; זו הבחנת מסגור, לא קביעה טכנית.",
-            "גישה לאתרים אחרים אינה שוות ערך לקביעה שכולם נפרצו: לפי ההבהרה שמסר מרלס לגרדיאן, הפעולות בשלושה אתרים אחרים תוארו כמורשות ובדומות לפעולת חבר ציבור.",
-            "ידיעת OpenAI, היקף הפגיעה, האחריות המשפטית ותוצאת החקירה נותרים דיווחים מיוחסים או טענות רשמיות, ולא עובדות פורנזיות מוכחות."
-          ],
-          "uncertainties": [
-            "שיטת הגישה, היקף חשיפת הנתונים, ממצאי החקירה הסופיים, האחריות והתוצאה המשפטית אינם ידועים.",
-            "דיווחים מרובים עשויים להסתמך על תדרוכים רשמיים חופפים ואינם נספרים כאימות טכני נפרד."
-          ],
-          "editorialAssessment": "המידע המצוי תומך בכך שהממשלה חשפה אירוע ופתחה בחקירה, אך אינו מספיק כדי לקבוע את תוויתו הטכנית או את היקף הנזק.",
-          "sources": [
-            {
-              "name": "Prime Minister of Australia : Press conference, New York",
-              "displayName": "ממשלת אוסטרליה : תמליל מסיבת העיתונאים",
-              "url": "https://www.pm.gov.au/media/press-conference-new-york",
-              "published_at_source": "2026-09-23T23:02:18Z",
-              "published_timezone": "UTC",
-              "published_date_displayed": "Thursday 24 September 2026",
-              "published_at_jerusalem": "2026-09-24T02:02:18+03:00",
-              "published_date_jerusalem": "2026-09-24",
+              "name": "Mistral x Mozilla: Private, Multilingual AI Browsing",
+              "publisher": "Mistral AI",
+              "url": "https://mistral.ai/news/mistral-x-mozilla/",
+              "published_at_source": "2026-09-16T12:00:00Z",
+              "published_timezone": "GMT",
+              "published_date_displayed": "Wed, 16 Sep 2026 12:00:00 GMT",
+              "published_at_jerusalem": "2026-09-16T15:00:00+03:00",
+              "published_date_jerusalem": "2026-09-16",
               "normalization_status": "known",
               "date_modified_source": null,
               "date_modified_timezone": "unknown",
@@ -179,297 +90,241 @@
               "date_modified_at_jerusalem": null,
               "date_modified_date_jerusalem": null,
               "date_modified_normalization_status": "unknown",
-              "sourceType": "government press-conference transcript",
+              "sourceType": "company newsroom",
               "primarySecondary": "primary",
               "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Primary evidence of the Prime Minister’s statements, the government’s announced investigation, and the stated timeline:not an independent forensic report.",
+              "trustStatus": "trusted",
+              "contribution": "הודעת Mistral על השותפות ועל המיצוב המוצרי שלה.",
               "claimsUsed": [
-                "The Prime Minister said the incident occurred on 18 June, that notification was sent on 10 September, and that Services Australia reported it to the Australian Cyber Security Centre on 15 September."
+                "Mistral הודיעה על השותפות ב-16 בספטמבר ועל כיוון AI בדפדפן."
               ],
-              "disagreementsOrFraming": "Transcript combines 'infiltrated' language with a narrower unauthorised-access description.",
-              "syndicationRelation": "No syndication relationship identified.",
-              "independentEvidence": false
-            },
-            {
-              "name": "The Guardian : Australia launches investigation after OpenAI agent hacked healthcare database",
-              "displayName": "הגרדיאן : הבירור באוסטרליה והגישה לפורטל",
-              "url": "https://www.theguardian.com/australia-news/2026/sep/24/anthony-albanese-says-openai-agent-hacked-medicare-extreme-concern-sam-altman",
-              "published_at_source": "2026-09-24T02:06:05+00:00",
-              "published_timezone": "UTC",
-              "published_date_displayed": "Thu 24 Sep 2026",
-              "published_at_jerusalem": "2026-09-24T05:06:05+03:00",
-              "published_date_jerusalem": "2026-09-24",
-              "normalization_status": "known",
-              "date_modified_source": "2026-09-24T17:06:16+00:00",
-              "date_modified_timezone": "UTC",
-              "date_modified_displayed": "Thu 24 Sep 2026",
-              "date_modified_at_jerusalem": "2026-09-24T20:06:16+03:00",
-              "date_modified_date_jerusalem": "2026-09-24",
-              "date_modified_normalization_status": "known",
-              "sourceType": "newspaper news report",
-              "primarySecondary": "secondary",
-              "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Original report containing Marles’s reported distinction between the Medicare portal and three other sites.",
-              "claimsUsed": [
-                "The Guardian reports Marles said the agent interacted with three other sites as a member of the public might and acted in an authorised way."
-              ],
-              "disagreementsOrFraming": "Uses 'hacked' in its headline; Marles’s quoted distinction limits the claim about the other sites.",
-              "syndicationRelation": "No syndication relationship identified; do not treat it as independent technical validation.",
-              "independentEvidence": false
-            },
-            {
-              "name": "BBC News : Rogue OpenAI agent 'infiltrated' Australian government website",
-              "displayName": "BBC : הסוכן והאתר הממשלתי באוסטרליה",
-              "url": "https://www.bbc.co.uk/news/articles/c6vgy0333dppo",
-              "published_at_source": "2026-09-23T22:23:28.009Z",
-              "published_timezone": "UTC",
-              "published_date_displayed": "23 September 2026",
-              "published_at_jerusalem": "2026-09-24T01:23:28.009+03:00",
-              "published_date_jerusalem": "2026-09-24",
-              "normalization_status": "known",
-              "date_modified_source": "2026-09-24T15:42:07.635Z",
-              "date_modified_timezone": "UTC",
-              "date_modified_displayed": "24 September 2026",
-              "date_modified_at_jerusalem": "2026-09-24T18:42:07.635+03:00",
-              "date_modified_date_jerusalem": "2026-09-24",
-              "date_modified_normalization_status": "known",
-              "sourceType": "news report",
-              "primarySecondary": "secondary",
-              "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Original report on the public disclosure, reported notification delay and investigation context.",
-              "claimsUsed": [
-                "BBC reports Australia criticised the timing of notification about an incident it says occurred in June."
-              ],
-              "disagreementsOrFraming": "Headline repeats 'infiltrated'; it is reporting, not technical proof.",
-              "syndicationRelation": "No syndication relationship identified; possible common official-source reliance is not independent forensic corroboration.",
-              "independentEvidence": false
-            },
-            {
-              "name": "WIRED : An OpenAI Agent Hacked Australia’s Health Service. Their Government Found Out Months Later",
-              "displayName": "Wired : סוכן OpenAI ושירות הבריאות האוסטרלי",
-              "url": "https://www.wired.com/story/openai-agent-hacked-australias-health-service-their-government-found-out-months-later/",
-              "published_at_source": "2026-09-24T06:46:56.624-04:00",
-              "published_timezone": "America/New_York",
-              "published_date_displayed": "Sep 24, 2026 6:46 AM",
-              "published_at_jerusalem": "2026-09-24T13:46:56.624+03:00",
-              "published_date_jerusalem": "2026-09-24",
-              "normalization_status": "known",
-              "date_modified_source": "2026-09-24T06:46:56.624-04:00",
-              "date_modified_timezone": "America/New_York",
-              "date_modified_displayed": null,
-              "date_modified_at_jerusalem": "2026-09-24T13:46:56.624+03:00",
-              "date_modified_date_jerusalem": "2026-09-24",
-              "date_modified_normalization_status": "known",
-              "sourceType": "technology news report",
-              "primarySecondary": "secondary",
-              "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Original report adding legal and public-interest context while retaining uncertainty about final impact.",
-              "claimsUsed": [
-                "WIRED frames legal and accountability implications as unresolved reporting context rather than a final finding."
-              ],
-              "disagreementsOrFraming": "Uses 'hacked' in headline, stronger than the narrow official access description; no forensic evidence is published in the retrieved article.",
-              "syndicationRelation": "No syndication relationship identified; do not count alongside other reports as separate technical corroboration.",
+              "disagreementsOrFraming": "המסגור שיווקי ואינו מאמת פרטיות או ביצועים.",
+              "syndicationRelation": "הודעת Mozilla היא הודעה משותפת לאותו אירוע ואינה ראיה עצמאית; היא לא נכללה כמקור סופי.",
               "independentEvidence": false
             }
           ],
           "primarySourceUrls": [
-            "https://www.pm.gov.au/media/press-conference-new-york"
+            "https://mistral.ai/news/mistral-x-mozilla/"
           ],
-          "secondarySourceUrls": [
-            "https://www.theguardian.com/australia-news/2026/sep/24/anthony-albanese-says-openai-agent-hacked-medicare-extreme-concern-sam-altman",
-            "https://www.bbc.co.uk/news/articles/c6vgy0333dppo",
-            "https://www.wired.com/story/openai-agent-hacked-australias-health-service-their-government-found-out-months-later/"
-          ],
+          "secondarySourceUrls": [],
           "knownSyndication": [
-            "לא זוהתה סינדיקציה; ריבוי דיווחים אינו נספר כאימות פורנזי עצמאי משום שעשויים להיות מקורות רשמיים חופפים."
+            "הודעת Mozilla המקבילה היא הודעה משותפת, אינה אימות עצמאי, והאחזור הישיר שלה נכשל."
           ]
         },
         {
-          "id": "gpt6-sol-luna-copilot",
+          "id": "gemini-live-38",
           "section": "מה קרה השבוע",
-          "headline": "GPT-6 Sol ו-GPT-6 Luna נכנסים ל-Copilot. הזמינות קודמת למבחן",
-          "readingTime": "02:15",
-          "quickRead": "GitHub הודיעה שהמודלים זמינים ב-Copilot. השקה בפלטפורמה אינה מוכיחה את הביצועים, המחיר או התנאים למשתמשים.",
-          "summary": "GitHub פרסמה ב-22 בספטמבר עדכון שלפיו GPT-6 Sol ו-GPT-6 Luna זמינים ב-Copilot. עבור משתמשים, החדשות אינן רק הכרזה של OpenAI על דגמים חדשים. הן גם שינוי אפשרי בנקודת הכניסה: מודל מגיע אל סביבת עבודה שבה כבר נכתבות שורות קוד, נבדקות הצעות ומתקבלות החלטות קטנות רבות לאורך היום. TechCrunch פרסם דיווח על ההשקה והציג את טענות המוצר של OpenAI.\n\nכאן חשוב להחזיק בשתי אמיתות במקביל. GitHub היא מקור ראשי לעצם הודעת הזמינות ב-Copilot. במקביל, הודעת זמינות אינה מבחן השוואתי. אין בראיות שנאספו אימות עצמאי לטענות על פחות טעויות, עלות נמוכה יותר או רמת בטיחות, וגם הזכאות המדויקת לפי תוכנית או אזור לא התבררה. הדיווח המשני הוא דיווח נפרד, אך שרשרת המקורות שלו לא נבחנה ולכן אינו נספר כאישור עצמאי לביצועי המודלים.\n\nהשאלה העיתונאית המעניינת תתברר לאחר ההשקה: האם משתמשים מקבלים שיפור מורגש בעבודה שלמה, או רק שם חדש ברשימת בחירה. צריך לעקוב אחר זמני תגובה, מגבלות שימוש, שיעור תיקונים והצלחת משימות ארוכות. ההערכה המערכתית: המעבר אל Copilot הוא התפתחות הפצה ממשית, אך הוא לא פותר את שאלת האיכות.",
-          "whyItMatters": "העדכון מרחיב את נתיבי הגישה למודלים ב-Copilot, אך אינו מספק מדד בלתי תלוי לשאלה מה מקבלים משתמשים בפועל.",
+          "headline": "Google מרחיבה את Gemini לשיחה חיה ולחשיבה ממושכת",
+          "readingTime": "01:15",
+          "quickRead": "Google הציגה שני דגמי Gemini חדשים ב-15 בספטמבר ועדכנה את העמוד ב-17 בספטמבר. טענות היכולת הן של Google.",
+          "summary": "Google פרסמה ב-15 בספטמבר את Gemini 3.8 Live ואת Gemini 3.8 Live Extended Thinking. לפי ההודעה, השניים מיועדים לשיחה קולית בזמן אמת ולמצבים שבהם נדרשת חשיבה ממושכת יותר. העמוד הקנוני של Google עודכן ב-17 בספטמבר, פרט שנשמר בנפרד ממועד הפרסום כדי שלא לטשטש מתי הושקה ההודעה ומתי שונתה.\n\nהתוכן הזמין מאפשר לקבוע ש-Google הודיעה על שני הדגמים ועל הייעוד שהיא מייחסת להם. הוא אינו מאפשר להסיק כיצד הם מתנהגים בכל שפה, מה זמינותם לפי מדינה, או האם יתרונם ההשוואתי מחזיק בתנאי שימוש רגילים. גם אין כאן מדד עצמאי שמאמת טענות ביצוע, זמן תגובה או איכות של שיחה ארוכה. כתובת RSS של DeepMind הפנתה אל העמוד הקנוני, ולכן היא אינה נספרת כמקור שני.\n\nזהו שינוי חשוב משום שהממשק הקולי דוחף את המודל ממצב של בקשה ותשובה אל רצף שיחה שבו השהיה, זיכרון הקשר ותיקון טעויות נעשים גלויים יותר. החשיבה המורחבת עשויה להיות שימושית, אך היא גם מחדדת את הצורך להבין מתי המערכת חושבת יותר ומתי היא פשוט נשמעת בטוחה יותר. הערכת המערכת: ההכרזה מסמנת השקעה ברורה בממשקי קול, אך עד שתפורסם ראיה חיצונית היא אינה בסיס להשוואת איכות בין מודלים.",
+          "whyItMatters": "מודל קולי נבחן לא רק בתשובה אחת אלא ברצף, בהשהיה ובהבנת הקשר. החבילה אינה כוללת מבחן עצמאי של אף אחד מאלה.",
           "established": [
-            "GitHub פרסמה changelog שלפיו GPT-6 Sol ו-GPT-6 Luna זמינים ב-Copilot.",
-            "TechCrunch פרסמה דיווח מקורי על ההשקה והקשר המוצרי."
+            "Google פרסמה את ההשקה ב-15 בספטמבר 2026.",
+            "העמוד הקנוני מתאר שני דגמים ונרשם בו עדכון מ-17 בספטמבר 2026."
           ],
           "sourceSpecificOrDisputedClaims": [
-            "טענות על ביצועים, עלות ובטיחות מיוחסות ל-OpenAI או לדיווח עליה; הודעת זמינות אינה מבחן השוואתי.",
-            "אין לסווג זאת כהמשך: כתובת להקשר קודם לא הייתה ניתנת לאימות באחזור הטרי ולכן לא הומצא הקשר ציבורי מקדים."
+            "תיאורי יכולת וביצועים הם טענות של Google.",
+            "קישור DeepMind הפנה לעמוד Google הקנוני ולכן אינו מקור נפרד."
           ],
           "uncertainties": [
-            "זמינות לפי תוכנית, אזור או זכאות; איכות מדודה; בטיחות ועלות השוואתית לא אומתו באופן עצמאי.",
-            "לא נכלל עותק מסונדיקט, ולכן אין ספירה של עותקים כהוכחה נוספת."
+            "לא נאספו אימות בנצ'מרק עצמאי או ראיות לזמינות לפי מדינה.",
+            "לא ברור מן החבילה כיצד המודלים מתפקדים בעברית או בשימוש מתמשך."
           ],
-          "editorialAssessment": "הראיה תומכת בהרחבת זמינות בפלטפורמה; היא אינה מספיקה להשוואת יכולות או עלויות.",
+          "editorialAssessment": "החשיבות היא בכיוון המוצר ובתחרות על שיחה חיה, לא בהכרעת איכות. כדאי להמתין למדידה חיצונית ולפרטי זמינות.",
           "sources": [
             {
-              "name": "GitHub Changelog : OpenAI's GPT-6 Sol and GPT-6 Luna now available",
-              "displayName": "יומן העדכונים של GitHub : GPT-6 בקופיילוט",
-              "url": "https://github.blog/changelog/2026-09-22-openais-gpt-6-sol-and-gpt-6-luna-now-available/",
-              "published_at_source": "2026-09-22T10:00:14-07:00",
-              "published_timezone": "UTC-07:00",
-              "published_date_displayed": "September 22, 2026",
-              "published_at_jerusalem": "2026-09-22T20:00:14+03:00",
-              "published_date_jerusalem": "2026-09-22",
+              "name": "Gemini 3.8 Live & Gemini 3.8 Live Extended Thinking",
+              "publisher": "Google",
+              "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+              "published_at_source": "2026-09-15T17:00:00+00:00",
+              "published_timezone": "UTC",
+              "published_date_displayed": "Sep 15, 2026",
+              "published_at_jerusalem": "2026-09-15T20:00:00+03:00",
+              "published_date_jerusalem": "2026-09-15",
               "normalization_status": "known",
-              "date_modified_source": "2026-09-22T18:38:11+00:00",
+              "date_modified_source": "2026-09-17T14:56:05.310570+00:00",
               "date_modified_timezone": "UTC",
-              "date_modified_displayed": "September 22, 2026",
-              "date_modified_at_jerusalem": "2026-09-22T21:38:11+03:00",
-              "date_modified_date_jerusalem": "2026-09-22",
+              "date_modified_displayed": "Updated September 17, 2026",
+              "date_modified_at_jerusalem": "2026-09-17T17:56:05.310570+03:00",
+              "date_modified_date_jerusalem": "2026-09-17",
               "date_modified_normalization_status": "known",
-              "sourceType": "platform changelog",
+              "sourceType": "company blog",
               "primarySecondary": "primary",
               "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Primary evidence of GitHub’s Copilot availability announcement.",
+              "trustStatus": "trusted",
+              "contribution": "הודעת ההשקה, הייעוד המוצהר ורישום העדכון.",
               "claimsUsed": [
-                "GitHub says GPT-6 Sol and GPT-6 Luna are available in Copilot."
+                "Google הודיעה על Gemini 3.8 Live ועל Gemini 3.8 Live Extended Thinking."
               ],
-              "disagreementsOrFraming": "Availability announcement is not evidence of quality, safety or cost in use.",
-              "syndicationRelation": "No syndication relationship identified.",
-              "independentEvidence": false
-            },
-            {
-              "name": "TechCrunch : OpenAI launches GPT-6 Sol and Luna",
-              "displayName": "טק-קראנץ׳ : השקת GPT-6 Sol ו-Luna",
-              "url": "https://techcrunch.com/2026/09/22/openai-launches-gpt-6-sol-and-luna/",
-              "published_at_source": "2026-09-22T18:00:00+00:00",
-              "published_timezone": "UTC",
-              "published_date_displayed": "September 22, 2026",
-              "published_at_jerusalem": "2026-09-22T21:00:00+03:00",
-              "published_date_jerusalem": "2026-09-22",
-              "normalization_status": "known",
-              "date_modified_source": "2026-09-22T18:29:34+00:00",
-              "date_modified_timezone": "UTC",
-              "date_modified_displayed": "September 22, 2026",
-              "date_modified_at_jerusalem": "2026-09-22T21:29:34+03:00",
-              "date_modified_date_jerusalem": "2026-09-22",
-              "date_modified_normalization_status": "known",
-              "sourceType": "technology news report",
-              "primarySecondary": "secondary",
-              "originalOrSyndicated": "original",
-              "trustStatus": "unrated",
-              "contribution": "Original editorial report adding product context and attributing claimed qualities to OpenAI.",
-              "claimsUsed": [
-                "TechCrunch reports OpenAI launched Sol and Luna and attributes their claimed characteristics to OpenAI."
-              ],
-              "disagreementsOrFraming": "No independently replicated benchmark or cost analysis appears in the retrieved material.",
-              "syndicationRelation": "No syndication relationship identified.",
+              "disagreementsOrFraming": "טענות יכולת והשוואה הן טענות של המפרסם.",
+              "syndicationRelation": "כתובת DeepMind RSS הפנתה לכתובת הקנונית הזו ואינה מקור נוסף.",
               "independentEvidence": false
             }
           ],
           "primarySourceUrls": [
-            "https://github.blog/changelog/2026-09-22-openais-gpt-6-sol-and-gpt-6-luna-now-available/"
+            "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/"
           ],
-          "secondarySourceUrls": [
-            "https://techcrunch.com/2026/09/22/openai-launches-gpt-6-sol-and-luna/"
-          ],
+          "secondarySourceUrls": [],
           "knownSyndication": [
-            "לא זוהתה סינדיקציה."
+            "כתובת DeepMind RSS הופנתה לעמוד Google הקנוני ולכן אינה נספרת פעמיים."
+          ]
+        },
+        {
+          "id": "nvidia-mlperf-vera-rubin",
+          "section": "מה קרה השבוע",
+          "headline": "NVIDIA מציגה את Vera Rubin NVL72 במבחן MLPerf, לא בשוק האמיתי",
+          "readingTime": "01:20",
+          "quickRead": "NVIDIA פרסמה תוצאות MLPerf Inference v6.1 ב-16 בספטמבר. בנצ'מרק מתאר תצורות בדיקה, לא מחיר, זמינות או תפוקה של שירות חי.",
+          "summary": "NVIDIA פרסמה ב-16 בספטמבר תיאור של הופעת הבכורה של Vera Rubin NVL72 ב-MLPerf Inference v6.1. MLPerf הוא מסגרת בנצ'מרק ציבורית, ולכן עצם ההשתתפות מעניין יותר מהכרזה על מהירות ללא מסגרת. אולם התוצאה הזמינה בחבילה מגיעה מתיאור של NVIDIA על ההגשות שלה. MLCommons פרסמה באותו יום הקשר לתוצאות, אך האחזור הישיר שלה נכשל והיא אינה מקור סופי כאן.\n\nמה שניתן לומר בביטחון הוא ש-NVIDIA פרסמה את חשבונה על הגשות התצוגה המקדימה ועל ההשוואות שהיא מציגה. מה שלא ניתן לומר הוא כמה תעלה מערכת כזו, מתי תהיה זמינה, באיזו תצורה יקבלו אותה לקוחות, ומה יהיה ביצועה תחת עומס, תורים, מגבלות חשמל או דגמים שונים מן ההגדרות שבמבחן. גם מועד השינוי של פוסט NVIDIA, 18 בספטמבר לפי UTC, נשמר בנפרד ואינו הופך את ההכרזה לאירוע שפורסם בתוך חלון הסיקור.\n\nהמשמעות היא תשתיתית: תחרות מודלים תלויה במחשוב, וכאשר ספק חומרה מציג שיפור הוא עשוי להשפיע על קיבולת ועל תמחור בהמשך. אבל בין תוצאה באולם הבדיקות לבין שירות זמין יש שרשרת ארוכה של אספקה, אינטגרציה ועלויות. הערכת המערכת: MLPerf מעניק נקודת ייחוס שימושית, אך אסור להפוך את פוסט הספק לדוח כלכלי או למדד חוויית משתמש.",
+          "whyItMatters": "תוצאות מדד הן חלון חשוב למרוץ התשתיות, אבל אינן אומדן מלא של ביצועי שירות, מחיר, חשמל או זמינות.",
+          "established": [
+            "NVIDIA פרסמה את חשבון הגשת הבכורה שלה ל-MLPerf Inference v6.1 ב-16 בספטמבר 2026.",
+            "MLCommons פרסמה הקשר לתוצאות באותו יום, אך אינה מקור סופי בחבילה בגלל כשל באחזור הישיר."
+          ],
+          "sourceSpecificOrDisputedClaims": [
+            "השוואות התפוקה וההסבר הטכני הם טענות NVIDIA על הגשותיה.",
+            "אזכור MLCommons אינו אישור עצמאי של עלות, זמינות או ביצועים בעולם האמיתי."
+          ],
+          "uncertainties": [
+            "לא נאספו נתוני עלות, זמינות, צריכת חשמל או ביצועים מחוץ לתצורות המדד.",
+            "אין להסיק מתוצאת בנצ'מרק על חוויית משתמש או מחיר שירות."
+          ],
+          "editorialAssessment": "המדד חשוב כתשתית השוואה, אך המידע הזמין אינו מספיק לקביעה מסחרית או תפעולית על Vera Rubin.",
+          "sources": [
+            {
+              "name": "NVIDIA Vera Rubin NVL72 Delivers Leading Performance in MLPerf Inference v6.1 Debut",
+              "publisher": "NVIDIA",
+              "url": "https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/",
+              "published_at_source": "2026-09-16T15:00:48+00:00",
+              "published_timezone": "UTC",
+              "published_date_displayed": "September 16, 2026",
+              "published_at_jerusalem": "2026-09-16T18:00:48+03:00",
+              "published_date_jerusalem": "2026-09-16",
+              "normalization_status": "known",
+              "date_modified_source": "2026-09-18T20:12:59+00:00",
+              "date_modified_timezone": "UTC",
+              "date_modified_displayed": null,
+              "date_modified_at_jerusalem": "2026-09-18T23:12:59+03:00",
+              "date_modified_date_jerusalem": "2026-09-18",
+              "date_modified_normalization_status": "known",
+              "sourceType": "company blog",
+              "primarySecondary": "primary",
+              "originalOrSyndicated": "original",
+              "trustStatus": "trusted",
+              "contribution": "תיאור NVIDIA של הגשת MLPerf ושל ההשוואות שהיא מציגה.",
+              "claimsUsed": [
+                "NVIDIA פרסמה תיאור הופעת בכורה של Vera Rubin NVL72 ב-MLPerf Inference v6.1."
+              ],
+              "disagreementsOrFraming": "פוסט ספק אינו בוחן עלות, זמינות או ביצועי שירות מחוץ להגדרות המבחן.",
+              "syndicationRelation": "פוסט MLCommons קשור לאותו מחזור תוצאות, אך האחזור הישיר שלו נכשל ולכן אינו מקור סופי.",
+              "independentEvidence": false
+            }
+          ],
+          "primarySourceUrls": [
+            "https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/"
+          ],
+          "secondarySourceUrls": [],
+          "knownSyndication": [
+            "פוסט MLCommons אינו נכלל כמקור סופי משום שהאחזור הישיר נכשל; אין לספור אותו כאימות נוסף של טענות NVIDIA."
           ]
         }
       ]
     },
     {
-      "id": "on-radar",
+      "id": "radar",
       "heading": "על הרדאר",
-      "description": "שלושה תיקי מעקב מתמשכים. הם אינם מוצגים כאירועי חדשות חדשים בשבוע זה.",
+      "description": "תיקי מעקב מתמשכים. אלה הקשרים מערכתיים, לא טענות על אירוע שבועי חדש.",
       "stories": [
         {
-          "id": "radar-agent-safety",
+          "id": "radar-agent-safety-control",
           "section": "על הרדאר",
-          "editorialTrack": true,
           "headline": "בטיחות ושליטה בסוכנים",
-          "readingTime": "02:30",
-          "summary": "תיק מעקב עריכתי, לא דיווח על אירוע חדש השבוע. סוכן שמחובר לדפדפן, לתיבת דואר או למערכת ארגונית עשוי לחבר פעולות קטנות לרצף שיש לו תוצאה בעולם. מכאן נובעת מסגרת הבדיקה שלנו: השאלה אינה רק אם המודל הבין הוראה, אלא אילו פעולות הותרו לו, מה נאסר עליו ומי יכול להתערב לפני שנגרם נזק.\n\nהרקע לתיק הוא בחירת תכנון מוכרת, לא קביעה על מוצר מסוים. הרשאה רחבה עשויה להפחית חיכוך בתחילת הדרך, אך מקשה לבודד בדיעבד מה היה נחוץ. לכן נבדוק אם יומן פעולה מאפשר להבין אילו כלים הופעלו, איזה מידע נקרא, מה השתנה ומי אישר פעולה רגישה. זו מסגרת ניתוח עריכתית; התיק אינו מציג כאן מדידה השוואתית או ממצא פורנזי.\n\nבהמשך נעקוב אחר ברירות המחדל, אישור מפורש לפני פעולות בלתי הפיכות, מנגנוני עצירה שאינם תלויים בסוכן עצמו ודוחות תקרית שמכילים פרטים שימושיים. למה זה חשוב: כשהפעולה מתרחשת במערכת אמיתית, מהירות והיקף עלולים להקשות על אדם לעקוב אחר כל צעד. עמדת המערכת: יכולת ביצוע בלי הרשאות מצומצמות, תיעוד וביטול אינה בשלות מוצרית אלא העברת סיכון למשתמש.",
-          "established": [],
-          "uncertainties": [
-            "האם ספקים יפרסמו דוחות תקרית עם פרטים טכניים שימושיים, ולא רק הודעות כלליות על תיקון.",
-            "האם בדיקות בטיחות יכללו רצף פעולות ומשימות ארוכות במקום בקשות בודדות בסביבה מבוקרת.",
-            "אילו הרשאות יוגדרו כברירת מחדל ואילו פעולות יחייבו אישור מפורש."
-          ],
-          "whyItMatters": "למה זה חשוב: פעולה של סוכן בתוך מערכת אמיתית עלולה להתרחש במהירות ובקנה מידה שמקשים על פיקוח אנושי רציף.",
-          "editorialAssessment": "עמדת המערכת: נמדוד התקדמות באמצעות בקרות שפועלות בשימוש רגיל, ובהן הרשאות מצומצמות, יומן ברור, אישור לפני פעולה רגישה ויכולת לבטל שינוי.",
-          "sources": [],
-          "editorialAnalysis": [
-            "ניתוח עריכתי: הרשאה מצומצמת היא מדד שימושי יותר לבחינת סיכון מאשר הבטחת יכולת כללית.",
-            "ניתוח עריכתי: יומן פעולה ראוי צריך לאפשר שחזור של כלים, מידע, שינויים ואישורים.",
-            "ניתוח עריכתי: מנגנון עצירה ואישור לפני פעולה בלתי הפיכה הם נקודות מעקב, לא ראיות לכך שכל מוצר מספק אותם."
+          "readingTime": "00:55",
+          "quickRead": "ביצוע חד־פעמי אינו מספיק. השאלה היא אם מערכת סוכן חוזרת על פעולה, נשארת בגבולות ומותירה תיעוד.",
+          "summary": "סוכן מועיל הוא לא רק מודל שיודע לענות, אלא מערכת שמחליטה מתי לפעול, באילו הרשאות ובאיזה רצף. לכן אמינות נמדדת גם בחזרתיות: האם אותה משימה מובילה לאותה תוצאה, האם חריגה מזוהה, והאם אפשר לעצור בלי להשאיר פעולה פתוחה. בחבילת המחקר מופיעה עבודת IBM Research ו-Hugging Face על עקביות במשימות סוכנים. זו זווית מחקרית של מחבריה, לא הוכחה לפריסה רחבה או לפתרון של בעיית השליטה.\n\nהדבר שכדאי לעקוב אחריו הוא מעבר מהדגמות למנגנונים: יומני פעולה, הרשאות מוגבלות, שחזור של ריצות ותוצאות בדיקה חוזרות. משמעות הדבר גבוהה במיוחד כאשר סוכנים נוגעים בכלים חיצוניים. עמדת המערכת: אין להסתפק בשיעור הצלחה מרשים; מוצר סוכן רציני צריך להראות כיצד הוא נכשל, מי מבחין בכך ומי יכול להתערב.",
+          "whyItMatters": "שליטה בסוכן היא תכונת מערכת הכוללת הרשאות, תיעוד והתערבות, לא רק ציון על משימה.",
+          "established": [
+            "תיק המשך מערכתי; אינו מתאר אירוע שבועי חדש."
           ],
           "sourceSpecificOrDisputedClaims": [
-            "התיק אינו מדווח על אירוע חדש בשבוע הסיקור. ההבחנות בו מסומנות במפורש כניתוח עריכתי ואינן מוצגות כממצאים עובדתיים."
-          ]
+            "עבודת IBM Research ו-Hugging Face היא פרספקטיבת מחקר של מחבריה."
+          ],
+          "uncertainties": [
+            "לא נאספה הוכחה לפריסה רחבה או לאמינות בייצור."
+          ],
+          "editorialAssessment": "מדדו עקביות ותיחום סמכויות, לא רק יכולת לבצע פעולה פעם אחת.",
+          "sources": [],
+          "primarySourceUrls": [],
+          "secondarySourceUrls": [],
+          "knownSyndication": []
         },
         {
-          "id": "radar-models",
+          "id": "radar-next-model-generation",
           "section": "על הרדאר",
-          "editorialTrack": true,
           "headline": "דור המודלים הבא",
-          "readingTime": "02:30",
-          "summary": "תיק מעקב עריכתי, לא הכרזה על מודל חדש השבוע. דור חדש של מודלים מקבל בדרך כלל כותרת על שיא במבחן, אבל עבור משתמשים הבדיקה מתחילה אחר כך. מודל יכול להצטיין במשימה אחת, להיות יקר או איטי במשימה אחרת, ולהיראות יציב בהדגמה קצרה אך להיחלש ברצף עבודה ארוך.\n\nהרקע לתיק הוא מסגרת השוואה, לא קביעה על ספק מסוים. מחיר, מכסה, זמן תגובה, פרטיות ושילוב עם הכלים שכבר נמצאים על שולחן העבודה יכולים לשנות את משמעותה של יכולת חדשה. גם שאלת הזכאות, לפי תוכנית או אזור, היא חלק מן המוצר. בלי הערכה על משימות מלאות אין כאן בסיס להכריז על שיפור כולל.\n\nבהמשך נבדוק הערכות עצמאיות על משימות שלמות, שינויי מחיר ומגבלות לאחר ההשקה, שיעורי הצלחה חוזרים והבדלים בין שפות וכלים. למה זה חשוב: שם הדגם לבדו אינו אומר אם המוצר נעשה שימושי, אמין או נגיש יותר. עמדת המערכת: שינוי ראוי לציון הוא כזה שמקטין תיקונים, מרחיב משימות שאפשר להשלים ומחזיק בעלות שאפשר לשאת לאורך זמן.",
-          "established": [],
-          "uncertainties": [
-            "האם הערכות עצמאיות על משימות מלאות יאשרו שיפור שעליו מצהיר היצרן.",
-            "כיצד ישתנו המחיר, מגבלות השימוש וזמני התגובה לאחר תקופת ההשקה.",
-            "מה קורה במשימות ארוכות שדורשות תכנון, תיקון עצמי ושימוש בכמה כלים."
-          ],
-          "whyItMatters": "למה זה חשוב: מודלים חדשים מעצבים את הכלים שבהם אנשים עובדים, אבל שם הדגם לבדו אינו מודד שימושיות, אמינות או נגישות.",
-          "editorialAssessment": "עמדת המערכת: נחפש שינוי שאפשר להרגיש בעבודה עצמה, פחות תיקונים, משימות מורכבות שמושלמות כראוי ועלות שמתאימה לשימוש חוזר.",
-          "sources": [],
-          "editorialAnalysis": [
-            "ניתוח עריכתי: אין מדד יחיד שמסכם איכות בין כתיבה, תכנות, ניתוח מסמכים ושימוש בכלים.",
-            "ניתוח עריכתי: גישה, מחיר ומכסה הם חלק מן המוצר, גם כאשר ההכרזה מתמקדת במודל.",
-            "ניתוח עריכתי: עקביות במשימות דומות חשובה לבחינת שימוש מקצועי, אך אינה נמדדת כאן עבור מודל מסוים."
+          "readingTime": "00:50",
+          "quickRead": "המרוץ עובר ממודל כללי למערכות שמדברות, זוכרות הקשר ופועלות תחת אילוצי השהיה וזמינות.",
+          "summary": "הכרזת Gemini 3.8 Live מדגישה כיוון שכבר ניכר בשוק: המודל הבא אינו רק ציון גבוה יותר במבחן, אלא רכיב שמנסה להחזיק שיחה רציפה בזמן אמת. המעבר הזה מגדיל את חשיבותם של זיכרון הקשר, שליטה בתשובה, עלות ההפעלה והפער בין שפות ושווקים.\n\nכדאי לעקוב אחרי פרטי הגישה ולא רק אחרי שם הדגם: מי מקבל את היכולת, באיזו שפה, תחת איזה תמחור, ומה קורה כאשר השיחה מתארכת. משמעות הדבר לקורא היא שהבטחה של מודל חי נעשית שימושית רק כשהיא מתורגמת לזמינות יציבה ולמדידה שמחוץ לדף ההכרזה. עמדת המערכת: אל תתנו למינוח של דור חדש להחליף שאלות בסיסיות על שימוש, מחיר ואמינות.",
+          "whyItMatters": "מודל חדש נעשה מוצר רק דרך זמינות, השהיה, שפה ועלות, ולא דרך שם ההשקה בלבד.",
+          "established": [
+            "תיק המשך מערכתי; הודעת Google מספקת לו ראיה שבועית ראשית."
           ],
           "sourceSpecificOrDisputedClaims": [
-            "התיק אינו מדווח על אירוע חדש בשבוע הסיקור. ההבחנות בו מסומנות במפורש כניתוח עריכתי ואינן מוצגות כממצאים עובדתיים."
-          ]
+            "טענות ביצוע של Google נשארות מיוחסות ל-Google."
+          ],
+          "uncertainties": [
+            "אין בחבילה השוואה עצמאית או מפת זמינות לפי שוק."
+          ],
+          "editorialAssessment": "בדקו חוויית שימוש ומדדים חיצוניים לפני שמכריזים על קפיצה דורית.",
+          "sources": [],
+          "primarySourceUrls": [],
+          "secondarySourceUrls": [],
+          "knownSyndication": []
         },
         {
-          "id": "radar-breakthroughs",
+          "id": "radar-lab-to-world",
           "section": "על הרדאר",
-          "editorialTrack": true,
           "headline": "פריצות דרך מהמעבדה לעולם",
-          "readingTime": "02:30",
-          "summary": "תיק מעקב עריכתי, לא טענה לפריצת דרך חדשה השבוע. ההבטחה של בינה מלאכותית נמצאת גם מחוץ למסך, בניסוי מדעי, במערכת רפואית, ברובוט ובתהליך תעשייתי. במקומות כאלה איכות טקסט או הדגמה נקייה אינן המדד היחיד. התוצאה תלויה בציוד, בנתונים, בתנאי סביבה ובאנשי מקצוע שיכולים לבדוק אותה.\n\nהרקע לתיק הוא הבחנה עריכתית בין שלבים, לא מסקנה על מחקר מסוים. מאמר יכול להציג אפשרות, אב טיפוס יכול לעבוד בתנאים מוגבלים, ושימוש קבוע דורש השוואה לקו בסיס, מדידה של כישלונות ועלות מלאה הכוללת פיקוח אנושי ותחזוקה. אין כאן טענה שחזור עצמאי או אישור רגולטורי הושגו עבור מערכת כלשהי.\n\nבהמשך נחפש שחזורים בידי צוותים אחרים, תוצאות לאורך זמן, מדד ברור של תועלת וראיות בטיחותיות או רגולטוריות במקומות שבהם הן נדרשות. למה זה חשוב: חלק מן ההבטחה הכלכלית והחברתית של התחום נמצא כאן, וגם חלק מן הסיכון שקשה לתקן. עמדת המערכת: התקדמות צנועה שאפשר למדוד עדיפה על הדגמה מרשימה שאי אפשר לשחזר.",
-          "established": [],
-          "uncertainties": [
-            "האם צוותים עצמאיים יצליחו לשחזר תוצאות עם נתונים וציוד אחרים.",
-            "האם שינוי נשמר במעבר מניסוי מצומצם לשימוש בהיקף גדול ולאורך זמן.",
-            "אילו ראיות בטיחותיות, מקצועיות או רגולטוריות יוצגו לפני השפעה על החלטות בעולם האמיתי."
-          ],
-          "whyItMatters": "למה זה חשוב: כאן עשויה להימצא תועלת כלכלית וחברתית משמעותית, אך גם טעות שעלולה להיות יקרה, פיזית או קשה לתיקון.",
-          "editorialAssessment": "עמדת המערכת: נקדיש מקום לתוצאות שאפשר לבדוק, שחזור עצמאי, שימוש מתמשך ומדד ברור של תועלת. הדגמה לבדה לא תספיק.",
-          "sources": [],
-          "editorialAnalysis": [
-            "ניתוח עריכתי: תוצאה בתנאי מעבדה אינה שקולה בהכרח להפעלה בשטח.",
-            "ניתוח עריכתי: השוואה לקו בסיס ולתנאי המדידה נחוצה כדי להבין אם שינוי הוא משמעותי.",
-            "ניתוח עריכתי: בתחומים רגישים, אימות מקצועי הוא נקודת מעקב ולא אישור שניתן להניח מראש."
+          "readingTime": "00:50",
+          "quickRead": "בנצ'מרק הוא תחנת מעבר. מוצר בעולם האמיתי נבחן באספקה, תפעול, עלות ותנאי שימוש שלא תמיד מופיעים במבחן.",
+          "summary": "תוצאות MLPerf עוזרות לראות לאן מושקעת יכולת החישוב, אך אינן מכריעות מה יגיע אל משתמשים ומתי. בין שבב, שרת או תוצאה תחרותית לבין שירות עובד נמצאות שרשראות אספקה, קירור, חשמל, תוכנה, תמחור ותמיכה.\n\nנקודות המעקב הן זמינות חומרה בפועל, עלות לכל עומס שימוש, צריכת אנרגיה ותרגום של תוצאות מדד לשירותים מסחריים. לכך יש משמעות ציבורית וכלכלית משום שהחלטות תשתית קובעות אילו מודלים יהיה אפשר להפעיל ובאיזה מחיר. עמדת המערכת: יש לתת לתוצאות מדד משקל, אך לא להפוך אותן לקיצור דרך לסיפור על הצלחה מסחרית.",
+          "whyItMatters": "פער המעבר ממעבדה למוצר קובע מחיר, זמינות והשפעה סביבתית, גם כאשר המדד עצמו מרשים.",
+          "established": [
+            "תיק המשך מערכתי; פרסום NVIDIA מספק הקשר תשתיתי שבועי."
           ],
           "sourceSpecificOrDisputedClaims": [
-            "התיק אינו מדווח על אירוע חדש בשבוע הסיקור. ההבחנות בו מסומנות במפורש כניתוח עריכתי ואינן מוצגות כממצאים עובדתיים."
-          ]
+            "השוואות NVIDIA על הגשותיה אינן אומדן עצמאי לשירות מסחרי."
+          ],
+          "uncertainties": [
+            "אין נתוני עלות, אספקה או תפעול מן החבילה."
+          ],
+          "editorialAssessment": "אל תחליפו מדד טכני בראיה על שוק או על שירות.",
+          "sources": [],
+          "primarySourceUrls": [],
+          "secondarySourceUrls": [],
+          "knownSyndication": []
         }
       ]
     }
   ],
-  "totalReadingTime": "13:20",
-  "takeaway": "הסוכנים והמודלים מגיעים לעוד מקומות. עכשיו חשוב לבדוק מה הם מסוגלים לעשות, אילו גבולות מגינים על המשתמשים ואילו תוצאות מחזיקות מעמד בעולם האמיתי.",
+  "totalReadingTime": "06:30",
+  "takeaway": "הכיוון המשותף להכרזות השבוע הוא התקרבות ה-AI אל נקודות מגע יומיומיות, מקול ודפדפן ועד שרתים. ההודעות מראות לאן החברות מכוונות; הן עדיין אינן מראות מי יקבל מוצר טוב, בטוח ומשתלם יותר.",
   "archive": {
     "compatible": true,
     "editionNumber": "002",
     "preservedEditions": [
+      "001",
       "003"
     ],
-    "navigation": "archive-footer-only"
+    "navigation": "archive-footer-only",
+    "footerLabel": "ארכיון המהדורות",
+    "previousNextControls": false,
+    "swipeNavigation": false,
+    "archiveOnly": true
+  },
+  "evidence": {
+    "bundlePath": "/home/ubuntu/ai-hayom-automation/workspace/week-2026-09-14",
+    "bundleSha256": "2ff63638926daf85656a6d351d972ced6c49e4e0aa1641232d6a2fd79268e951"
   }
 }
