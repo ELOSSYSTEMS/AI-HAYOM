@@ -144,7 +144,7 @@
       ? `<p class="coverage"><span>חלון הסיקור: <bdi>${formatDate(edition.coverageStart)}–${formatDate(edition.coverageEnd)}</bdi></span> <span>פורסם <time datetime="${escapeHtml(edition.publicationDate)}">${formattedDate}</time></span>${modifiedDate ? ` <span>עודכן <time datetime="${escapeHtml(edition.dateModified)}">${escapeHtml(modifiedDate)}</time></span>` : ''}</p>`
       : '';
     const archiveNote = edition.editionType === 'weekly'
-      ? '<p class="archive-note">המהדורות היומיות הקודמות נשמרות בארכיון ללא שינוי.</p>'
+      ? '<p class="archive-note">המהדורות הזמינות מופיעות בארכיון בתחתית העמוד.</p>'
       : '';
     header.innerHTML = `${coverage}<h2>${escapeHtml(hebrewFirst(edition.headline))}</h2><p>${escapeHtml(hebrewFirst(edition.introduction))}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(hebrewFirst(edition.editorialNote))}</p>` : ''}<p class="ai-disclosure">${escapeHtml(hebrewFirst(edition.aiDisclosure))}</p>`;
     const quickRead = inside.querySelector('.quick-read');
