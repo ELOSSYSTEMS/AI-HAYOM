@@ -194,7 +194,11 @@
     activeCatalog = catalog;
     const number = requestedEdition(catalog);
     if (!catalog.editions.includes(number)) {
+      const editionRoot = document.querySelector('[data-edition-root]');
+      if (editionRoot) editionRoot.replaceChildren();
+      document.title = 'AI היום | המהדורה אינה זמינה';
       showError('המהדורה המבוקשת אינה קיימת.');
+      document.body.classList.add('ready');
       return;
     }
     const editionResponse = await fetch(`/edition/${number}/edition.json`);
