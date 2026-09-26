@@ -2,8 +2,6 @@
   const catalogUrl = '/edition/catalog.json';
   const editionPattern = /^\/(-?\d{3})\/?$/;
   let activeCatalog;
-  let previousEdition = null;
-  let nextEdition = null;
 
   const escapeHtml = (value) => String(value)
     .replaceAll('&', '&amp;')
@@ -11,6 +9,16 @@
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
+
+  const hebrewFirst = (value) => String(value)
+    .replaceAll('Meta Newsroom', 'חדר החדשות של מטא')
+    .replaceAll('TechCrunch', 'טק־קראנץ׳')
+    .replaceAll('GitHub Changelog', 'יומן העדכונים של GitHub')
+    .replaceAll('changelog', 'יומן עדכונים')
+    .replaceAll('Medicare', 'מדיקר')
+    .replaceAll('Copilot', 'קופיילוט')
+    .replaceAll('Muse', 'מיוז')
+    .replaceAll('Meta', 'מטא');
 
   function requestedEdition(catalog) {
     const match = window.location.pathname.match(editionPattern);
@@ -30,7 +38,7 @@
   }
 
   function sourcePublisher(source) {
-    if (source.name || source.publisher) return source.name || source.publisher;
+    if (source.displayName || source.name || source.publisher) return source.displayName || source.name || source.publisher;
     try { return new URL(source.url).hostname.replace(/^www\./, ''); } catch { return 'מקור'; }
   }
 
@@ -59,7 +67,7 @@
   function renderSourceList(story) {
     const sources = Array.isArray(story.sources) ? story.sources : [];
     if (!sources.length) return '';
-    return `<div class="source-links"><p class="eyebrow">מקורות</p><ol>${sources.map((source, index) => renderSource(source, index, story)).join('')}</ol></div>`;
+    return `<details class="source-links"><summary>מקורות <span>(${sources.length})</span></summary><ol>${sources.map((source, index) => renderSource(source, index, story)).join('')}</ol></details>`;
   }
 
   function renderLegacyStory(story, index) {
@@ -77,9 +85,14 @@
   function renderWeeklyStory(story, index, sectionHeading = '') {
     const number = String(index + 1).padStart(2, '0');
     const section = story.section || sectionHeading;
-    return `<section class="story">
-      <aside class="story-context"><p class="eyebrow">הקשר</p><p>${escapeHtml(story.whyItMatters)}</p>${renderSourceList(story)}</aside>
-      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(section)}</span></p><h2>${escapeHtml(story.headline)}</h2><p>${escapeHtml(story.summary)}</p></div>
+    const established = Array.isArray(story.established) && story.established.length
+      ? `<section class="story-depth"><h3>מה ידוע</h3><ul>${story.established.map((item) => `<li>${escapeHtml(hebrewFirst(item))}</li>`).join('')}</ul></section>` : '';
+    const uncertainties = Array.isArray(story.uncertainties) && story.uncertainties.length
+      ? `<section class="story-depth"><h3>מה עדיין לא ידוע</h3><ul>${story.uncertainties.map((item) => `<li>${escapeHtml(hebrewFirst(item))}</li>`).join('')}</ul></section>` : '';
+    const context = [story.whyItMatters, story.editorialAssessment].filter(Boolean).map((item) => `<p>${escapeHtml(hebrewFirst(item))}</p>`).join('');
+    return `<section class="story${story.editorialTrack ? ' editorial-track' : ''}">
+      <aside class="story-context"><p class="eyebrow">הקשר</p>${context}${renderSourceList(story)}</aside>
+      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(section)}</span></p><h2>${escapeHtml(hebrewFirst(story.headline))}</h2><p>${escapeHtml(hebrewFirst(story.summary))}</p>${established}${uncertainties}</div>
       <div class="story-index"><b>${number}</b><span>${escapeHtml(story.readingTime)}</span></div>
     </section>`;
   }
@@ -126,69 +139,37 @@
     const archiveNote = edition.editionType === 'weekly'
       ? '<p class="archive-note">המהדורות היומיות הקודמות נשמרות בארכיון ללא שינוי.</p>'
       : '';
-    header.innerHTML = `${coverage}<h2>${escapeHtml(edition.headline)}</h2><p>${escapeHtml(edition.introduction)}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
+    header.innerHTML = `${coverage}<h2>${escapeHtml(hebrewFirst(edition.headline))}</h2><p>${escapeHtml(hebrewFirst(edition.introduction))}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(edition.editorialNote)}</p>` : ''}<p class="ai-disclosure">${escapeHtml(edition.aiDisclosure)}</p>`;
     const quickRead = inside.querySelector('.quick-read');
-    quickRead.hidden = edition.editionType === 'weekly';
-    if (!quickRead.hidden) {
+    if (Array.isArray(edition.overview) && edition.overview.length) {
+      quickRead.hidden = false;
+      quickRead.innerHTML = `<h3>במבט אחד · חמשת הנושאים</h3><ul>${edition.overview.map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.summary)}</li>`).join('')}</ul>`;
+    } else {
+      quickRead.hidden = edition.editionType === 'weekly';
+    }
+    if (!quickRead.hidden && !(Array.isArray(edition.overview) && edition.overview.length)) {
       const storyCountLabels = { 4: 'ארבעת', 5: 'חמשת', 6: 'ששת' };
       const storyCountLabel = storyCountLabels[stories.length] || 'מספר';
       quickRead.innerHTML = `<h3>במבט אחד · ${storyCountLabel} הנושאים</h3><ul>${stories.map((story) => `<li><strong>${escapeHtml(story.section || '')}:</strong> ${escapeHtml(story.quickRead)}</li>`).join('')}</ul>`;
     }
     inside.querySelector('.stories').innerHTML = renderStories(edition, stories);
-    inside.querySelector('.takeaway').innerHTML = `<p class="eyebrow">${escapeHtml(edition.totalReadingTime)} · השורה התחתונה</p><h2>${escapeHtml(edition.takeaway)}</h2>`;
+    inside.querySelector('.takeaway').innerHTML = `<p class="eyebrow">${escapeHtml(edition.totalReadingTime)} · השורה התחתונה</p><h2>${escapeHtml(hebrewFirst(edition.takeaway))}</h2>`;
 
-    const index = catalog.editions.indexOf(edition.number);
-    const previous = catalog.editions[index - 1];
-    const next = catalog.editions[index + 1];
-    const previousLinks = document.querySelectorAll('[data-previous]');
-    const nextLinks = document.querySelectorAll('[data-next]');
-    previousLinks.forEach((link) => {
-      link.hidden = !previous;
-      if (previous) link.href = `/${previous}`;
-    });
-    nextLinks.forEach((link) => {
-      link.hidden = !next;
-      if (next) link.href = `/${next}`;
-    });
-    [...previousLinks, ...nextLinks].forEach((link) => {
-      link.onclick = (event) => { event.preventDefault(); navigateTo(link.hasAttribute('data-previous') ? previous : next); };
-    });
-    document.querySelector('.edition-status').textContent = `${label} ${edition.number}`;
-    installSwipe(previous, next);
-    installKeyboard(previous, next);
+    renderArchive(catalog, edition.number);
   }
 
-  function installSwipe(previous, next) {
-    previousEdition = previous;
-    nextEdition = next;
-    if (installSwipe.ready) return;
-    installSwipe.ready = true;
-    let startX = 0;
-    let startY = 0;
-    document.addEventListener('touchstart', (event) => {
-      startX = event.changedTouches[0].clientX;
-      startY = event.changedTouches[0].clientY;
-    }, { passive: true });
-    document.addEventListener('touchend', (event) => {
-      const deltaX = event.changedTouches[0].clientX - startX;
-      const deltaY = event.changedTouches[0].clientY - startY;
-      if (Math.abs(deltaX) < 70 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
-      if (deltaX > 0 && previousEdition) navigateTo(previousEdition);
-      if (deltaX < 0 && nextEdition) navigateTo(nextEdition);
-    }, { passive: true });
-  }
-
-  function installKeyboard(previous, next) {
-    previousEdition = previous;
-    nextEdition = next;
-    if (installKeyboard.ready) return;
-    installKeyboard.ready = true;
-    document.addEventListener('keydown', (event) => {
-      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-      if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
-      if (event.key === 'ArrowRight' && previousEdition) navigateTo(previousEdition);
-      if (event.key === 'ArrowLeft' && nextEdition) navigateTo(nextEdition);
-    });
+  async function renderArchive(catalog, currentNumber) {
+    const archive = document.querySelector('.edition-archive');
+    const numbers = catalog.editions.filter((number) => number !== currentNumber).reverse();
+    const entries = await Promise.all(numbers.map(async (number) => {
+      try {
+        const response = await fetch(`/edition/${number}/edition.json`, { cache: 'no-store' });
+        if (!response.ok) return null;
+        const item = await response.json();
+        return `<li><a href="/${escapeHtml(number)}"><span><b>מהדורה ${escapeHtml(number)}</b><time datetime="${escapeHtml(item.publicationDate)}">${formatDate(item.publicationDate)}</time></span><strong>${escapeHtml(item.headline)}</strong>${item.totalReadingTime ? `<small>${escapeHtml(item.totalReadingTime)} דקות קריאה</small>` : ''}</a></li>`;
+      } catch { return null; }
+    }));
+    archive.innerHTML = `<h2>ארכיון המהדורות</h2>${entries.some(Boolean) ? `<ul>${entries.filter(Boolean).join('')}</ul>` : '<p>זוהי המהדורה הראשונה.</p>'}`;
   }
 
   function showError(message) {
