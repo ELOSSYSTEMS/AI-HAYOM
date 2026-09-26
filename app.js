@@ -152,7 +152,11 @@
     const quickRead = inside.querySelector('.quick-read');
     if (Array.isArray(edition.overview) && edition.overview.length) {
       quickRead.hidden = false;
-      quickRead.innerHTML = `<h3>במבט אחד · חמשת הנושאים</h3><ul>${edition.overview.map((item) => `<li><strong>${escapeHtml(hebrewFirst(item.title))}:</strong> ${escapeHtml(hebrewFirst(item.summary))}</li>`).join('')}</ul>`;
+      quickRead.innerHTML = `<h3>במבט אחד · חמשת הנושאים</h3><ul>${edition.overview.map((item) => {
+        const title = item.title ?? item.label ?? '';
+        const summary = item.summary ?? item.text ?? '';
+        return `<li><strong>${escapeHtml(hebrewFirst(title))}:</strong> ${escapeHtml(hebrewFirst(summary))}</li>`;
+      }).join('')}</ul>`;
     } else {
       quickRead.hidden = edition.editionType === 'weekly';
     }
