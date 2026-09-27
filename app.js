@@ -65,6 +65,21 @@
     return Array.isArray(edition.stories) ? edition.stories : [];
   }
 
+  const sourceMetaLabels = {
+    'primary announcement': 'הודעת גוף ראשון',
+    'original reporting': 'דיווח מקורי',
+    'news report': 'דיווח חדשותי',
+    'public-broadcaster news report': 'דיווח שידור ציבורי',
+    'technology news report': 'דיווח טכנולוגי',
+    'government press-conference transcript': 'תמליל ממשלתי',
+    primary: 'ראשוני',
+    secondary: 'משני',
+    original: 'מקורי',
+    syndicated: 'מופץ מחדש',
+    trusted: 'ברשימת המקורות המועדפים',
+    unrated: 'טרם דורג',
+  };
+
   function renderSource(source, index, story) {
     const label = source.displayName || hebrewFirst(sourcePublisher(source));
     const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)"><bdi dir="auto">${escapeHtml(label)}</bdi> ↗</a>`;
@@ -80,7 +95,7 @@
       ['תרומה לסיפור', source.contribution],
     ].filter(([, value]) => value != null && value !== '' && value !== 'unknown');
     const metadata = fields.length
-      ? `<dl class="source-meta">${fields.map(([name, value]) => `<div><dt>${name}</dt><dd><bdi dir="auto">${escapeHtml(value)}</bdi></dd></div>`).join('')}</dl>`
+      ? `<dl class="source-meta">${fields.map(([name, value]) => `<div><dt>${name}</dt><dd><bdi dir="auto">${escapeHtml(sourceMetaLabels[value] || value)}</bdi></dd></div>`).join('')}</dl>`
       : '';
     return `<li class="source-item"><span class="source-number">${index + 1}.</span><div class="source-entry">${link}${metadata}</div></li>`;
   }
