@@ -67,10 +67,39 @@
     return Array.isArray(edition.stories) ? edition.stories : [];
   }
 
+  const sourceMetaLabels = {
+    'primary announcement': 'הודעת גוף ראשון',
+    'original reporting': 'דיווח מקורי',
+    'news report': 'דיווח חדשותי',
+    'public-broadcaster news report': 'דיווח שידור ציבורי',
+    'technology news report': 'דיווח טכנולוגי',
+    'government press-conference transcript': 'תמליל ממשלתי',
+    primary: 'ראשוני',
+    secondary: 'משני',
+    original: 'מקורי',
+    syndicated: 'מופץ מחדש',
+    trusted: 'ברשימת המקורות המועדפים',
+    unrated: 'טרם דורג',
+  };
+
   function renderSource(source, index, story) {
-    const label = String(sourceLabel(source));
-    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" dir="auto" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)"><bdi dir="auto">${escapeHtml(label)}</bdi></a>`;
-    return `<li class="source-item"><span class="source-number">${index + 1}.</span>${link}</li>`;
+    const label = source.displayName || hebrewFirst(sourceLabel(source));
+    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)"><bdi dir="auto">${escapeHtml(label)}</bdi> ↗</a>`;
+    const fields = [
+      ['סוג', source.sourceType],
+      ['תפקיד', source.primarySecondary],
+      ['מקוריות', source.originalOrSyndicated],
+      ['דירוג', source.trustStatus],
+      ['פורסם במקור', source.published_date_displayed || source.published_at_source],
+      ['תאריך ירושלים', source.published_at_jerusalem || source.published_date_jerusalem],
+      ['עודכן במקור', source.date_modified_displayed || source.date_modified_source],
+      ['עדכון בירושלים', source.date_modified_at_jerusalem || source.date_modified_date_jerusalem],
+      ['תרומה לסיפור', source.contribution],
+    ].filter(([, value]) => value != null && value !== '' && value !== 'unknown');
+    const metadata = fields.length
+      ? `<dl class="source-meta">${fields.map(([name, value]) => `<div><dt>${name}</dt><dd><bdi dir="auto">${escapeHtml(sourceMetaLabels[value] || value)}</bdi></dd></div>`).join('')}</dl>`
+      : '';
+    return `<li class="source-item"><span class="source-number">${index + 1}.</span><div class="source-entry">${link}${metadata}</div></li>`;
   }
 
   function renderSourceList(story) {
@@ -146,7 +175,7 @@
       ? `<p class="coverage"><span>חלון הסיקור: <bdi>${formatDate(edition.coverageStart)}–${formatDate(edition.coverageEnd)}</bdi></span> <span>פורסם <time datetime="${escapeHtml(edition.publicationDate)}">${formattedDate}</time></span>${modifiedDate ? ` <span>עודכן <time datetime="${escapeHtml(edition.dateModified)}">${escapeHtml(modifiedDate)}</time></span>` : ''}</p>`
       : '';
     const archiveNote = edition.editionType === 'weekly'
-      ? '<p class="archive-note">המהדורות הזמינות מופיעות בארכיון בתחתית העמוד.</p>'
+      ? '<p class="archive-note">מהדורות קודמות נשמרות בארכיון ללא שינוי.</p>'
       : '';
     header.innerHTML = `${coverage}<h2>${escapeHtml(hebrewFirst(edition.headline))}</h2><p>${escapeHtml(hebrewFirst(edition.introduction))}</p>${archiveNote}${edition.editorialNote ? `<p class="draft-note">${escapeHtml(hebrewFirst(edition.editorialNote))}</p>` : ''}<p class="ai-disclosure">${escapeHtml(hebrewFirst(edition.aiDisclosure))}</p>`;
     const quickRead = inside.querySelector('.quick-read');
