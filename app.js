@@ -67,8 +67,22 @@
 
   function renderSource(source, index, story) {
     const label = source.displayName || hebrewFirst(sourcePublisher(source));
-    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)">${escapeHtml(label)} ↗</a>`;
-    return `<li class="source-item"><span class="source-number">${index + 1}.</span>${link}</li>`;
+    const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)"><bdi dir="auto">${escapeHtml(label)}</bdi> ↗</a>`;
+    const fields = [
+      ['סוג', source.sourceType],
+      ['תפקיד', source.primarySecondary],
+      ['מקוריות', source.originalOrSyndicated],
+      ['דירוג', source.trustStatus],
+      ['פורסם במקור', source.published_date_displayed || source.published_at_source],
+      ['תאריך ירושלים', source.published_at_jerusalem || source.published_date_jerusalem],
+      ['עודכן במקור', source.date_modified_displayed || source.date_modified_source],
+      ['עדכון בירושלים', source.date_modified_at_jerusalem || source.date_modified_date_jerusalem],
+      ['תרומה לסיפור', source.contribution],
+    ].filter(([, value]) => value != null && value !== '' && value !== 'unknown');
+    const metadata = fields.length
+      ? `<dl class="source-meta">${fields.map(([name, value]) => `<div><dt>${name}</dt><dd><bdi dir="auto">${escapeHtml(value)}</bdi></dd></div>`).join('')}</dl>`
+      : '';
+    return `<li class="source-item"><span class="source-number">${index + 1}.</span><div class="source-entry">${link}${metadata}</div></li>`;
   }
 
   function renderSourceList(story) {
