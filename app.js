@@ -120,7 +120,7 @@
     </section>`;
   }
 
-  function renderWeeklyStory(story, index, sectionHeading = '') {
+  function renderWeeklyStory(story, index, sectionHeading = '', edition = {}) {
     const number = String(index + 1).padStart(2, '0');
     const section = story.section || sectionHeading;
     const established = Array.isArray(story.established) && story.established.length
@@ -130,9 +130,23 @@
     const context = [story.whyItMatters, story.editorialAssessment].filter(Boolean).map((item) => `<p>${escapeHtml(hebrewFirst(item))}</p>`).join('');
     return `<section class="story${story.editorialTrack ? ' editorial-track' : ''}">
       <aside class="story-context"><p class="eyebrow">הקשר</p>${context}${renderSourceList(story)}</aside>
-      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(hebrewFirst(section))}</span></p><h2>${escapeHtml(hebrewFirst(story.headline))}</h2>${renderParagraphs(story.summary)}${established}${uncertainties}</div>
+      <div class="story-main"><p class="eyebrow story-label"><span>${escapeHtml(hebrewFirst(section))}</span></p><h2>${escapeHtml(hebrewFirst(story.headline))}</h2>${renderParagraphs(story.summary)}${established}${uncertainties}${renderStoryUpdates(story, edition)}</div>
       <div class="story-index"><b>${number}</b><span>${escapeHtml(story.readingTime)}</span></div>
     </section>`;
+  }
+
+  function renderStoryUpdates(story, edition) {
+    const records = Array.isArray(story.updates) ? story.updates : [];
+    if (!records.length) return '';
+    return `<section class="story-updates" aria-label="עדכונים לסיפור">${records.map((record) => {
+      const eventDate = String(record.eventAt || '').slice(0, 10);
+      const isPostWindow = record.type === 'development' && edition.coverageEnd && eventDate > edition.coverageEnd;
+      const label = record.type === 'correction' ? 'תיקון'
+        : isPostWindow ? `התפתחות לאחר חלון הסיקור · ${formatDate(eventDate)}` : 'התפתחות';
+      const sources = (Array.isArray(record.sources) ? record.sources : []).map((url, index) =>
+        `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">מקור ${index + 1} ↗</a>`).join(' ');
+      return `<article class="story-update"><h3>${escapeHtml(label)}</h3><p>${escapeHtml(hebrewFirst(record.summary))}</p>${sources ? `<p class="update-sources">${sources}</p>` : ''}</article>`;
+    }).join('')}</section>`;
   }
 
   function renderStories(edition, stories) {
@@ -141,7 +155,7 @@
     let index = 0;
     return sections.map((section) => {
       const sectionStories = Array.isArray(section.stories) ? section.stories : [];
-      const rendered = sectionStories.map((story) => renderWeeklyStory(story, index++, section.heading || '')).join('');
+      const rendered = sectionStories.map((story) => renderWeeklyStory(story, index++, section.heading || '', edition)).join('');
       const description = section.description ? `<p>${escapeHtml(hebrewFirst(section.description))}</p>` : '';
       const empty = sectionStories.length ? '' : '<p class="empty-section">אין השבוע עדכוני המשך מהותיים.</p>';
       return `<section class="story-section${sectionStories.length ? '' : ' is-empty'}" data-section-id="${escapeHtml(section.id || '')}"><header class="story-section-header"><h3>${escapeHtml(hebrewFirst(section.heading || ''))}</h3>${description}</header>${rendered}${empty}</section>`;
@@ -163,10 +177,7 @@
     document.querySelector('meta[property="og:description"]').content = edition.editionType === 'weekly'
       ? hebrewFirst(`${edition.headline} · תדריך שבועי של חמש דקות על AI בעברית.`)
       : hebrewFirst(`${edition.headline} · חמש דקות של חדשות AI בעברית.`);
-    document.querySelector('.metadata .edition-label').innerHTML = `${label} <bdi>${escapeHtml(edition.number)}</bdi>`;
-    const time = document.querySelector('.metadata time');
-    time.dateTime = edition.publicationDate;
-    time.textContent = formattedDate;
+    document.querySelector('.metadata .edition-label').innerHTML = `${label} · <bdi>${escapeHtml(edition.number)}</bdi>`;
 
     const inside = document.querySelector('[data-edition-root]');
     inside.setAttribute('aria-label', `תוכן מהדורה ${edition.number}`);
