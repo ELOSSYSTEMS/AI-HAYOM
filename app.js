@@ -66,7 +66,7 @@
   }
 
   function renderSource(source, index, story) {
-    const label = hebrewFirst(sourcePublisher(source));
+    const label = source.displayName || hebrewFirst(sourcePublisher(source));
     const link = `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)} · מקור ${index + 1} לסיפור ${escapeHtml(hebrewFirst(story.headline || ''))} (נפתח בלשונית חדשה)">${escapeHtml(label)} ↗</a>`;
     return `<li class="source-item"><span class="source-number">${index + 1}.</span>${link}</li>`;
   }
