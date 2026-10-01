@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    {"source": "/:edition(-?[0-9]{3})", "destination": "/index.html"}
+    {
+      "source": "/:edition(-?[0-9]{3})",
+      "destination": "/newsroom.html"
+    }
   ]
 }
